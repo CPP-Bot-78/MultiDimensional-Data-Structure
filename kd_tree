@@ -1,4 +1,4 @@
-#test kwdikas, den kanei swsta ta range queries  O_O
+#test kwdikas, den kanei swsta ta range queries gia education O_O
 import pandas as pd
 
 class KDNode:
@@ -20,47 +20,36 @@ class KdTree:
             self.root.left = KdTree(points[:median], depth + 1).root
             self.root.right = KdTree(points[median + 1:], depth + 1).root
 
+def convert_to_list(value):
+    return [int(val) for val in str(value)[1:-1].split(', ')] if pd.notna(value) and str(value).startswith('[') else [int(value)]
+
 # Load data from CSV
 data = pd.read_csv('computer_scientists_data.csv')
-
-# Adjust column names based on your dataset
-scientist_data = [(row['Surname'], row['#Awards'], row['DBLP'], row['Education']) for _, row in data.iterrows()]
-
-# Convert #Awards and #DBLP_Record to tuples
-scientist_data = [(surname, (awards,), (dblp,), education) for surname, awards, dblp, education in scientist_data]
+scientist_data = [(row['Surname'], (row['#Awards'],), convert_to_list(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')] if pd.notna(row['Education']) and str(row['Education']).startswith('[') else [row['Education']]) for _, row in data.iterrows()]
 
 # Build k-d tree on fields (Surname, #Awards, #DBLP_Record)
 kdtree = KdTree(scientist_data)
 
-# Example query
-query_point = scientist_data[0]  # You can set this to any scientist in the dataset
-
-# Function to perform a range query on the k-d tree
-def range_query(node, depth, min_vals, max_vals, results):
+def range_query(node, results):
     if node is not None:
-        axis = depth % len(node.data[1])
-        if min_vals[axis] <= node.data[1][axis] <= max_vals[axis]:
+        try:
+            education_list = [val.strip(" '") for val in node.data[3]]
+        except ValueError:
+            print(f"Skipping node at depth due to non-list value for education")
+            return
+
+        if 'A' <= node.data[0][0].upper() <= 'G' and node.data[1][0] > 4 and 100 <= int(node.data[2][0]) <= 200 and len(set(education_list) & set(node.data[3])) > 0:
             results.append(node.data)
-        if min_vals[axis] < node.data[1][axis]:
-            range_query(node.left, depth + 1, min_vals, max_vals, results)
-        if max_vals[axis] > node.data[1][axis]:
-            range_query(node.right, depth + 1, min_vals, max_vals, results)
 
-# Perform a range query on the k-d tree
-min_values = (float('-inf'), float('-inf'), float('-inf'))  # Replace with your actual range
-max_values = (float('inf'), float('inf'), float('inf'))  # Replace with your actual range
+        range_query(node.left, results)
+        range_query(node.right, results)
+
 result = []
+range_query(kdtree.root, result)
 
-range_query(kdtree.root, 0, min_values, max_values, result)
-
-# Write results and header to a .txt file
-with open('kd_tree_results.txt', 'w') as file:
-    # Write header
+with open('kd_tree_results_2.txt', 'w') as file:
     file.write("Surname: , #Awards: , #DBLP: , Education:\n")
-    
-    # Write results
     for item in result:
         file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
 
-print("Results written to kd_tree_results.txt")
-
+print("Results written to kd_tree_results_2.txt")
