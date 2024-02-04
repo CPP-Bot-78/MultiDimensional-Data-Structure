@@ -10,8 +10,10 @@ import os
 import pandas as pd
 from static import letter_normalization
 from RangeTree3D import RangeTree3D
+from memory_profiler import profile
 
 
+@profile
 def build_range_tree():
     df = pd.read_csv("../computer_scientists_data.csv")
     points = []
@@ -29,6 +31,7 @@ def build_range_tree():
     return range_tree
 
 
+@profile
 def query_range_tree(range_tree, min_letter, max_letter, num_awards):
     # Υπολογισμός των αριθμητικών τιμών του ελάχιστου και του μέγιστου γράμματος
     min_letter = letter_normalization(min_letter)
