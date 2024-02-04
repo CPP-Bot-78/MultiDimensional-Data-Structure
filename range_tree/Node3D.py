@@ -8,7 +8,7 @@ class Node3D:
     """
     def __init__(self, z, points):
         self.z = z
-        self.xy_tree = RangeTree2D(points)  # το 2D δέντρο του κόμβου που περιέχει τα σημεία που έχουν το ίδιο x
+        self.xy_tree = RangeTree2D(points[:-1])  # το 2D δέντρο του κόμβου που περιέχει τα σημεία που έχουν το ίδιο x
         self.left = None  # ο αριστερός κόμβος
         self.right = None  # ο δεξιός κόμβος
         self.height = 1  # το αρχικό ύψος του κόμβου

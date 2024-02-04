@@ -8,23 +8,23 @@ class RangeTree3D:
     def insert3D(self, root, x, y, z, i_list, points):
         """Εισαγωγή ενός νέου σημείου στο 2D δέντρο και εφαρμογή της διαδικασίας
         εξισορρόπησής του
-        :param Node2D root: The points of the 2D tree
+        :param Node3D root: The points of the 2D tree
         :param int x: Tο x-value του κόμβου
         :param int y: Tο y-value του κόμβου
         :param int z: Tο z-value του κόμβου
         :param list i_list:  H λίστα που πρέπει να εισαχθεί
         :param list points: Tα σημεία για την κατασκευή του 2D δέντρου
         :return: New BBST tree
-        :rtype: Node2D
+        :rtype: Node3D
         """
         if not root:
             return Node3D(x, [(x, y, z, i_list)])
         if z == root.z:     # αν υπάρχει ήδη κόμβος με το ίδιο x-value, κάνε εισαγωγή κόμβου στο αντίστοιχο y_tree
-            root.xy_tree.root = root.xy_tree.insert2D(root.xy_tree.root, x, y, i_list)
+            root.xy_tree.root = root.xy_tree.insert2D(root.xy_tree.root, x, y, i_list, [])
         elif z < root.z:    # εισαγωγή του κόμβου στο αριστερό υπο-δέντρο
-            root.left = self.insert3D(root.left, x, y, i_list, [(x, y, i_list)])
+            root.left = self.insert3D(root.left, x, y, z, i_list, [(x, y, z, i_list)])
         else:               # εισαγωγή του κόμβου στο δεξί υπο-δέντρο
-            root.right = self.insert3D(root.right, x, y, i_list, [(x, y, i_list)])
+            root.right = self.insert3D(root.right, x, y, z, i_list, [(x, y, z, i_list)])
 
         # Ενημέρωση του ύψους του τρέχοντα κόμβου με βάση τα ύψη των υπο-δέντρων του
         root.height = 1 + max(self.get_height(root.left), self.get_height(root.right))
@@ -66,7 +66,7 @@ class RangeTree3D:
 
     def get_height(self, node):
         """Συνάρτηση για την επιστροφή του ύψους ενός κόμβου
-        :param Node2D node: O κόμβος για τον οποίο ψάχνουμε το ύψος του.
+        :param Node3D node: O κόμβος για τον οποίο ψάχνουμε το ύψος του.
         :return: Το ύψος του κόμβου
         :rtype: int
         """
@@ -77,7 +77,7 @@ class RangeTree3D:
     def get_balance(self, node):
         """Συνάρτηση για την επιστροφή του παράγοντα ισορροπίας ενός κόμβου
         (η διαφορά ύψους μεταξύ των δύο υπο-δέντρων του)
-        :param Node2D node: O κόμβος για τον οποίο ψάχνουμε το ύψος του.
+        :param Node3D node: O κόμβος για τον οποίο ψάχνουμε το ύψος του.
         :return: Ο παράγοντας ισορροπίας του κόμβου
         :rtype: int
         """

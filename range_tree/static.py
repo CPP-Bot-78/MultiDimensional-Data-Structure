@@ -1,2 +1,2 @@
-def letter_normalization(min_letter):
-    pass
+def letter_normalization(letter):
+    return ord(letter.upper())

@@ -6,6 +6,7 @@
 ταξινομημένα βάσει των συντεταγμένων y τους. Αντίστοιχα για τα σημεία z.
 """
 
+import os
 import pandas as pd
 from static import letter_normalization
 from RangeTree3D import RangeTree3D
@@ -48,13 +49,16 @@ def query_range_tree(range_tree, min_letter, max_letter, num_awards):
     )
 
     final_results = []
-    df = pd.read_csv("./computer_scientists_data.csv")
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    home_dir = os.path.dirname(script_directory)
+    CSV_PATH = os.path.join(home_dir, 'computer_scientists_data.csv')
+    df = pd.read_csv(CSV_PATH)
     # Ανάκτηση των δεδομένων και αποθήκευσή τους σε λίστα
     for result in query_results:
         index = result[2]  # παίρνουμε το index από τα δεδομένα του Range Tree
-        surname = df.iloc[index]['surname']
-        awards = df.iloc[index]['awards']
-        education = df.iloc[index]['education']
-        final_results.append({"surname": surname, "awards": awards, "education": education})
-
+        surname = df.iloc[index]['Surname']
+        awards = df.iloc[index]['#Awards']
+        education = df.iloc[index]['Education']
+        dblp = df.iloc[index]['DBLP']
+        final_results.append({"surname": surname, "awards": awards, "education": education, "DBLP": dblp})
     return final_results
