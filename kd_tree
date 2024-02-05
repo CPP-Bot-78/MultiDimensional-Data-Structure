@@ -32,13 +32,8 @@ kdtree = KdTree(scientist_data)
 
 def range_query(node, results):
     if node is not None:
-        try:
-            education_list = [val.strip(" '") for val in node.data[3]]
-        except ValueError:
-            print(f"Skipping node at depth due to non-list value for education")
-            return
 
-        if 'A' <= node.data[0][0].upper() <= 'G' and node.data[1][0] > 4 and 100 <= int(node.data[2][0]) <= 200 and len(set(education_list) & set(node.data[3])) > 0:
+        if 'A' <= node.data[0][0].upper() <= 'E' and node.data[1][0] >= 0 and 0 <= int(node.data[2][0]) <= 100:
             results.append(node.data)
 
         range_query(node.left, results)
@@ -47,9 +42,9 @@ def range_query(node, results):
 result = []
 range_query(kdtree.root, result)
 
-with open('kd_tree_results_2.txt', 'w') as file:
+with open('kd_tree_results.txt', 'w') as file:
     file.write("Surname: , #Awards: , #DBLP: , Education:\n")
     for item in result:
         file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
 
-print("Results written to kd_tree_results_2.txt")
+print("Results written to kd_tree_results.txt")
