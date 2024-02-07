@@ -2,7 +2,7 @@
 #mazi me ton xrono poy xreiastike to kdtree.py
 import pandas as pd
 import time
-from kdtree2 import KdTree, convert_to_list, load_scientist_data
+from kdtree import KdTree, convert_to_list, load_scientist_data
 
 def main():
     # Get user input for the range criteria
