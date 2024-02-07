@@ -1,4 +1,4 @@
-#proxeirh main poy kalei to kdtree.py k kanei write ta apotelesmata se pinaka sto results.txt
+#proxeirh main poy kalei to kdtree.py kai kanei write ta apotelesmata se pinaka sto results.txt
 #mazi me ton xrono poy xreiastike to kdtree.py
 import pandas as pd
 import time
