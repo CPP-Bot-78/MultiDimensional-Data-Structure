@@ -2,17 +2,7 @@
 #mazi me ton xrono poy xreiastike to kdtree.py
 import pandas as pd
 import time
-from kdtree import KdTree, convert_to_list
-
-def load_scientist_data():
-    data = pd.read_csv('computer_scientists_data.csv')
-    scientist_data = [
-        (row['Surname'], (row['#Awards'],), convert_to_list(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
-         if pd.notna(row['Education']) and str(row['Education']).startswith('[')
-         else [row['Education']])
-        for _, row in data.iterrows()
-    ]
-    return scientist_data
+from kdtree2 import KdTree, convert_to_list, load_scientist_data
 
 def main():
     # Get user input for the range criteria
@@ -32,6 +22,11 @@ def main():
     result_list = []
     kdtree.range_query(kdtree.root, result_list, surname_range, awards_range, dblp_range)
 
+    # Start timer for range query
+    start_time_range_query = time.time()
+    kdtree.range_query(kdtree.root, result_list, surname_range, awards_range, dblp_range)
+    range_query_time = time.time() - start_time_range_query
+
     # Perform range query and save results for KD-Tree
     result_kdtree = result_list
 
@@ -39,9 +34,11 @@ def main():
     with open('results.txt', 'w') as file:
         file.write("Results for KD-Tree:\n")
         file.write(f"Construction Time: {kdtree_time} seconds\n")
+        file.write(f"Range Query Time: {range_query_time} seconds\n")
         file.write("Surname: , #Awards: , #DBLP: , Education:\n")
         for item in result_kdtree:
             file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
 
 if __name__ == "__main__":
     main()
+
