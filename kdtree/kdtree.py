@@ -27,5 +27,15 @@ class KdTree:
             self.range_query(node.left, results, surname_range, awards_range, dblp_range)
             self.range_query(node.right, results, surname_range, awards_range, dblp_range)
 
+def load_scientist_data():
+    data = pd.read_csv('computer_scientists_data.csv')
+    scientist_data = [
+        (row['Surname'], (row['#Awards'],), convert_to_list(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
+         if pd.notna(row['Education']) and str(row['Education']).startswith('[')
+         else [row['Education']])
+        for _, row in data.iterrows()
+    ]
+    return scientist_data
+
 def convert_to_list(value):
     return [int(val) for val in str(value)[1:-1].split(', ')] if pd.notna(value) and str(value).startswith('[') else [int(value)]
