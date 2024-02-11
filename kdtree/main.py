@@ -7,24 +7,28 @@ from kdtree import KdTree, convert_to_list, load_scientist_data
 def main():
     # Get user input for the range criteria
     surname_range = input("Enter the range for Surname (e.g., A-E): ").upper().split('-')
-    awards_range = list(map(int, input("Enter the range for #Awards (e.g., 0-5): ").split('-')))
+    
+    # Ask for the minimum awards instead of a range
+    min_awards = int(input("Enter the minimum #Awards: "))
+    
     dblp_range = list(map(int, input("Enter the range for #DBLP (e.g., 0-100): ").split('-')))
     print("Results written in results.txt")
+    
     # Load scientist data
     scientist_data = load_scientist_data()
 
     # Load k-d tree from kdtree.py
     start_time = time.time()
-    kdtree = KdTree(scientist_data)
+    kdtree = KdTree(scientist_data, min_awards=min_awards)  # Pass min_awards to KdTree constructor
     kdtree_time = time.time() - start_time
 
     # Generate result list once
     result_list = []
-    kdtree.range_query(kdtree.root, result_list, surname_range, awards_range, dblp_range)
+    kdtree.range_query(kdtree.root, result_list, surname_range, dblp_range)
 
     # Start timer for range query
     start_time_range_query = time.time()
-    kdtree.range_query(kdtree.root, result_list, surname_range, awards_range, dblp_range)
+    kdtree.range_query(kdtree.root, result_list, surname_range, dblp_range)  # Adjust the call to range_query
     range_query_time = time.time() - start_time_range_query
 
     # Perform range query and save results for KD-Tree
@@ -41,4 +45,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
