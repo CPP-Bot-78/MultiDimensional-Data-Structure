@@ -18,18 +18,18 @@ def main():
     scientist_data = load_scientist_data()
 
     # Load k-d tree from kdtree.py
-    start_time = time.time()
+    kdstart_time = time.time()
     kdtree = KdTree(scientist_data, min_awards=min_awards)  # Pass min_awards to KdTree constructor
-    kdtree_time = time.time() - start_time
+    kdtree_time = time.time() - kdstart_time
 
     # Generate result list once
     result_list = []
     kdtree.range_query(kdtree.root, result_list, surname_range, dblp_range)
 
     # Start timer for range query
-    start_time_range_query = time.time()
+    kdstart_time_range_query = time.time()
     kdtree.range_query(kdtree.root, result_list, surname_range, dblp_range)  # Adjust the call to range_query
-    range_query_time = time.time() - start_time_range_query
+    kdrange_query_time = time.time() - kdstart_time_range_query
 
     # Perform range query and save results for KD-Tree
     result_kdtree = result_list
@@ -38,7 +38,7 @@ def main():
     with open('results.txt', 'w') as file:
         file.write("Results for KD-Tree:\n")
         file.write(f"Construction Time: {kdtree_time} seconds\n")
-        file.write(f"Range Query Time: {range_query_time} seconds\n")
+        file.write(f"Range Query Time: {kdrange_query_time} seconds\n")
         file.write("Surname: , #Awards: , #DBLP: , Education:\n")
         for item in result_kdtree:
             file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
