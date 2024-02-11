@@ -1,4 +1,4 @@
-from Node3D import Node3D
+from range_tree import Node3D as N3D
 
 
 class RangeTree3D:
@@ -18,7 +18,7 @@ class RangeTree3D:
         :rtype: Node3D
         """
         if not root:
-            return Node3D(x, [(x, y, z, i_list)])
+            return N3D.Node3D(z, [(x, y, z, i_list)])
         if z == root.z:     # αν υπάρχει ήδη κόμβος με το ίδιο x-value, κάνε εισαγωγή κόμβου στο αντίστοιχο y_tree
             root.xy_tree.root = root.xy_tree.insert2D(root.xy_tree.root, x, y, i_list, [])
         elif z < root.z:    # εισαγωγή του κόμβου στο αριστερό υπο-δέντρο
@@ -137,3 +137,7 @@ class RangeTree3D:
             self.query(node.left, x1, x2, y1, y2, z1, z2, result)
         if z2 > node.z:
             self.query(node.right, x1, x2, y1, y2, z1, z2, result)
+
+
+def letter_normalization(letter):
+    return ord(letter.upper())-97

@@ -1,4 +1,4 @@
-from RangeTree1D import RangeTree1D
+from range_tree import RangeTree1D as RangeTree1D
 
 
 class Node2D:
@@ -8,7 +8,8 @@ class Node2D:
     """
     def __init__(self, x, points):
         self.x = x
-        self.y_tree = RangeTree1D(points)   # το 1D δέντρο του κόμβου που περιέχει τα σημεία που έχουν το ίδιο x
+        # το 1D δέντρο του κόμβου που περιέχει τα σημεία που έχουν το ίδιο x
+        self.y_tree = RangeTree1D.RangeTree1D(points)
         self.left = None    # ο αριστερός κόμβος
         self.right = None   # ο δεξιός κόμβος
         self.height = 1     # το αρχικό ύψος του κόμβου

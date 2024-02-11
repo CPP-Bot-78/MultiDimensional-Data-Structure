@@ -1,4 +1,4 @@
-from Node2D import Node2D
+from range_tree import Node2D as N2D
 # from RangeTree1D import RangeTree1D
 
 
@@ -19,7 +19,7 @@ class RangeTree2D:
         :rtype: Node2D
         """
         if not root:
-            return Node2D(x, [(x, y, i_list)])
+            return N2D.Node2D(x, [(x, y, i_list)])
         if x == root.x:     # αν υπάρχει ήδη κόμβος με το ίδιο x-value, κάνε εισαγωγή κόμβου στο αντίστοιχο y_tree
             root.y_tree.root = root.y_tree.insert1D(root.y_tree.root, y, i_list)
         elif x < root.x:    # εισαγωγή του κόμβου στο αριστερό υπο-δέντρο

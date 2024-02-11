@@ -1,4 +1,4 @@
-from Node1D import Node1D
+from range_tree import Node1D as N1D
 
 
 class RangeTree1D:
@@ -19,7 +19,7 @@ class RangeTree1D:
         :rtype: Node1D
         """
         if not root:
-            return Node1D(y, [i_list])
+            return N1D.Node1D(y, [i_list])
         if y == root.y:     # αν υπάρχει ήδη κόμβος με το ίδιο y-value, συγχωνεύστε σε μία λίστα τα i's
             root.merge_i_list([i_list])
         elif y < root.y:    # εισαγωγή του κόμβου στο αριστερό υπο-δέντρο
