@@ -2,7 +2,7 @@
 # mazi me ton xrono poy xreiastike to kdtree.py
 import pandas as pd
 import time
-from kdtree.kdtree import KdTree, convert_to_list, load_scientist_data
+from kdtree import KdTree, convert_to_list, load_scientist_data
 from range_tree import Range_tree as rt
 
 
