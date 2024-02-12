@@ -1,20 +1,26 @@
 import pandas as pd
+from memory_profiler import profile
 
 # An octree works just like a quadtree, just for 3 dimensions.
 # It splits a 3D space (cube) into 8 octants (smaller cubes) and inserts data based on the datapoints coordinates 
 # Using median to evenly distribute data to each octant
+
+# Initialise the leaf threshold for when to split a child octant
+LEAF_TRESHOLD = 50
 
 # The class Octant describes each node of the octree
 class Octant:
     def __init__(self, x_bounds, y_bounds, z_bounds, leaf_node):
         # x, y and z bounds are the ranges of each octant to show which values belong in them
         # When leaf_node is True you can store data inside(Child), when it's false it has 8 octants inside(Parent)
+        # Medians of each octant for determining the bounds of each child
         # Data stores the values of each octant
         # Each parent node has 8 children
         self.x_bounds = x_bounds
         self.y_bounds = y_bounds
         self.z_bounds = z_bounds
         self.leaf_node = leaf_node
+        self.medians = []
         self.data = []
         self.children = [None] * 8
 
@@ -25,11 +31,12 @@ class Octree:
 
 
     def split_octant(self, octant):
-        # Calculate median for each variable to determine in which octant the data goes in
+        # Calculate and store median for each variable to determine in which octant the data goes in
         x_list, y_list, z_list = split_list(octant.data)
         x_median = find_median(x_list)
         y_median = find_median(y_list)
         z_median = find_median(z_list)
+        octant.medians = [x_median, y_median, z_median]
 
         # Split the Parent octant into 8 children
         # The split works with a 3-bit binary logic where 0=min,median and 1=median,max [000,001,010,011,100,101,110,111]
@@ -50,13 +57,14 @@ class Octree:
         # If y is smaller than the median it belongs to childrens 0,1,4,5
         # If z is bigger that the median it belongs to the odd numbered children
         index, x, y, z = datapoint
+        x_median, y_median, z_median = octant.medians
         child = 0
-        xi,yi,zi = split_list(octant.data)
-        if x > find_median(xi):
+        
+        if x > x_median:
                 child += 4
-        if y > find_median(yi):
+        if y > y_median:
                 child += 2
-        if z > find_median(zi):
+        if z > z_median:
                 child += 1
 
         return child
@@ -65,7 +73,7 @@ class Octree:
     def insert(self, datapoint, octant=None):
         # The insert function places the datapoint to the right octant
         # If we are at a leaf_node it appends the data.
-        # If we reached the leaf_threshold we split the octant and insert the data into the created children
+        # If we reached the LEAF_TRESHOLD we split the octant and insert the data into the created children
         # If we are at a Parent node we find the right child and call the insert function again to enter the value
         if octant is None:
             octant = self.root
@@ -74,7 +82,7 @@ class Octree:
             octant.data.append(datapoint)
 
             # If we reached the leaf threshold
-            if len(octant.data) == leaf_threshold:
+            if len(octant.data) == LEAF_TRESHOLD:
                 octant.leaf_node = False
                 self.split_octant(octant)
 
@@ -82,6 +90,7 @@ class Octree:
                 for data in octant.data:
                     child = self.find_child_index(data, octant)
                     self.insert(data, octant.children[child])
+                octant.data = []
 
             return
 
@@ -91,31 +100,39 @@ class Octree:
         self.insert(datapoint, octant.children[child])
     
     
-    def search(self, datapoint, octant=None):
-        # The search funtion first checks in which chilren the value belongs in
-        # If it is a leaf_node search for the datapoint in its data
-        # If not a leaf_node check its children for the datapoint
-        x,y,z = datapoint 
+    def search(self, search_bounds, octant=None):
+        # The search funtion first checks if our search_bounds intersect with the octant's bounds
+        # This lowers repetition by not checking outside the search_bounds box
+        # If it is inside the box and the octant is a leaf_node find the datapoints
+        # If not a leaf_node recursively search in its children
+        x_min, x_max, y_min, y_max, z_min, z_max = search_bounds
         found = []
-        
+
         if octant is None:
             octant = self.root
-        
-        for i in range(8):
-            if (octant.children[i].x_bounds[0] <= x <= octant.children[i].x_bounds[1] and
-                octant.children[i].y_bounds[0] <= y <= octant.children[i].y_bounds[1] and
-                octant.children[i].z_bounds[0] <= z <= octant.children[i].z_bounds[1] 
-                ):
-                if octant.children[i].leaf_node:
-                    for j in range(len(octant.children[i].data)):
-                        
-                        if octant.children[i].data[j][1:] == (x,y,z):
-                            found.extend([octant.children[i].data[j][0]])
-                else:
-                    found.extend(self.search(datapoint, octant.children[i]))
-                    return found
+
+        # Check if the search box intersects with the octant's bounds
+        if (
+            x_max < octant.x_bounds[0] or x_min > octant.x_bounds[1] or
+            y_max < octant.y_bounds[0] or y_min > octant.y_bounds[1] or
+            z_max < octant.z_bounds[0] or z_min > octant.z_bounds[1]
+        ):
+            # No intersection, return
+            return found
+
+        # Check if the octant is a leaf node and search for data points
+        if octant.leaf_node:
+            for data_point in octant.data:
+                x, y, z = data_point[1:]
+                if x_min <= x <= x_max and y_min <= y <= y_max and z_min <= z <= z_max:
+                    found.append(data_point[0])
+        else:
+            # Recursively search in child octants
+            for child in octant.children:
+                found.extend(self.search(search_bounds, child))
 
         return found
+
     
 
 def find_median(my_list):
@@ -137,25 +154,11 @@ def find_median(my_list):
 
 def split_list(my_list):
     #Splits a list into 3 lists, one for each coordinate(x,y,z) 
-    ziped_list = list(zip(*my_list))
-    
-    x = list(ziped_list[1])
-    y = list(ziped_list[2])
-    z = list(ziped_list[3])
+    x = [point[1] for point in my_list]
+    y = [point[2] for point in my_list]
+    z = [point[3] for point in my_list]
 
     return x, y, z
-
-
-def empty_octant_data(octant):
-    #Empty the data of each Parent after finishing the insertion
-    if octant is None:
-        return
-    
-    if octant.leaf_node == False:
-        octant.data = []
-
-    for child in octant.children:
-        empty_octant_data(child)
 
 
 def extract_data(file_csv):
@@ -172,10 +175,10 @@ def extract_data(file_csv):
     
     return index_list, surname_list, awards_list, dblp_list
 
-
+#@profile
 def build_octree():
     #Construct the Octree and insert the data
-    csv_file = 'computer_scientists_data1.csv'
+    csv_file = 'scripts/computer_scientists_data1.csv'
     index, surname, awards, dblp = extract_data(csv_file)
     cs_data = list(zip(index, surname, awards, dblp))
 
@@ -186,39 +189,22 @@ def build_octree():
     #Insert datapoints
     for datapoint in cs_data:
         ot.insert(datapoint)
-    #Empty the parent nodes
-    empty_octant_data(ot.root)
 
     return ot
 
-
+#@profile
 def query_octree(octree, x_range, y_range, z_range):
-    #Search the octree for the given ranges
-    found = []
-    for x in range(x_range[0], x_range[1] + 1):
-        for y in range(y_range[0], y_range[1] + 1):
-            for z in range(z_range[0], z_range[1] + 1):
-                search_check = octree.search((x,y,z))
-                if search_check:
-                    found.append(search_check)
+    # Search the octree for the given ranges using a bounding box
+    search_bounds = (x_range[0], x_range[1], y_range[0], y_range[1], z_range[0], z_range[1])
+    found = octree.search(search_bounds)
 
-    #Create one list with the indexes found
+    # Create one list with the indexes found
     index_list = pd.Series(found).explode().tolist()
-    
-    #Find our values based on the index
-    df = pd.read_csv('computer_scientists_data1.csv')
+
+    # Find values based on the index
+    df = pd.read_csv('scripts/computer_scientists_data1.csv')
     filter_by_index = df.loc[index_list]
     result = filter_by_index[['Surname', '#Awards', 'Education', 'DBLP']].values.tolist()
-    
+
     return result
 
-#Test values
-leaf_threshold = 50
-
-x_range = (10, 11)
-y_range = (0, 1)
-z_range = (0,20)
-
-ot= build_octree()
-result = query_octree(ot, x_range, y_range, z_range)
-print(result)
