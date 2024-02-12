@@ -42,8 +42,8 @@ def build_range_tree():
 # @profile
 def query_range_tree(range_tree, min_letter, max_letter, num_awards, dblp_min, dblp_max):
     # Υπολογισμός των αριθμητικών τιμών του ελάχιστου και του μέγιστου γράμματος
-    min_letter = static.letter_normalization(min_letter)
-    max_letter = static.letter_normalization(max_letter)
+    min_letter = static.letter_normalization(min_letter.encode('utf-8'))
+    max_letter = static.letter_normalization(max_letter.encode('utf-8'))
 
     # Ορισμός των διαστημάτων τόσο στις συντεταγμένες x, y, z πάνω στις οποίες θα γίνει η αναζήτηση
     x_range = (min_letter, max_letter)
@@ -68,5 +68,35 @@ def query_range_tree(range_tree, min_letter, max_letter, num_awards, dblp_min, d
         education = df.iloc[index]['Education']
         dblp = df.iloc[index]['DBLP']
         # check if already in results #TODO
-        final_results.append({"surname": surname, "awards": awards, "education": education, "DBLP": dblp})
-    return final_results
+        # final_results.append({"surname": surname, "awards": awards, "education": education, "DBLP": dblp})
+        final_results.append([surname, awards, education, dblp])
+    return clean_results(final_results)
+    # return clean_results(final_results)
+
+
+def clean_results(results):
+    """
+    :parameter list results: list of dictionaries
+    :return: list of dictionaries
+    :rtype list"""
+    if len(results) == 0:
+        return results
+    unique_sc = []
+    seen = []
+    for item in results:
+        # name = item.get('surname')
+        name = item[0]
+        if name not in seen:
+            seen.append(name)
+            unique_sc.append(item)
+    return unique_sc
+
+
+def query_range_tree_by_ranges(range_tree, surname_range, award, dblp_range):
+    result_list = query_range_tree(
+        range_tree,
+        surname_range[0], surname_range[1],
+        award,
+        dblp_range[0], dblp_range[1],
+    )
+    return result_list
