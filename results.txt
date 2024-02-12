@@ -1,0 +1,688 @@
+Results for Range Tree:
+Construction Time: 0.05051469802856445 seconds
+Range Query Time: 0.01300048828125 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Marlow, 2, ['University of Glasgow', 'University of Bristol'], 49
+Allen, 6, ['University at Albany', 'University of Michigan'], 49
+Sutherland, 8, ['MIT', 'Caltech', 'Carnegie Institute of Technology'], 49
+Backus, 3, ['University of Virginia', 'University of Pittsburgh', 'Haverford College', 'Columbia University'], 21
+Borg, 18, ['New York University'], 21
+Strassen, 8, ['University of Göttingen'], 21
+Geschke, 3, ['Xavier University', 'AB', 'MS', 'Carnegie Mellon University', 'PhD'], 11
+Breed, 2, [], 11
+Amdahl, 2, ['South Dakota State University', 'BS', 'University of Wisconsin', 'MS', 'PhD'], 11
+Kemeny, 2, ['Princeton University'], 11
+Ichbiah, 6, [], 11
+Tukey, 7, ['Brown University', 'Princeton University'], 11
+Gödel, 3, ['University of Vienna', 'PhD'], 4
+Mauchly, 3, ['Johns Hopkins University'], 4
+Torvalds, 3, ['University of Helsinki', '[2]'], 2
+Worsley, 3, ['University of Toronto', 'Massachusetts Institute of Technology', 'University of Cambridge'], 2
+Atanasoff, 2, ['University of Florida', 'Iowa State University', 'University of Wisconsin–Madison'], 3
+Hopper, 9, ['Vassar College', 'BA', 'Yale University', 'MS', 'PhD'], 8
+Fredkin, 2, ['California Institute of Technology'], 8
+Lederberg, 3, ['Stuyvesant High School', 'Columbia University', 'Yale University'], 6
+Rulifson, 25, ['University of Washington', 'Stanford University'], 6
+Wiener, 2, ['Tufts College', 'BA', 'Cornell University', 'MA', 'Harvard University', 'PhD'], 5
+Kolmogorov, 7, ['Moscow State University', 'Ph.D.'], 7
+Culler, 5, ['University of California, Berkeley', 'University of California, Los Angeles'], 7
+Gates, 4, ['Harvard University'], 9
+Bourne, 3, ["King's College London", 'BSc', 'Trinity College, Cambridge', 'Diploma in Computer Science', 'Ph.D.'], 16
+Ritchie, 8, ['Harvard University', 'BS'], 16
+Mockapetris, 4, ['Massachusetts Institute of Technology', 'University of California at Irvine'], 13
+Cailliau, 13, ['Ghent University', 'University of Michigan'], 13
+Stallman, 5, ['Harvard University', 'BS', 'Massachusetts Institute of Technology'], 13
+Wozniak, 13, ['University of Colorado Boulder', 'De Anza College', 'University of California, Berkeley', 'BS', '[3]'], 13
+Kleene, 2, ['Amherst College', 'Princeton University'], 12
+Draper, 6, ['Massachusetts Institute of Technology', 'Stanford University'], 12
+Catmull, 4, ['University of Utah'], 12
+Lattner, 2, ['University of Portland', 'University of Illinois at Urbana-Champaign'], 14
+Rossum, 2, ['University of Amsterdam'], 14
+Gosling, 7, ['University of Calgary', 'BSc', 'Carnegie Mellon University', 'MA', 'PhD'], 15
+Thacker, 3, ['University of California, Berkeley'], 15
+Engelbart, 7, ['Oregon State University', 'University of California, Berkeley'], 18
+Kahn, 12, ['City College of New York', 'Princeton University'], 17
+Corbató, 2, ['California Institute of Technology', 'Massachusetts Institute of Technology'], 17
+Wilson, 6, ['Selwyn College, Cambridge', 'University of Cambridge'], 17
+Page, 9, ['University of Michigan', 'BS', 'Stanford University', 'MS'], 20
+Brin, 5, ['University of Maryland, College Park', 'BS', 'Stanford University', 'MS'], 20
+McIlroy, 3, ['Cornell University', 'Massachusetts Institute of Technology'], 26
+Chiariglione, 8, ['Polytechnic University of Turin'], 26
+Shannon, 10, ['University of Michigan', 'AB', 'BS', 'Massachusetts Institute of Technology', 'MS', 'PhD'], 26
+Woodward, 3, ['Oxford University'], 26
+Moler, 2, ['California Institute of Technology', 'Stanford University'], 24
+Newman, 3, ["St John's College, Cambridge"], 24
+Fischer, 8, ['University of British Columbia', 'University of Cambridge'], 22
+Karmarkar, 11, ['IIT Bombay', 'Caltech', 'University of California, Berkeley'], 22
+Nygaard, 4, ['M.Sc.', 'University of Oslo'], 22
+Turing, 2, ['University of Cambridge', 'BA', 'MA', 'Princeton University'], 22
+Hamming, 4, ['University of Chicago', 'University of Nebraska', 'University of Illinois at Urbana–Champaign'], 23
+Dahl, 2, ['University of Oslo'], 27
+Nake, 9, [], 29
+Ingalls, 2, ['Harvard University', 'B.A.', 'Stanford University', 'M.S.'], 33
+Meertens, 2, [], 33
+Minsky, 6, ['Harvard University', 'BA', 'Princeton University', 'MA', 'PhD'], 33
+Fahlman, 3, ['Massachusetts Institute of Technology', 'B.S.', 'M.S.', 'Ph.D.'], 34
+Sleator, 2, ['University of Illinois at Urbana–Champaign', 'Stanford University'], 42
+Boole, 17, ['[3]'], 42
+Townsend, 2, ['Indiana University'], 42
+DeMarco, 2, ['Cornell University', 'Columbia University', 'University of Paris'], 40
+Sussman, 2, ['SB', 'PhD'], 38
+Franke, 9, [], 37
+Kahan, 4, ['University of Toronto'], 37
+Chaochen, 3, [], 39
+Abebe, 3, ['Cornell University', 'University of Cambridge', 'Harvard University'], 39
+Vilkomir, 4, ['Kharkov State University', 'Kharkov Polytechnic Institute'], 39
+Joy, 4, ['University of Michigan', 'University of California, Berkeley'], 41
+Cocke, 6, ['Duke University'], 41
+Norvig, 2, ['Brown University', 'University of California, Berkeley'], 41
+Luks, 3, [], 41
+Iverson, 4, ["Queen's University", 'Harvard University'], 45
+Diffie, 6, ['Massachusetts Institute of Technology'], 43
+Naur, 2, ['Technical University of Denmark'], 43
+Guha, 16, ['Indian Institute of Technology Madras', 'University of California, Berkeley', 'Stanford University'], 44
+Feigenbaum, 4, ['Carnegie Mellon University'], 44
+Kurtz, 2, ['Princeton University', 'Knox College', 'mathematics'], 44
+Kellis, 3, ['Massachusetts Institute of Technology'], 46
+Huffman, 2, ['Ohio State University', 'Massachusetts Institute of Technology'], 46
+Matiyasevich, 3, ['Leningrad State University'], 46
+Ružička, 4, ['Comenius University in Bratislava'], 48
+Wijngaarden, 2, ['Delft University of Technology'], 48
+Brooks, 5, ['Duke University', 'Harvard University'], 65
+Lenat, 2, ['University of Pennsylvania', 'Stanford University'], 65
+Kruusmaa, 4, ['Tallinn University of Technology', 'Chalmers University of Technology'], 57
+Perlis, 2, ['Chemistry', 'Carnegie Mellon', 'MIT'], 52
+Hatton, 2, ["King's College, Cambridge"], 50
+Joseph, 2, ['Wilson College, Mumbai', 'University of Bombay', 'Welsh College of Advanced Technology', 'University of Cambridge'], 51
+Viterbi, 8, ['Massachusetts Institute of Technology', 'BS', 'MS', 'University of Southern California', 'PhD'], 51
+Wolfram, 2, ["St. John's College, Oxford", 'California Institute of Technology'], 51
+Adleman, 2, ['University of California, Berkeley'], 54
+Conway, 2, ['Cornell', 'PhD', 'Cornell'], 53
+Codd, 3, ['Exeter College, Oxford', 'University of Michigan'], 55
+Kirstein, 3, ['University of Cambridge', 'Stanford University'], 56
+Sammet, 3, ['Mount Holyoke College', 'B.A.', 'University of Illinois at Urbana Champaign', 'M.A.', 'Columbia University'], 56
+Waltz, 2, ['Massachusetts Institute of Technology'], 60
+Gunther, 9, ['La Trobe University', 'University of Southampton'], 59
+Caspersen, 8, ['Aarhus U.', 'Aarhus U.', '[11]', 'PhD', 'Aarhus U.'], 62
+Engelhardt, 2, ['Stanford University', 'University of California, Berkeley'], 63
+Tate, 2, ['Lancaster University', 'University of Edinburgh'], 63
+Pieraccini, 11, ['University of Pisa'], 84
+Ahn, 3, ['Duke University', 'BS', 'Carnegie Mellon University'], 84
+Wilkes, 5, ['University of Cambridge'], 84
+Bachman, 3, ['University of Pennsylvania', 'Michigan State University'], 73
+Gelernter, 3, ['Yale University', 'BA', 'State University of New York at Stony Brook', 'PhD'], 68
+Perlman, 11, ['MIT'], 67
+Kolodner, 2, ['Brandeis University', 'Yale University'], 70
+Reynolds, 2, ['Purdue University', 'Ph.D.', 'Harvard University'], 70
+Wilkinson, 3, ['Trinity College, Cambridge'], 69
+Hellman, 9, ['New York University', 'Stanford University'], 72
+Berners-Lee, 5, ["The Queen's College, Oxford"], 75
+Lampson, 6, ['Harvard University', 'University of California, Berkeley'], 82
+Pandya, 2, [], 82
+Newell, 5, ['Stanford University', 'Princeton University', 'Carnegie Mellon University'], 78
+Kayal, 8, ['IIT Kanpur'], 78
+Schoenebeck, 6, ['Georgia Institute of Technology', 'University of California, Berkeley', 'Dartmouth College'], 78
+Stroustrup, 11, ['Aarhus University', 'Cand.scient.', 'University of Cambridge', 'PhD'], 78
+Pausch, 5, ['Brown University', 'Carnegie Mellon University'], 81
+Floyd, 2, ['University of Chicago', 'B.A.'], 83
+Ousterhout, 2, ["Bachelor's degree", 'Ph.D'], 83
+Dijkstra, 5, ['Leiden University', 'University of Amsterdam'], 97
+Bjørner, 4, ['Technical University of Denmark'], 97
+Bayer, 2, ['University of Illinois at Urbana–Champaign'], 88
+Edelman, 7, ['MIT', 'Yale University'], 88
+Comer, 8, [], 86
+Vapnik, 11, ['Institute of Control Sciences, Russian Academy of Sciences', 'Uzbek State University'], 85
+Needham, 2, ['University of Cambridge'], 87
+Wirth, 5, ['BS', 'MSc', 'Université Laval', 'University of California, Berkeley'], 92
+Levin, 2, ['Moscow University', 'Massachusetts Institute of Technology'], 96
+Sedgewick, 4, ['Brown University'], 100
+
+----------
+Results for KDTree:
+Construction Time: 0.001996755599975586 seconds
+Range Query Time: 0.0 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Atanasoff, (2,), [3], ['University of Florida', 'Iowa State University', 'University of Wisconsin–Madison']
+Amdahl, (2,), [11], ['South Dakota State University', 'BS', 'University of Wisconsin', 'MS', 'PhD']
+Adleman, (2,), [54], ['University of California', 'Berkeley']
+Dahl, (2,), [27], ['University of Oslo']
+Bayer, (2,), [88], ['University of Illinois at Urbana–Champaign']
+Breed, (2,), [11], ['']
+Corbató, (2,), [17], ['California Institute of Technology', 'Massachusetts Institute of Technology']
+Conway, (2,), [53], ['Cornell', 'PhD', 'Cornell']
+Engelhardt, (2,), [63], ['Stanford University', 'University of California', 'Berkeley']
+DeMarco, (2,), [40], ['Cornell University', 'Columbia University', 'University of Paris']
+Floyd, (2,), [83], ['University of Chicago', 'B.A.']
+Pandya, (2,), [82], ['']
+Hatton, (2,), [50], ['"King\'s College', 'Cambridge"']
+Fredkin, (2,), [8], ['California Institute of Technology']
+Joseph, (2,), [51], ['Wilson College', 'Mumbai', 'University of Bombay', 'Welsh College of Advanced Technology', 'University of Cambridge']
+Ingalls, (2,), [33], ['Harvard University', 'B.A.', 'Stanford University', 'M.S.']
+Huffman, (2,), [46], ['Ohio State University', 'Massachusetts Institute of Technology']
+Kleene, (2,), [12], ['Amherst College', 'Princeton University']
+Kemeny, (2,), [11], ['Princeton University']
+Kolodner, (2,), [70], ['Brandeis University', 'Yale University']
+Lenat, (2,), [65], ['University of Pennsylvania', 'Stanford University']
+Lattner, (2,), [14], ['University of Portland', 'University of Illinois at Urbana-Champaign']
+Kurtz, (2,), [44], ['Princeton University', 'Knox College', 'mathematics']
+Levin, (2,), [96], ['Moscow University', 'Massachusetts Institute of Technology']
+Marlow, (2,), [49], ['University of Glasgow', 'University of Bristol']
+Meertens, (2,), [33], ['']
+Naur, (2,), [43], ['Technical University of Denmark']
+Moler, (2,), [24], ['California Institute of Technology', 'Stanford University']
+Needham, (2,), [87], ['University of Cambridge']
+Ousterhout, (2,), [83], ['"Bachelor\'s degree"', 'Ph.D']
+Norvig, (2,), [41], ['Brown University', 'University of California', 'Berkeley']
+Rossum, (2,), [14], ['University of Amsterdam']
+Perlis, (2,), [52], ['Chemistry', 'Carnegie Mellon', 'MIT']
+Reynolds, (2,), [70], ['Purdue University', 'Ph.D.', 'Harvard University']
+Sleator, (2,), [42], ['University of Illinois at Urbana–Champaign', 'Stanford University']
+Sussman, (2,), [38], ['SB', 'PhD']
+Wolfram, (2,), [51], ['"St. John\'s College', 'Oxford"', 'California Institute of Technology']
+Waltz, (2,), [60], ['Massachusetts Institute of Technology']
+Turing, (2,), [22], ['University of Cambridge', 'BA', 'MA', 'Princeton University']
+Townsend, (2,), [42], ['Indiana University']
+Tate, (2,), [63], ['Lancaster University', 'University of Edinburgh']
+Wiener, (2,), [5], ['Tufts College', 'BA', 'Cornell University', 'MA', 'Harvard University', 'PhD']
+Wijngaarden, (2,), [48], ['Delft University of Technology']
+Bachman, (3,), [73], ['University of Pennsylvania', 'Michigan State University']
+Abebe, (3,), [39], ['Cornell University', 'University of Cambridge', 'Harvard University']
+Ahn, (3,), [84], ['Duke University', 'BS', 'Carnegie Mellon University']
+Backus, (3,), [21], ['University of Virginia', 'University of Pittsburgh', 'Haverford College', 'Columbia University']
+Codd, (3,), [55], ['Exeter College', 'Oxford', 'University of Michigan']
+Bourne, (3,), [16], ['"King\'s College London"', 'BSc', 'Trinity College', 'Cambridge', 'Diploma in Computer Science', 'Ph.D.']
+Chaochen, (3,), [39], ['']
+Fahlman, (3,), [34], ['Massachusetts Institute of Technology', 'B.S.', 'M.S.', 'Ph.D.']
+Gelernter, (3,), [68], ['Yale University', 'BA', 'State University of New York at Stony Brook', 'PhD']
+Geschke, (3,), [11], ['Xavier University', 'AB', 'MS', 'Carnegie Mellon University', 'PhD']
+Gödel, (3,), [4], ['University of Vienna', 'PhD']
+Kellis, (3,), [46], ['Massachusetts Institute of Technology']
+Kirstein, (3,), [56], ['University of Cambridge', 'Stanford University']
+Lederberg, (3,), [6], ['Stuyvesant High School', 'Columbia University', 'Yale University']
+Luks, (3,), [41], ['']
+McIlroy, (3,), [26], ['Cornell University', 'Massachusetts Institute of Technology']
+Mauchly, (3,), [4], ['Johns Hopkins University']
+Matiyasevich, (3,), [46], ['Leningrad State University']
+Newman, (3,), [24], ['"St John\'s College', 'Cambridge"']
+Sammet, (3,), [56], ['Mount Holyoke College', 'B.A.', 'University of Illinois at Urbana Champaign', 'M.A.', 'Columbia University']
+Thacker, (3,), [15], ['University of California', 'Berkeley']
+Torvalds, (3,), [2], ['University of Helsinki', '[2]']
+Wilkinson, (3,), [69], ['Trinity College', 'Cambridge']
+Worsley, (3,), [2], ['University of Toronto', 'Massachusetts Institute of Technology', 'University of Cambridge']
+Woodward, (3,), [26], ['Oxford University']
+Catmull, (4,), [12], ['University of Utah']
+Bjørner, (4,), [97], ['Technical University of Denmark']
+Feigenbaum, (4,), [44], ['Carnegie Mellon University']
+Gates, (4,), [9], ['Harvard University']
+Kahan, (4,), [37], ['University of Toronto']
+Iverson, (4,), [45], ['"Queen\'s University"', 'Harvard University']
+Hamming, (4,), [23], ['University of Chicago', 'University of Nebraska', 'University of Illinois at Urbana–Champaign']
+Joy, (4,), [41], ['University of Michigan', 'University of California', 'Berkeley']
+Kruusmaa, (4,), [57], ['Tallinn University of Technology', 'Chalmers University of Technology']
+Engelbart, (7,), [18], ['Oregon State University', 'University of California', 'Berkeley']
+Berners-Lee, (5,), [75], ['"The Queen\'s College', 'Oxford"']
+Nygaard, (4,), [22], ['M.Sc.', 'University of Oslo']
+Mockapetris, (4,), [13], ['Massachusetts Institute of Technology', 'University of California at Irvine']
+Sedgewick, (4,), [100], ['Brown University']
+Ružička, (4,), [48], ['Comenius University in Bratislava']
+Vilkomir, (4,), [39], ['Kharkov State University', 'Kharkov Polytechnic Institute']
+Culler, (5,), [7], ['University of California', 'Berkeley', 'University of California', 'Los Angeles']
+Brooks, (5,), [65], ['Duke University', 'Harvard University']
+Brin, (5,), [20], ['University of Maryland', 'College Park', 'BS', 'Stanford University', 'MS']
+Dijkstra, (5,), [97], ['Leiden University', 'University of Amsterdam']
+Newell, (5,), [78], ['Stanford University', 'Princeton University', 'Carnegie Mellon University']
+Pausch, (5,), [81], ['Brown University', 'Carnegie Mellon University']
+Diffie, (6,), [43], ['Massachusetts Institute of Technology']
+Wirth, (5,), [92], ['BS', 'MSc', 'Université Laval', 'University of California', 'Berkeley']
+Stallman, (5,), [13], ['Harvard University', 'BS', 'Massachusetts Institute of Technology']
+Wilkes, (5,), [84], ['University of Cambridge']
+Cocke, (6,), [41], ['Duke University']
+Allen, (6,), [49], ['University at Albany', 'University of Michigan']
+Ichbiah, (6,), [11], ['']
+Draper, (6,), [12], ['Massachusetts Institute of Technology', 'Stanford University']
+Lampson, (6,), [82], ['Harvard University', 'University of California', 'Berkeley']
+Minsky, (6,), [33], ['Harvard University', 'BA', 'Princeton University', 'MA', 'PhD']
+Schoenebeck, (6,), [78], ['Georgia Institute of Technology', 'University of California', 'Berkeley', 'Dartmouth College']
+Wilson, (6,), [17], ['Selwyn College', 'Cambridge', 'University of Cambridge']
+Edelman, (7,), [88], ['MIT', 'Yale University']
+Fischer, (8,), [22], ['University of British Columbia', 'University of Cambridge']
+Tukey, (7,), [11], ['Brown University', 'Princeton University']
+Gosling, (7,), [15], ['University of Calgary', 'BSc', 'Carnegie Mellon University', 'MA', 'PhD']
+Kolmogorov, (7,), [7], ['Moscow State University', 'Ph.D.']
+Chiariglione, (8,), [26], ['Polytechnic University of Turin']
+Caspersen, (8,), [62], ['Aarhus U.', 'Aarhus U.', '[11]', 'PhD', 'Aarhus U.']
+Comer, (8,), [86], ['']
+Viterbi, (8,), [51], ['Massachusetts Institute of Technology', 'BS', 'MS', 'University of Southern California', 'PhD']
+Kayal, (8,), [78], ['IIT Kanpur']
+Sutherland, (8,), [49], ['MIT', 'Caltech', 'Carnegie Institute of Technology']
+Strassen, (8,), [21], ['University of Göttingen']
+Ritchie, (8,), [16], ['Harvard University', 'BS']
+Hellman, (9,), [72], ['New York University', 'Stanford University']
+Gunther, (9,), [59], ['La Trobe University', 'University of Southampton']
+Franke, (9,), [37], ['']
+Hopper, (9,), [8], ['Vassar College', 'BA', 'Yale University', 'MS', 'PhD']
+Nake, (9,), [29], ['']
+Stroustrup, (11,), [78], ['Aarhus University', 'Cand.scient.', 'University of Cambridge', 'PhD']
+Page, (9,), [20], ['University of Michigan', 'BS', 'Stanford University', 'MS']
+Shannon, (10,), [26], ['University of Michigan', 'AB', 'BS', 'Massachusetts Institute of Technology', 'MS', 'PhD']
+Perlman, (11,), [67], ['MIT']
+Karmarkar, (11,), [22], ['IIT Bombay', 'Caltech', 'University of California', 'Berkeley']
+Pieraccini, (11,), [84], ['University of Pisa']
+Kahn, (12,), [17], ['City College of New York', 'Princeton University']
+Vapnik, (11,), [85], ['Institute of Control Sciences', 'Russian Academy of Sciences', 'Uzbek State University']
+Wozniak, (13,), [13], ['University of Colorado Boulder', 'De Anza College', 'University of California', 'Berkeley', 'BS', '[3]']
+Cailliau, (13,), [13], ['Ghent University', 'University of Michigan']
+Boole, (17,), [42], ['[3]']
+Guha, (16,), [44], ['Indian Institute of Technology Madras', 'University of California', 'Berkeley', 'Stanford University']
+Borg, (18,), [21], ['New York University']
+Rulifson, (25,), [6], ['University of Washington', 'Stanford University']
+Atanasoff, (2,), [3], ['University of Florida', 'Iowa State University', 'University of Wisconsin–Madison']
+Amdahl, (2,), [11], ['South Dakota State University', 'BS', 'University of Wisconsin', 'MS', 'PhD']
+Adleman, (2,), [54], ['University of California', 'Berkeley']
+Dahl, (2,), [27], ['University of Oslo']
+Bayer, (2,), [88], ['University of Illinois at Urbana–Champaign']
+Breed, (2,), [11], ['']
+Corbató, (2,), [17], ['California Institute of Technology', 'Massachusetts Institute of Technology']
+Conway, (2,), [53], ['Cornell', 'PhD', 'Cornell']
+Engelhardt, (2,), [63], ['Stanford University', 'University of California', 'Berkeley']
+DeMarco, (2,), [40], ['Cornell University', 'Columbia University', 'University of Paris']
+Floyd, (2,), [83], ['University of Chicago', 'B.A.']
+Pandya, (2,), [82], ['']
+Hatton, (2,), [50], ['"King\'s College', 'Cambridge"']
+Fredkin, (2,), [8], ['California Institute of Technology']
+Joseph, (2,), [51], ['Wilson College', 'Mumbai', 'University of Bombay', 'Welsh College of Advanced Technology', 'University of Cambridge']
+Ingalls, (2,), [33], ['Harvard University', 'B.A.', 'Stanford University', 'M.S.']
+Huffman, (2,), [46], ['Ohio State University', 'Massachusetts Institute of Technology']
+Kleene, (2,), [12], ['Amherst College', 'Princeton University']
+Kemeny, (2,), [11], ['Princeton University']
+Kolodner, (2,), [70], ['Brandeis University', 'Yale University']
+Lenat, (2,), [65], ['University of Pennsylvania', 'Stanford University']
+Lattner, (2,), [14], ['University of Portland', 'University of Illinois at Urbana-Champaign']
+Kurtz, (2,), [44], ['Princeton University', 'Knox College', 'mathematics']
+Levin, (2,), [96], ['Moscow University', 'Massachusetts Institute of Technology']
+Marlow, (2,), [49], ['University of Glasgow', 'University of Bristol']
+Meertens, (2,), [33], ['']
+Naur, (2,), [43], ['Technical University of Denmark']
+Moler, (2,), [24], ['California Institute of Technology', 'Stanford University']
+Needham, (2,), [87], ['University of Cambridge']
+Ousterhout, (2,), [83], ['"Bachelor\'s degree"', 'Ph.D']
+Norvig, (2,), [41], ['Brown University', 'University of California', 'Berkeley']
+Rossum, (2,), [14], ['University of Amsterdam']
+Perlis, (2,), [52], ['Chemistry', 'Carnegie Mellon', 'MIT']
+Reynolds, (2,), [70], ['Purdue University', 'Ph.D.', 'Harvard University']
+Sleator, (2,), [42], ['University of Illinois at Urbana–Champaign', 'Stanford University']
+Sussman, (2,), [38], ['SB', 'PhD']
+Wolfram, (2,), [51], ['"St. John\'s College', 'Oxford"', 'California Institute of Technology']
+Waltz, (2,), [60], ['Massachusetts Institute of Technology']
+Turing, (2,), [22], ['University of Cambridge', 'BA', 'MA', 'Princeton University']
+Townsend, (2,), [42], ['Indiana University']
+Tate, (2,), [63], ['Lancaster University', 'University of Edinburgh']
+Wiener, (2,), [5], ['Tufts College', 'BA', 'Cornell University', 'MA', 'Harvard University', 'PhD']
+Wijngaarden, (2,), [48], ['Delft University of Technology']
+Bachman, (3,), [73], ['University of Pennsylvania', 'Michigan State University']
+Abebe, (3,), [39], ['Cornell University', 'University of Cambridge', 'Harvard University']
+Ahn, (3,), [84], ['Duke University', 'BS', 'Carnegie Mellon University']
+Backus, (3,), [21], ['University of Virginia', 'University of Pittsburgh', 'Haverford College', 'Columbia University']
+Codd, (3,), [55], ['Exeter College', 'Oxford', 'University of Michigan']
+Bourne, (3,), [16], ['"King\'s College London"', 'BSc', 'Trinity College', 'Cambridge', 'Diploma in Computer Science', 'Ph.D.']
+Chaochen, (3,), [39], ['']
+Fahlman, (3,), [34], ['Massachusetts Institute of Technology', 'B.S.', 'M.S.', 'Ph.D.']
+Gelernter, (3,), [68], ['Yale University', 'BA', 'State University of New York at Stony Brook', 'PhD']
+Geschke, (3,), [11], ['Xavier University', 'AB', 'MS', 'Carnegie Mellon University', 'PhD']
+Gödel, (3,), [4], ['University of Vienna', 'PhD']
+Kellis, (3,), [46], ['Massachusetts Institute of Technology']
+Kirstein, (3,), [56], ['University of Cambridge', 'Stanford University']
+Lederberg, (3,), [6], ['Stuyvesant High School', 'Columbia University', 'Yale University']
+Luks, (3,), [41], ['']
+McIlroy, (3,), [26], ['Cornell University', 'Massachusetts Institute of Technology']
+Mauchly, (3,), [4], ['Johns Hopkins University']
+Matiyasevich, (3,), [46], ['Leningrad State University']
+Newman, (3,), [24], ['"St John\'s College', 'Cambridge"']
+Sammet, (3,), [56], ['Mount Holyoke College', 'B.A.', 'University of Illinois at Urbana Champaign', 'M.A.', 'Columbia University']
+Thacker, (3,), [15], ['University of California', 'Berkeley']
+Torvalds, (3,), [2], ['University of Helsinki', '[2]']
+Wilkinson, (3,), [69], ['Trinity College', 'Cambridge']
+Worsley, (3,), [2], ['University of Toronto', 'Massachusetts Institute of Technology', 'University of Cambridge']
+Woodward, (3,), [26], ['Oxford University']
+Catmull, (4,), [12], ['University of Utah']
+Bjørner, (4,), [97], ['Technical University of Denmark']
+Feigenbaum, (4,), [44], ['Carnegie Mellon University']
+Gates, (4,), [9], ['Harvard University']
+Kahan, (4,), [37], ['University of Toronto']
+Iverson, (4,), [45], ['"Queen\'s University"', 'Harvard University']
+Hamming, (4,), [23], ['University of Chicago', 'University of Nebraska', 'University of Illinois at Urbana–Champaign']
+Joy, (4,), [41], ['University of Michigan', 'University of California', 'Berkeley']
+Kruusmaa, (4,), [57], ['Tallinn University of Technology', 'Chalmers University of Technology']
+Engelbart, (7,), [18], ['Oregon State University', 'University of California', 'Berkeley']
+Berners-Lee, (5,), [75], ['"The Queen\'s College', 'Oxford"']
+Nygaard, (4,), [22], ['M.Sc.', 'University of Oslo']
+Mockapetris, (4,), [13], ['Massachusetts Institute of Technology', 'University of California at Irvine']
+Sedgewick, (4,), [100], ['Brown University']
+Ružička, (4,), [48], ['Comenius University in Bratislava']
+Vilkomir, (4,), [39], ['Kharkov State University', 'Kharkov Polytechnic Institute']
+Culler, (5,), [7], ['University of California', 'Berkeley', 'University of California', 'Los Angeles']
+Brooks, (5,), [65], ['Duke University', 'Harvard University']
+Brin, (5,), [20], ['University of Maryland', 'College Park', 'BS', 'Stanford University', 'MS']
+Dijkstra, (5,), [97], ['Leiden University', 'University of Amsterdam']
+Newell, (5,), [78], ['Stanford University', 'Princeton University', 'Carnegie Mellon University']
+Pausch, (5,), [81], ['Brown University', 'Carnegie Mellon University']
+Diffie, (6,), [43], ['Massachusetts Institute of Technology']
+Wirth, (5,), [92], ['BS', 'MSc', 'Université Laval', 'University of California', 'Berkeley']
+Stallman, (5,), [13], ['Harvard University', 'BS', 'Massachusetts Institute of Technology']
+Wilkes, (5,), [84], ['University of Cambridge']
+Cocke, (6,), [41], ['Duke University']
+Allen, (6,), [49], ['University at Albany', 'University of Michigan']
+Ichbiah, (6,), [11], ['']
+Draper, (6,), [12], ['Massachusetts Institute of Technology', 'Stanford University']
+Lampson, (6,), [82], ['Harvard University', 'University of California', 'Berkeley']
+Minsky, (6,), [33], ['Harvard University', 'BA', 'Princeton University', 'MA', 'PhD']
+Schoenebeck, (6,), [78], ['Georgia Institute of Technology', 'University of California', 'Berkeley', 'Dartmouth College']
+Wilson, (6,), [17], ['Selwyn College', 'Cambridge', 'University of Cambridge']
+Edelman, (7,), [88], ['MIT', 'Yale University']
+Fischer, (8,), [22], ['University of British Columbia', 'University of Cambridge']
+Tukey, (7,), [11], ['Brown University', 'Princeton University']
+Gosling, (7,), [15], ['University of Calgary', 'BSc', 'Carnegie Mellon University', 'MA', 'PhD']
+Kolmogorov, (7,), [7], ['Moscow State University', 'Ph.D.']
+Chiariglione, (8,), [26], ['Polytechnic University of Turin']
+Caspersen, (8,), [62], ['Aarhus U.', 'Aarhus U.', '[11]', 'PhD', 'Aarhus U.']
+Comer, (8,), [86], ['']
+Viterbi, (8,), [51], ['Massachusetts Institute of Technology', 'BS', 'MS', 'University of Southern California', 'PhD']
+Kayal, (8,), [78], ['IIT Kanpur']
+Sutherland, (8,), [49], ['MIT', 'Caltech', 'Carnegie Institute of Technology']
+Strassen, (8,), [21], ['University of Göttingen']
+Ritchie, (8,), [16], ['Harvard University', 'BS']
+Hellman, (9,), [72], ['New York University', 'Stanford University']
+Gunther, (9,), [59], ['La Trobe University', 'University of Southampton']
+Franke, (9,), [37], ['']
+Hopper, (9,), [8], ['Vassar College', 'BA', 'Yale University', 'MS', 'PhD']
+Nake, (9,), [29], ['']
+Stroustrup, (11,), [78], ['Aarhus University', 'Cand.scient.', 'University of Cambridge', 'PhD']
+Page, (9,), [20], ['University of Michigan', 'BS', 'Stanford University', 'MS']
+Shannon, (10,), [26], ['University of Michigan', 'AB', 'BS', 'Massachusetts Institute of Technology', 'MS', 'PhD']
+Perlman, (11,), [67], ['MIT']
+Karmarkar, (11,), [22], ['IIT Bombay', 'Caltech', 'University of California', 'Berkeley']
+Pieraccini, (11,), [84], ['University of Pisa']
+Kahn, (12,), [17], ['City College of New York', 'Princeton University']
+Vapnik, (11,), [85], ['Institute of Control Sciences', 'Russian Academy of Sciences', 'Uzbek State University']
+Wozniak, (13,), [13], ['University of Colorado Boulder', 'De Anza College', 'University of California', 'Berkeley', 'BS', '[3]']
+Cailliau, (13,), [13], ['Ghent University', 'University of Michigan']
+Boole, (17,), [42], ['[3]']
+Guha, (16,), [44], ['Indian Institute of Technology Madras', 'University of California', 'Berkeley', 'Stanford University']
+Borg, (18,), [21], ['New York University']
+Rulifson, (25,), [6], ['University of Washington', 'Stanford University']
+Atanasoff, (2,), [3], ['University of Florida', 'Iowa State University', 'University of Wisconsin–Madison']
+Amdahl, (2,), [11], ['South Dakota State University', 'BS', 'University of Wisconsin', 'MS', 'PhD']
+Adleman, (2,), [54], ['University of California', 'Berkeley']
+Dahl, (2,), [27], ['University of Oslo']
+Bayer, (2,), [88], ['University of Illinois at Urbana–Champaign']
+Breed, (2,), [11], ['']
+Corbató, (2,), [17], ['California Institute of Technology', 'Massachusetts Institute of Technology']
+Conway, (2,), [53], ['Cornell', 'PhD', 'Cornell']
+Engelhardt, (2,), [63], ['Stanford University', 'University of California', 'Berkeley']
+DeMarco, (2,), [40], ['Cornell University', 'Columbia University', 'University of Paris']
+Floyd, (2,), [83], ['University of Chicago', 'B.A.']
+Pandya, (2,), [82], ['']
+Hatton, (2,), [50], ['"King\'s College', 'Cambridge"']
+Fredkin, (2,), [8], ['California Institute of Technology']
+Joseph, (2,), [51], ['Wilson College', 'Mumbai', 'University of Bombay', 'Welsh College of Advanced Technology', 'University of Cambridge']
+Ingalls, (2,), [33], ['Harvard University', 'B.A.', 'Stanford University', 'M.S.']
+Huffman, (2,), [46], ['Ohio State University', 'Massachusetts Institute of Technology']
+Kleene, (2,), [12], ['Amherst College', 'Princeton University']
+Kemeny, (2,), [11], ['Princeton University']
+Kolodner, (2,), [70], ['Brandeis University', 'Yale University']
+Lenat, (2,), [65], ['University of Pennsylvania', 'Stanford University']
+Lattner, (2,), [14], ['University of Portland', 'University of Illinois at Urbana-Champaign']
+Kurtz, (2,), [44], ['Princeton University', 'Knox College', 'mathematics']
+Levin, (2,), [96], ['Moscow University', 'Massachusetts Institute of Technology']
+Marlow, (2,), [49], ['University of Glasgow', 'University of Bristol']
+Meertens, (2,), [33], ['']
+Naur, (2,), [43], ['Technical University of Denmark']
+Moler, (2,), [24], ['California Institute of Technology', 'Stanford University']
+Needham, (2,), [87], ['University of Cambridge']
+Ousterhout, (2,), [83], ['"Bachelor\'s degree"', 'Ph.D']
+Norvig, (2,), [41], ['Brown University', 'University of California', 'Berkeley']
+Rossum, (2,), [14], ['University of Amsterdam']
+Perlis, (2,), [52], ['Chemistry', 'Carnegie Mellon', 'MIT']
+Reynolds, (2,), [70], ['Purdue University', 'Ph.D.', 'Harvard University']
+Sleator, (2,), [42], ['University of Illinois at Urbana–Champaign', 'Stanford University']
+Sussman, (2,), [38], ['SB', 'PhD']
+Wolfram, (2,), [51], ['"St. John\'s College', 'Oxford"', 'California Institute of Technology']
+Waltz, (2,), [60], ['Massachusetts Institute of Technology']
+Turing, (2,), [22], ['University of Cambridge', 'BA', 'MA', 'Princeton University']
+Townsend, (2,), [42], ['Indiana University']
+Tate, (2,), [63], ['Lancaster University', 'University of Edinburgh']
+Wiener, (2,), [5], ['Tufts College', 'BA', 'Cornell University', 'MA', 'Harvard University', 'PhD']
+Wijngaarden, (2,), [48], ['Delft University of Technology']
+Bachman, (3,), [73], ['University of Pennsylvania', 'Michigan State University']
+Abebe, (3,), [39], ['Cornell University', 'University of Cambridge', 'Harvard University']
+Ahn, (3,), [84], ['Duke University', 'BS', 'Carnegie Mellon University']
+Backus, (3,), [21], ['University of Virginia', 'University of Pittsburgh', 'Haverford College', 'Columbia University']
+Codd, (3,), [55], ['Exeter College', 'Oxford', 'University of Michigan']
+Bourne, (3,), [16], ['"King\'s College London"', 'BSc', 'Trinity College', 'Cambridge', 'Diploma in Computer Science', 'Ph.D.']
+Chaochen, (3,), [39], ['']
+Fahlman, (3,), [34], ['Massachusetts Institute of Technology', 'B.S.', 'M.S.', 'Ph.D.']
+Gelernter, (3,), [68], ['Yale University', 'BA', 'State University of New York at Stony Brook', 'PhD']
+Geschke, (3,), [11], ['Xavier University', 'AB', 'MS', 'Carnegie Mellon University', 'PhD']
+Gödel, (3,), [4], ['University of Vienna', 'PhD']
+Kellis, (3,), [46], ['Massachusetts Institute of Technology']
+Kirstein, (3,), [56], ['University of Cambridge', 'Stanford University']
+Lederberg, (3,), [6], ['Stuyvesant High School', 'Columbia University', 'Yale University']
+Luks, (3,), [41], ['']
+McIlroy, (3,), [26], ['Cornell University', 'Massachusetts Institute of Technology']
+Mauchly, (3,), [4], ['Johns Hopkins University']
+Matiyasevich, (3,), [46], ['Leningrad State University']
+Newman, (3,), [24], ['"St John\'s College', 'Cambridge"']
+Sammet, (3,), [56], ['Mount Holyoke College', 'B.A.', 'University of Illinois at Urbana Champaign', 'M.A.', 'Columbia University']
+Thacker, (3,), [15], ['University of California', 'Berkeley']
+Torvalds, (3,), [2], ['University of Helsinki', '[2]']
+Wilkinson, (3,), [69], ['Trinity College', 'Cambridge']
+Worsley, (3,), [2], ['University of Toronto', 'Massachusetts Institute of Technology', 'University of Cambridge']
+Woodward, (3,), [26], ['Oxford University']
+Catmull, (4,), [12], ['University of Utah']
+Bjørner, (4,), [97], ['Technical University of Denmark']
+Feigenbaum, (4,), [44], ['Carnegie Mellon University']
+Gates, (4,), [9], ['Harvard University']
+Kahan, (4,), [37], ['University of Toronto']
+Iverson, (4,), [45], ['"Queen\'s University"', 'Harvard University']
+Hamming, (4,), [23], ['University of Chicago', 'University of Nebraska', 'University of Illinois at Urbana–Champaign']
+Joy, (4,), [41], ['University of Michigan', 'University of California', 'Berkeley']
+Kruusmaa, (4,), [57], ['Tallinn University of Technology', 'Chalmers University of Technology']
+Engelbart, (7,), [18], ['Oregon State University', 'University of California', 'Berkeley']
+Berners-Lee, (5,), [75], ['"The Queen\'s College', 'Oxford"']
+Nygaard, (4,), [22], ['M.Sc.', 'University of Oslo']
+Mockapetris, (4,), [13], ['Massachusetts Institute of Technology', 'University of California at Irvine']
+Sedgewick, (4,), [100], ['Brown University']
+Ružička, (4,), [48], ['Comenius University in Bratislava']
+Vilkomir, (4,), [39], ['Kharkov State University', 'Kharkov Polytechnic Institute']
+Culler, (5,), [7], ['University of California', 'Berkeley', 'University of California', 'Los Angeles']
+Brooks, (5,), [65], ['Duke University', 'Harvard University']
+Brin, (5,), [20], ['University of Maryland', 'College Park', 'BS', 'Stanford University', 'MS']
+Dijkstra, (5,), [97], ['Leiden University', 'University of Amsterdam']
+Newell, (5,), [78], ['Stanford University', 'Princeton University', 'Carnegie Mellon University']
+Pausch, (5,), [81], ['Brown University', 'Carnegie Mellon University']
+Diffie, (6,), [43], ['Massachusetts Institute of Technology']
+Wirth, (5,), [92], ['BS', 'MSc', 'Université Laval', 'University of California', 'Berkeley']
+Stallman, (5,), [13], ['Harvard University', 'BS', 'Massachusetts Institute of Technology']
+Wilkes, (5,), [84], ['University of Cambridge']
+Cocke, (6,), [41], ['Duke University']
+Allen, (6,), [49], ['University at Albany', 'University of Michigan']
+Ichbiah, (6,), [11], ['']
+Draper, (6,), [12], ['Massachusetts Institute of Technology', 'Stanford University']
+Lampson, (6,), [82], ['Harvard University', 'University of California', 'Berkeley']
+Minsky, (6,), [33], ['Harvard University', 'BA', 'Princeton University', 'MA', 'PhD']
+Schoenebeck, (6,), [78], ['Georgia Institute of Technology', 'University of California', 'Berkeley', 'Dartmouth College']
+Wilson, (6,), [17], ['Selwyn College', 'Cambridge', 'University of Cambridge']
+Edelman, (7,), [88], ['MIT', 'Yale University']
+Fischer, (8,), [22], ['University of British Columbia', 'University of Cambridge']
+Tukey, (7,), [11], ['Brown University', 'Princeton University']
+Gosling, (7,), [15], ['University of Calgary', 'BSc', 'Carnegie Mellon University', 'MA', 'PhD']
+Kolmogorov, (7,), [7], ['Moscow State University', 'Ph.D.']
+Chiariglione, (8,), [26], ['Polytechnic University of Turin']
+Caspersen, (8,), [62], ['Aarhus U.', 'Aarhus U.', '[11]', 'PhD', 'Aarhus U.']
+Comer, (8,), [86], ['']
+Viterbi, (8,), [51], ['Massachusetts Institute of Technology', 'BS', 'MS', 'University of Southern California', 'PhD']
+Kayal, (8,), [78], ['IIT Kanpur']
+Sutherland, (8,), [49], ['MIT', 'Caltech', 'Carnegie Institute of Technology']
+Strassen, (8,), [21], ['University of Göttingen']
+Ritchie, (8,), [16], ['Harvard University', 'BS']
+Hellman, (9,), [72], ['New York University', 'Stanford University']
+Gunther, (9,), [59], ['La Trobe University', 'University of Southampton']
+Franke, (9,), [37], ['']
+Hopper, (9,), [8], ['Vassar College', 'BA', 'Yale University', 'MS', 'PhD']
+Nake, (9,), [29], ['']
+Stroustrup, (11,), [78], ['Aarhus University', 'Cand.scient.', 'University of Cambridge', 'PhD']
+Page, (9,), [20], ['University of Michigan', 'BS', 'Stanford University', 'MS']
+Shannon, (10,), [26], ['University of Michigan', 'AB', 'BS', 'Massachusetts Institute of Technology', 'MS', 'PhD']
+Perlman, (11,), [67], ['MIT']
+Karmarkar, (11,), [22], ['IIT Bombay', 'Caltech', 'University of California', 'Berkeley']
+Pieraccini, (11,), [84], ['University of Pisa']
+Kahn, (12,), [17], ['City College of New York', 'Princeton University']
+Vapnik, (11,), [85], ['Institute of Control Sciences', 'Russian Academy of Sciences', 'Uzbek State University']
+Wozniak, (13,), [13], ['University of Colorado Boulder', 'De Anza College', 'University of California', 'Berkeley', 'BS', '[3]']
+Cailliau, (13,), [13], ['Ghent University', 'University of Michigan']
+Boole, (17,), [42], ['[3]']
+Guha, (16,), [44], ['Indian Institute of Technology Madras', 'University of California', 'Berkeley', 'Stanford University']
+Borg, (18,), [21], ['New York University']
+Rulifson, (25,), [6], ['University of Washington', 'Stanford University']
+
+----------
+Results for Range Tree:
+Construction Time: 0.05051255226135254 seconds
+Range Query Time: 0.01300048828125 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Marlow, 2, ['University of Glasgow', 'University of Bristol'], 49
+Allen, 6, ['University at Albany', 'University of Michigan'], 49
+Sutherland, 8, ['MIT', 'Caltech', 'Carnegie Institute of Technology'], 49
+Backus, 3, ['University of Virginia', 'University of Pittsburgh', 'Haverford College', 'Columbia University'], 21
+Borg, 18, ['New York University'], 21
+Strassen, 8, ['University of Göttingen'], 21
+Geschke, 3, ['Xavier University', 'AB', 'MS', 'Carnegie Mellon University', 'PhD'], 11
+Breed, 2, [], 11
+Amdahl, 2, ['South Dakota State University', 'BS', 'University of Wisconsin', 'MS', 'PhD'], 11
+Kemeny, 2, ['Princeton University'], 11
+Ichbiah, 6, [], 11
+Tukey, 7, ['Brown University', 'Princeton University'], 11
+Gödel, 3, ['University of Vienna', 'PhD'], 4
+Mauchly, 3, ['Johns Hopkins University'], 4
+Torvalds, 3, ['University of Helsinki', '[2]'], 2
+Worsley, 3, ['University of Toronto', 'Massachusetts Institute of Technology', 'University of Cambridge'], 2
+Atanasoff, 2, ['University of Florida', 'Iowa State University', 'University of Wisconsin–Madison'], 3
+Hopper, 9, ['Vassar College', 'BA', 'Yale University', 'MS', 'PhD'], 8
+Fredkin, 2, ['California Institute of Technology'], 8
+Lederberg, 3, ['Stuyvesant High School', 'Columbia University', 'Yale University'], 6
+Rulifson, 25, ['University of Washington', 'Stanford University'], 6
+Wiener, 2, ['Tufts College', 'BA', 'Cornell University', 'MA', 'Harvard University', 'PhD'], 5
+Kolmogorov, 7, ['Moscow State University', 'Ph.D.'], 7
+Culler, 5, ['University of California, Berkeley', 'University of California, Los Angeles'], 7
+Gates, 4, ['Harvard University'], 9
+Bourne, 3, ["King's College London", 'BSc', 'Trinity College, Cambridge', 'Diploma in Computer Science', 'Ph.D.'], 16
+Ritchie, 8, ['Harvard University', 'BS'], 16
+Mockapetris, 4, ['Massachusetts Institute of Technology', 'University of California at Irvine'], 13
+Cailliau, 13, ['Ghent University', 'University of Michigan'], 13
+Stallman, 5, ['Harvard University', 'BS', 'Massachusetts Institute of Technology'], 13
+Wozniak, 13, ['University of Colorado Boulder', 'De Anza College', 'University of California, Berkeley', 'BS', '[3]'], 13
+Kleene, 2, ['Amherst College', 'Princeton University'], 12
+Draper, 6, ['Massachusetts Institute of Technology', 'Stanford University'], 12
+Catmull, 4, ['University of Utah'], 12
+Lattner, 2, ['University of Portland', 'University of Illinois at Urbana-Champaign'], 14
+Rossum, 2, ['University of Amsterdam'], 14
+Gosling, 7, ['University of Calgary', 'BSc', 'Carnegie Mellon University', 'MA', 'PhD'], 15
+Thacker, 3, ['University of California, Berkeley'], 15
+Engelbart, 7, ['Oregon State University', 'University of California, Berkeley'], 18
+Kahn, 12, ['City College of New York', 'Princeton University'], 17
+Corbató, 2, ['California Institute of Technology', 'Massachusetts Institute of Technology'], 17
+Wilson, 6, ['Selwyn College, Cambridge', 'University of Cambridge'], 17
+Page, 9, ['University of Michigan', 'BS', 'Stanford University', 'MS'], 20
+Brin, 5, ['University of Maryland, College Park', 'BS', 'Stanford University', 'MS'], 20
+McIlroy, 3, ['Cornell University', 'Massachusetts Institute of Technology'], 26
+Chiariglione, 8, ['Polytechnic University of Turin'], 26
+Shannon, 10, ['University of Michigan', 'AB', 'BS', 'Massachusetts Institute of Technology', 'MS', 'PhD'], 26
+Woodward, 3, ['Oxford University'], 26
+Moler, 2, ['California Institute of Technology', 'Stanford University'], 24
+Newman, 3, ["St John's College, Cambridge"], 24
+Fischer, 8, ['University of British Columbia', 'University of Cambridge'], 22
+Karmarkar, 11, ['IIT Bombay', 'Caltech', 'University of California, Berkeley'], 22
+Nygaard, 4, ['M.Sc.', 'University of Oslo'], 22
+Turing, 2, ['University of Cambridge', 'BA', 'MA', 'Princeton University'], 22
+Hamming, 4, ['University of Chicago', 'University of Nebraska', 'University of Illinois at Urbana–Champaign'], 23
+Dahl, 2, ['University of Oslo'], 27
+Nake, 9, [], 29
+Ingalls, 2, ['Harvard University', 'B.A.', 'Stanford University', 'M.S.'], 33
+Meertens, 2, [], 33
+Minsky, 6, ['Harvard University', 'BA', 'Princeton University', 'MA', 'PhD'], 33
+Fahlman, 3, ['Massachusetts Institute of Technology', 'B.S.', 'M.S.', 'Ph.D.'], 34
+Sleator, 2, ['University of Illinois at Urbana–Champaign', 'Stanford University'], 42
+Boole, 17, ['[3]'], 42
+Townsend, 2, ['Indiana University'], 42
+DeMarco, 2, ['Cornell University', 'Columbia University', 'University of Paris'], 40
+Sussman, 2, ['SB', 'PhD'], 38
+Franke, 9, [], 37
+Kahan, 4, ['University of Toronto'], 37
+Chaochen, 3, [], 39
+Abebe, 3, ['Cornell University', 'University of Cambridge', 'Harvard University'], 39
+Vilkomir, 4, ['Kharkov State University', 'Kharkov Polytechnic Institute'], 39
+Joy, 4, ['University of Michigan', 'University of California, Berkeley'], 41
+Cocke, 6, ['Duke University'], 41
+Norvig, 2, ['Brown University', 'University of California, Berkeley'], 41
+Luks, 3, [], 41
+Iverson, 4, ["Queen's University", 'Harvard University'], 45
+Diffie, 6, ['Massachusetts Institute of Technology'], 43
+Naur, 2, ['Technical University of Denmark'], 43
+Guha, 16, ['Indian Institute of Technology Madras', 'University of California, Berkeley', 'Stanford University'], 44
+Feigenbaum, 4, ['Carnegie Mellon University'], 44
+Kurtz, 2, ['Princeton University', 'Knox College', 'mathematics'], 44
+Kellis, 3, ['Massachusetts Institute of Technology'], 46
+Huffman, 2, ['Ohio State University', 'Massachusetts Institute of Technology'], 46
+Matiyasevich, 3, ['Leningrad State University'], 46
+Ružička, 4, ['Comenius University in Bratislava'], 48
+Wijngaarden, 2, ['Delft University of Technology'], 48
+Brooks, 5, ['Duke University', 'Harvard University'], 65
+Lenat, 2, ['University of Pennsylvania', 'Stanford University'], 65
+Kruusmaa, 4, ['Tallinn University of Technology', 'Chalmers University of Technology'], 57
+Perlis, 2, ['Chemistry', 'Carnegie Mellon', 'MIT'], 52
+Hatton, 2, ["King's College, Cambridge"], 50
+Joseph, 2, ['Wilson College, Mumbai', 'University of Bombay', 'Welsh College of Advanced Technology', 'University of Cambridge'], 51
+Viterbi, 8, ['Massachusetts Institute of Technology', 'BS', 'MS', 'University of Southern California', 'PhD'], 51
+Wolfram, 2, ["St. John's College, Oxford", 'California Institute of Technology'], 51
+Adleman, 2, ['University of California, Berkeley'], 54
+Conway, 2, ['Cornell', 'PhD', 'Cornell'], 53
+Codd, 3, ['Exeter College, Oxford', 'University of Michigan'], 55
+Kirstein, 3, ['University of Cambridge', 'Stanford University'], 56
+Sammet, 3, ['Mount Holyoke College', 'B.A.', 'University of Illinois at Urbana Champaign', 'M.A.', 'Columbia University'], 56
+Waltz, 2, ['Massachusetts Institute of Technology'], 60
+Gunther, 9, ['La Trobe University', 'University of Southampton'], 59
+Caspersen, 8, ['Aarhus U.', 'Aarhus U.', '[11]', 'PhD', 'Aarhus U.'], 62
+Engelhardt, 2, ['Stanford University', 'University of California, Berkeley'], 63
+Tate, 2, ['Lancaster University', 'University of Edinburgh'], 63
+Pieraccini, 11, ['University of Pisa'], 84
+Ahn, 3, ['Duke University', 'BS', 'Carnegie Mellon University'], 84
+Wilkes, 5, ['University of Cambridge'], 84
+Bachman, 3, ['University of Pennsylvania', 'Michigan State University'], 73
+Gelernter, 3, ['Yale University', 'BA', 'State University of New York at Stony Brook', 'PhD'], 68
+Perlman, 11, ['MIT'], 67
+Kolodner, 2, ['Brandeis University', 'Yale University'], 70
+Reynolds, 2, ['Purdue University', 'Ph.D.', 'Harvard University'], 70
+Wilkinson, 3, ['Trinity College, Cambridge'], 69
+Hellman, 9, ['New York University', 'Stanford University'], 72
+Berners-Lee, 5, ["The Queen's College, Oxford"], 75
+Lampson, 6, ['Harvard University', 'University of California, Berkeley'], 82
+Pandya, 2, [], 82
+Newell, 5, ['Stanford University', 'Princeton University', 'Carnegie Mellon University'], 78
+Kayal, 8, ['IIT Kanpur'], 78
+Schoenebeck, 6, ['Georgia Institute of Technology', 'University of California, Berkeley', 'Dartmouth College'], 78
+Stroustrup, 11, ['Aarhus University', 'Cand.scient.', 'University of Cambridge', 'PhD'], 78
+Pausch, 5, ['Brown University', 'Carnegie Mellon University'], 81
+Floyd, 2, ['University of Chicago', 'B.A.'], 83
+Ousterhout, 2, ["Bachelor's degree", 'Ph.D'], 83
+Dijkstra, 5, ['Leiden University', 'University of Amsterdam'], 97
+Bjørner, 4, ['Technical University of Denmark'], 97
+Bayer, 2, ['University of Illinois at Urbana–Champaign'], 88
+Edelman, 7, ['MIT', 'Yale University'], 88
+Comer, 8, [], 86
+Vapnik, 11, ['Institute of Control Sciences, Russian Academy of Sciences', 'Uzbek State University'], 85
+Needham, 2, ['University of Cambridge'], 87
+Wirth, 5, ['BS', 'MSc', 'Université Laval', 'University of California, Berkeley'], 92
+Levin, 2, ['Moscow University', 'Massachusetts Institute of Technology'], 96
+Sedgewick, 4, ['Brown University'], 100
+
+----------

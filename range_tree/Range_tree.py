@@ -8,9 +8,8 @@
 
 import os
 import pandas as pd
-# from static import letter_normalization
 from range_tree import RangeTree3D as R3D
-from range_tree import static
+from range_tree.static import letter_normalization
 import sys
 from memory_profiler import profile
 
@@ -24,12 +23,11 @@ df = pd.read_csv(CSV_PATH)
 def build_range_tree():
     # df = pd.read_csv("../computer_scientists_data1.csv")
     points = []
-
     # Για κάθε εγγραφή του dataframe, υπολογίζουμε τις συντεταγμένες (x, y, z)
     # βάσει της αριθμητικής τιμής του πρώτου γράμματος του επωνύμου και του
     # αριθμού των βραβείων αντίστοιχα, και εισάγουμε το σημείο στη λίστα points.
     for i in range(len(df)):
-        x = static.letter_normalization(df.iloc[i]['Surname'][0])
+        x = letter_normalization(df.iloc[i]['Surname'][0][0])
         # x = df.iloc[i]['Surname'][0]
         y = df.iloc[i]['#Awards']
         z = df.iloc[i]['DBLP']
@@ -42,8 +40,8 @@ def build_range_tree():
 # @profile
 def query_range_tree(range_tree, min_letter, max_letter, num_awards, dblp_min, dblp_max):
     # Υπολογισμός των αριθμητικών τιμών του ελάχιστου και του μέγιστου γράμματος
-    min_letter = static.letter_normalization(min_letter.encode('utf-8'))
-    max_letter = static.letter_normalization(max_letter.encode('utf-8'))
+    min_letter = letter_normalization(min_letter)
+    max_letter = letter_normalization(max_letter)
 
     # Ορισμός των διαστημάτων τόσο στις συντεταγμένες x, y, z πάνω στις οποίες θα γίνει η αναζήτηση
     x_range = (min_letter, max_letter)
@@ -62,7 +60,7 @@ def query_range_tree(range_tree, min_letter, max_letter, num_awards, dblp_min, d
     final_results = []
     # Ανάκτηση των δεδομένων και αποθήκευσή τους σε λίστα
     for result in query_results:
-        index = result[2]  # παίρνουμε το index από τα δεδομένα του Range Tree
+        index = result[3]  # παίρνουμε το index από τα δεδομένα του Range Tree
         surname = df.iloc[index]['Surname']
         awards = df.iloc[index]['#Awards']
         education = df.iloc[index]['Education']

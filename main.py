@@ -58,7 +58,7 @@ def main():
 
 
 def save_results(tree, tree_build_time, query_time, results):
-    with open('results.txt', 'w') as file:
+    with open('results.txt', 'a', encoding='utf-8') as file:
         file.write(f"Results for {tree}:\n")
         file.write(f"Construction Time: {tree_build_time} seconds\n")
         file.write(f"Range Query Time: {query_time} seconds\n")
@@ -67,6 +67,7 @@ def save_results(tree, tree_build_time, query_time, results):
             file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
         end_str = '\n' + ('-' * 10) + '\n'
         file.write(end_str)
+
 
 if __name__ == "__main__":
     main()

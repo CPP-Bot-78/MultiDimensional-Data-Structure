@@ -2,6 +2,7 @@ from range_tree import Node3D as N3D
 
 
 class RangeTree3D:
+
     def __init__(self, points):
         self.root = self.build3D(points)
 
@@ -137,7 +138,3 @@ class RangeTree3D:
             self.query(node.left, x1, x2, y1, y2, z1, z2, result)
         if z2 > node.z:
             self.query(node.right, x1, x2, y1, y2, z1, z2, result)
-
-
-def letter_normalization(letter):
-    return ord(letter.upper())-97

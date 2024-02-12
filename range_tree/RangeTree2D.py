@@ -3,6 +3,7 @@ from range_tree import Node2D as N2D
 
 
 class RangeTree2D:
+
     def __init__(self, points):
         """Κατασκευή του 2D δέντρου για τα δοθέντα points"""
         self.root = self.build2D(points)
@@ -19,7 +20,7 @@ class RangeTree2D:
         :rtype: Node2D
         """
         if not root:
-            return N2D.Node2D(x, [(x, y, i_list)])
+            return N2D.Node2D(x, [(x, y, None, i_list)])
         if x == root.x:     # αν υπάρχει ήδη κόμβος με το ίδιο x-value, κάνε εισαγωγή κόμβου στο αντίστοιχο y_tree
             root.y_tree.root = root.y_tree.insert1D(root.y_tree.root, y, i_list)
         elif x < root.x:    # εισαγωγή του κόμβου στο αριστερό υπο-δέντρο
@@ -61,7 +62,7 @@ class RangeTree2D:
         """
         root = None
         for point in points:
-            x, y, i = point
+            x, y, _, i = point
             root = self.insert2D(root, x, y, i, [point])
         return root
 

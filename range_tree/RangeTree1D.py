@@ -60,7 +60,7 @@ class RangeTree1D:
         :rtype: Node1D
         """
         root = None
-        for _, y, i in points:
+        for _, y, _, i in points:
             root = self.insert1D(root, y, i)
         return root
 
