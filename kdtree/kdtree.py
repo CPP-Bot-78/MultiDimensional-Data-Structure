@@ -22,15 +22,24 @@ class KdTree:
 
     def range_query(self, node, results, surname_range, dblp_range):
         if node is not None:
+          duplicate = any(
+            node.data[0][0].upper() == result[0][0].upper()
+            and node.data[1][0] == result[1][0]
+            and int(node.data[2][0]) == int(result[2][0])
+            for result in results
+          )
+
+          if not duplicate:
             if (
                 surname_range[0] <= node.data[0][0].upper() <= surname_range[1]
                 and self.min_awards <= node.data[1][0]
                 and dblp_range[0] <= int(node.data[2][0]) <= dblp_range[1]
             ):
               	results.append(node.data)
-
-            self.range_query(node.left, results, surname_range, dblp_range)
-            self.range_query(node.right, results, surname_range, dblp_range)
+          if node.left is not None:
+              self.range_query(node.left, results, surname_range, dblp_range)
+          if node.right is not None:
+              self.range_query(node.right, results, surname_range, dblp_range)
 
 def load_scientist_data():
     data = pd.read_csv('computer_scientists_data.csv')
@@ -44,4 +53,5 @@ def load_scientist_data():
 
 def convert_to_list(value):
     return [int(val) for val in str(value)[1:-1].split(', ')] if pd.notna(value) and str(value).startswith('[') else [int(value)]
+
     
