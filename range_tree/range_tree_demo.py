@@ -1,13 +1,11 @@
 from range_tree import Range_tree as rt
-import pprint as pp
 
 tree = rt.build_range_tree()
 results = rt.query_range_tree(tree, "a", "w", 1, 2, 4)
-pp.pprint(results)
-# print(results)
+print(results)
 print((lambda: "=" * 50)())
 results = rt.query_range_tree(tree, "a", "w", 2, 0, 10)
-pp.pprint(results, width=-1)
+print(results)
 print((lambda: "=" * 50)())
 results = rt.query_range_tree(tree, "p", "w", 1, 0, 4)
 print(results)
