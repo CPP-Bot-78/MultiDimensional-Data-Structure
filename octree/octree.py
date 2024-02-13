@@ -193,7 +193,11 @@ def build_octree():
     return ot
 
 #@profile
-def query_octree(octree, x_range, y_range, z_range):
+def query_octree(octree, x_range, y_min, z_range):
+    df = pd.read_csv('scripts/computer_scientists_data1.csv')
+    y_max = df['#Awards'].max()
+    y_range = [y_min, y_max]
+    x_range = [ord(letter.lower()) - 97 for letter in x_range]
     # Search the octree for the given ranges using a bounding box
     search_bounds = (x_range[0], x_range[1], y_range[0], y_range[1], z_range[0], z_range[1])
     found = octree.search(search_bounds)
@@ -202,7 +206,6 @@ def query_octree(octree, x_range, y_range, z_range):
     index_list = pd.Series(found).explode().tolist()
 
     # Find values based on the index
-    df = pd.read_csv('scripts/computer_scientists_data1.csv')
     filter_by_index = df.loc[index_list]
     result = filter_by_index[['Surname', '#Awards', 'Education', 'DBLP']].values.tolist()
 
