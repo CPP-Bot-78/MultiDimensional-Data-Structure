@@ -68,7 +68,8 @@ def query_range_tree(range_tree, min_letter, max_letter, num_awards, dblp_min, d
         dblp = df.iloc[index]['DBLP']
         # final_results.append({"surname": surname, "awards": awards, "education": education, "DBLP": dblp})
         final_results.append([surname, awards, dblp, education])
-    return clean_results(final_results)
+    final_results = clean_results(final_results)
+    return sorted(final_results, key=lambda x: x[0], reverse=False)
     # return clean_results(final_results)
 
 

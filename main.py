@@ -43,7 +43,7 @@ def main():
     # Ask for the minimum awards instead of a range
     min_awards = int(input("Enter the minimum #Awards: "))
     dblp_range = list(map(int, input("Enter the range for #DBLP (e.g., 0-100): ").split('-')))
-    print("Results written in results.txt")
+
     
     # Load scientist data
     scientist_data = load_scientist_data()
@@ -80,6 +80,8 @@ def main():
     octree_query_time = time.time() - octree_time_range_query
     save_results('Oct Tree', octree_build_time, octree_query_time, results, demo_name)
 
+    print(f"Results written in {demo_name}")
+
 
 def save_results(tree, tree_build_time, query_time, results, demo_name):
     with open(demo_name, 'a', encoding='utf-8') as file:
@@ -91,6 +93,7 @@ def save_results(tree, tree_build_time, query_time, results, demo_name):
             file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
         end_str = '\n' + ('-' * 10) + ('\n' * 2)
         file.write(end_str)
+    # print(f"Results written in {demo_name}")
 
 
 if __name__ == "__main__":
