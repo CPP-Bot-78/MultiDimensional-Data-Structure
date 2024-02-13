@@ -24,17 +24,17 @@ class KdTree:
     def range_query(self, node, results, surname_range, dblp_range):
         if node is not None:
           duplicate = any(
-            node.data[0][0].upper() == result[0][0].upper()
-            and node.data[1][0] == result[1][0]
-            and int(node.data[2][0]) == int(result[2][0])
+            node.data[0].upper() == result[0][0].upper()
+            and node.data[1] == result[1][0]
+            and node.data[2] == result[2][0]
             for result in results
           )
 
           if not duplicate:
             if (
-                surname_range[0] <= node.data[0][0].upper() <= surname_range[1]
-                and self.min_awards <= node.data[1][0]
-                and dblp_range[0] <= int(node.data[2][0]) <= dblp_range[1]
+                surname_range[0] <= node.data[0].upper() <= surname_range[1]
+                and self.min_awards <= node.data[1]
+                and dblp_range[0] <= node.data[2] <= dblp_range[1]
             ):
               	results.append(node.data)
           if node.left is not None:
@@ -52,7 +52,7 @@ def load_scientist_data():
         data = pd.read_csv(CSV_PATH)
     # data = pd.read_csv('computer_scientists_data2.csv')
     scientist_data = [
-        (row['Surname'], (row['#Awards'],), convert_to_list(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
+        (row['Surname'], (row['#Awards'],), int(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
          if pd.notna(row['Education']) and str(row['Education']).startswith('[')
          else [row['Education']])
         for _, row in data.iterrows()
