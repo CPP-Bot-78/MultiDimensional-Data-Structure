@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from memory_profiler import profile
 
 # An octree works just like a quadtree, just for 3 dimensions.
@@ -178,8 +179,15 @@ def extract_data(file_csv):
 #@profile
 def build_octree():
     #Construct the Octree and insert the data
-    csv_file = 'scripts/computer_scientists_data1.csv'
-    index, surname, awards, dblp = extract_data(csv_file)
+    try:
+        csv_file = 'scripts/computer_scientists_data2.csv'
+        index, surname, awards, dblp = extract_data(csv_file)
+    except Exception as e:
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+        home_dir = os.path.dirname(script_directory)
+        csv_file = os.path.join(home_dir, 'computer_scientists_data2.csv')
+        index, surname, awards, dblp = extract_data(csv_file)
+    # index, surname, awards, dblp = extract_data(csv_file)
     cs_data = list(zip(index, surname, awards, dblp))
 
     ot = Octree([min(surname),max(surname)], [min(awards),max(awards)], [min(dblp),max(dblp)], False)
@@ -194,7 +202,18 @@ def build_octree():
 
 #@profile
 def query_octree(octree, x_range, y_min, z_range):
-    df = pd.read_csv('scripts/computer_scientists_data1.csv')
+    try:
+        csv_file = 'scripts/computer_scientists_data2.csv'
+        index, surname, awards, dblp = extract_data(csv_file)
+        df = pd.read_csv(csv_file)
+    except Exception as e:
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+        home_dir = os.path.dirname(script_directory)
+        csv_file = os.path.join(home_dir, 'computer_scientists_data2.csv')
+        index, surname, awards, dblp = extract_data(csv_file)
+        df = pd.read_csv(csv_file)
+    # index, surname, awards, dblp = extract_data(csv_file)
+    # df = pd.read_csv(csv_file)
     y_max = df['#Awards'].max()
     y_range = [y_min, y_max]
     x_range = [ord(letter.lower()) - 97 for letter in x_range]
@@ -207,7 +226,6 @@ def query_octree(octree, x_range, y_min, z_range):
 
     # Find values based on the index
     filter_by_index = df.loc[index_list]
-    result = filter_by_index[['Surname', '#Awards', 'Education', 'DBLP']].values.tolist()
+    result = filter_by_index[['Surname', '#Awards', 'DBLP',  'Education']].values.tolist()
 
     return result
-

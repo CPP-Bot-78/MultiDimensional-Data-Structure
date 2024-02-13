@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 class KDNode:
     def __init__(self, data, left=None, right=None):
@@ -42,7 +43,14 @@ class KdTree:
               self.range_query(node.right, results, surname_range, dblp_range)
 
 def load_scientist_data():
-    data = pd.read_csv('computer_scientists_data.csv')
+    try:
+        data = pd.read_csv('computer_scientists_data2.csv')
+    except Exception as e:
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+        home_dir = os.path.dirname(script_directory)
+        CSV_PATH = os.path.join(home_dir, 'computer_scientists_data2.csv')
+        data = pd.read_csv(CSV_PATH)
+    # data = pd.read_csv('computer_scientists_data2.csv')
     scientist_data = [
         (row['Surname'], (row['#Awards'],), convert_to_list(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
          if pd.notna(row['Education']) and str(row['Education']).startswith('[')

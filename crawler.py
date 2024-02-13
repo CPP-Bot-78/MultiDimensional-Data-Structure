@@ -6,7 +6,6 @@ import spacy
 import re
 
 
-
 # for dblp.org
 scientists_names=[]
 # Load the spacy model for text vectorization

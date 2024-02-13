@@ -1,0 +1,45 @@
+Results for KDTree:
+Construction Time: 0.005995988845825195 seconds
+Range Query Time: 0.010515689849853516 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Engelbart, (7,), [18], ['Oregon State University', 'University of California', 'Berkeley']
+Edelman, (7,), [88], ['MIT', 'Yale University']
+Chiariglione, (8,), [26], ['Polytechnic University of Turin']
+Caspersen, (8,), [62], ['Aarhus U.', 'Aarhus U.', '[11]', 'PhD', 'Aarhus U.']
+Comer, (8,), [86], ['']
+Cailliau, (13,), [13], ['Ghent University', 'University of Michigan']
+Borg, (18,), [21], ['New York University']
+Boole, (17,), [42], ['[3]']
+
+----------
+
+Results for Range Tree:
+Construction Time: 0.2161722183227539 seconds
+Range Query Time: 0.004029512405395508 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Borg, 18, 21, ['New York University']
+Cailliau, 13, 13, ['Ghent University', 'University of Michigan']
+Engelbart, 7, 18, ['Oregon State University', 'University of California, Berkeley']
+Chiariglione, 8, 26, ['Polytechnic University of Turin']
+Boole, 17, 42, ['[3]']
+Caspersen, 8, 62, ['Aarhus U.', 'Aarhus U.', '[11]', 'PhD', 'Aarhus U.']
+Edelman, 7, 88, ['MIT', 'Yale University']
+Comer, 8, 86, []
+
+----------
+
+Results for Oct Tree:
+Construction Time: 0.005999565124511719 seconds
+Range Query Time: 2.683088779449463 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Borg, 18, 21, ['New York University']
+Cailliau, 13, 13, ['Ghent University', 'University of Michigan']
+Chiariglione, 8, 26, ['Polytechnic University of Turin']
+Boole, 17, 42, ['[3]']
+Caspersen, 8, 62, ['Aarhus U.', 'Aarhus U.', '[11]', 'PhD', 'Aarhus U.']
+Comer, 8, 86, []
+Engelbart, 7, 18, ['Oregon State University', 'University of California, Berkeley']
+Edelman, 7, 88, ['MIT', 'Yale University']
+
+----------
+

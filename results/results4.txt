@@ -1,0 +1,27 @@
+Results for KDTree:
+Construction Time: 0.006005287170410156 seconds
+Range Query Time: 0.004072427749633789 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Tanenbaum, (22,), [214], ['Massachusetts Institute of Technology', 'University of California', 'Berkeley']
+Shekhar, (28,), [375], ['University of California', 'Berkeley']
+
+----------
+
+Results for Range Tree:
+Construction Time: 0.21756410598754883 seconds
+Range Query Time: 0.0030019283294677734 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Tanenbaum, 22, 214, ['Massachusetts Institute of Technology', 'University of California, Berkeley']
+Shekhar, 28, 375, ['University of California, Berkeley']
+
+----------
+
+Results for Oct Tree:
+Construction Time: 0.00751948356628418 seconds
+Range Query Time: 0.008527278900146484 seconds
+Surname: , #Awards: , #DBLP: , Education:
+Tanenbaum, 22, 214, ['Massachusetts Institute of Technology', 'University of California, Berkeley']
+Shekhar, 28, 375, ['University of California, Berkeley']
+
+----------
+

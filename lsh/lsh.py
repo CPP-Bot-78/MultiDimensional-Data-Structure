@@ -6,7 +6,7 @@ import os
 
 script_directory = os.path.dirname(os.path.abspath(__file__))
 home_dir = os.path.dirname(script_directory)
-CSV_PATH = os.path.join(home_dir, 'computer_scientists_data1.csv')
+CSV_PATH = os.path.join(home_dir, 'computer_scientists_data2.csv')
 df = pd.read_csv(CSV_PATH)
 
 
