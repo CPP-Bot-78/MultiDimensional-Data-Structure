@@ -6,26 +6,25 @@ class RangeTree3D:
     def __init__(self, points):
         self.root = self.build3D(points)
 
-    def insert3D(self, root, x, y, z, i_list, points):
+    def insert3D(self, root, x, y, z, i_list):
         """Εισαγωγή ενός νέου σημείου στο 2D δέντρο και εφαρμογή της διαδικασίας
         εξισορρόπησής του
         :param Node3D root: The points of the 2D tree
         :param int x: Tο x-value του κόμβου
         :param int y: Tο y-value του κόμβου
         :param int z: Tο z-value του κόμβου
-        :param list i_list:  H λίστα που πρέπει να εισαχθεί
-        :param list points: Tα σημεία για την κατασκευή του 2D δέντρου
+        :param int i_list:  To index του dataframe
         :return: New BBST tree
         :rtype: Node3D
         """
         if not root:
             return N3D.Node3D(z, [(x, y, z, i_list)])
         if z == root.z:     # αν υπάρχει ήδη κόμβος με το ίδιο x-value, κάνε εισαγωγή κόμβου στο αντίστοιχο y_tree
-            root.xy_tree.root = root.xy_tree.insert2D(root.xy_tree.root, x, y, i_list, [])
+            root.xy_tree.root = root.xy_tree.insert2D(root.xy_tree.root, x, y, i_list)
         elif z < root.z:    # εισαγωγή του κόμβου στο αριστερό υπο-δέντρο
-            root.left = self.insert3D(root.left, x, y, z, i_list, [(x, y, z, i_list)])
+            root.left = self.insert3D(root.left, x, y, z, i_list)
         else:               # εισαγωγή του κόμβου στο δεξί υπο-δέντρο
-            root.right = self.insert3D(root.right, x, y, z, i_list, [(x, y, z, i_list)])
+            root.right = self.insert3D(root.right, x, y, z, i_list)
 
         # Ενημέρωση του ύψους του τρέχοντα κόμβου με βάση τα ύψη των υπο-δέντρων του
         root.height = 1 + max(self.get_height(root.left), self.get_height(root.right))
@@ -54,7 +53,7 @@ class RangeTree3D:
         return root
 
     def build3D(self, points):
-        """ Builds the 2D tree
+        """ Builds the 3D tree
         :param points: Τα σημεία από τα οποία αποτελείται το δέντρο
         :return: Node assembled
         :rtype: Node2D
@@ -62,7 +61,7 @@ class RangeTree3D:
         root = None
         for point in points:
             x, y, z, i = point
-            root = self.insert3D(root, x, y, z, i, [point])
+            root = self.insert3D(root, x, y, z, i)
         return root
 
     def get_height(self, node):
@@ -130,11 +129,12 @@ class RangeTree3D:
         if not node:
             return
         if z1 <= node.z <= z2:
-            z_result = []
-            node.xy_tree.query(node.xy_tree.root, x1, x2, y1, y2, z_result)
-            for x, y, i in z_result:
+            xy_result = []
+            node.xy_tree.query(node.xy_tree.root, x1, x2, y1, y2, xy_result)
+            for x, y, i in xy_result:
                 result.append((x, y, node.z, i))
         if z1 < node.z:
             self.query(node.left, x1, x2, y1, y2, z1, z2, result)
         if z2 > node.z:
             self.query(node.right, x1, x2, y1, y2, z1, z2, result)
+

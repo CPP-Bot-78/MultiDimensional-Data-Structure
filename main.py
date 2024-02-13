@@ -2,11 +2,15 @@
 # mazi me ton xrono poy xreiastike to kdtree.py
 import pandas as pd
 import time
-from kdtree import KdTree, convert_to_list, load_scientist_data
+from kdtree.kdtree import KdTree, convert_to_list, load_scientist_data
 from range_tree import Range_tree as rt
 
 
 def main():
+    # create txt file or clean it
+    with open('results.txt', 'w') as f:
+        f.write("")
+
     # Get user input for the range criteria
     surname_range = input("Enter the range for Surname (e.g., A-E): ").upper().split('-')
     
@@ -65,7 +69,7 @@ def save_results(tree, tree_build_time, query_time, results):
         file.write("Surname: , #Awards: , #DBLP: , Education:\n")
         for item in results:
             file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
-        end_str = '\n' + ('-' * 10) + '\n'
+        end_str = '\n' + ('-' * 10) + ('\n' * 2)
         file.write(end_str)
 
 

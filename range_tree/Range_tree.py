@@ -15,9 +15,9 @@ from memory_profiler import profile
 
 script_directory = os.path.dirname(os.path.abspath(__file__))
 home_dir = os.path.dirname(script_directory)
-CSV_PATH = os.path.join(home_dir, 'computer_scientists_data1.csv')
+CSV_PATH = os.path.join(home_dir, 'computer_scientists_data2.csv')
 df = pd.read_csv(CSV_PATH)
-
+teste = 'computer_scientists_data1.csv'
 
 # @profile
 def build_range_tree():
@@ -27,7 +27,7 @@ def build_range_tree():
     # βάσει της αριθμητικής τιμής του πρώτου γράμματος του επωνύμου και του
     # αριθμού των βραβείων αντίστοιχα, και εισάγουμε το σημείο στη λίστα points.
     for i in range(len(df)):
-        x = letter_normalization(df.iloc[i]['Surname'][0][0])
+        x = letter_normalization(df.iloc[i]['Surname'][0])
         # x = df.iloc[i]['Surname'][0]
         y = df.iloc[i]['#Awards']
         z = df.iloc[i]['DBLP']
@@ -65,9 +65,8 @@ def query_range_tree(range_tree, min_letter, max_letter, num_awards, dblp_min, d
         awards = df.iloc[index]['#Awards']
         education = df.iloc[index]['Education']
         dblp = df.iloc[index]['DBLP']
-        # check if already in results #TODO
         # final_results.append({"surname": surname, "awards": awards, "education": education, "DBLP": dblp})
-        final_results.append([surname, awards, education, dblp])
+        final_results.append([surname, awards, dblp, education])
     return clean_results(final_results)
     # return clean_results(final_results)
 

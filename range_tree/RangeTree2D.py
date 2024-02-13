@@ -8,14 +8,13 @@ class RangeTree2D:
         """Κατασκευή του 2D δέντρου για τα δοθέντα points"""
         self.root = self.build2D(points)
 
-    def insert2D(self, root, x, y, i_list, points):
+    def insert2D(self, root, x, y, i_list):
         """Εισαγωγή ενός νέου σημείου στο 2D δέντρο και εφαρμογή της διαδικασίας
         εξισορρόπησής του
         :param Node2D root: The points of the 2D tree
         :param int x: Tο x-value του κόμβου
         :param int y: Tο y-value του κόμβου
-        :param list i_list:  H λίστα που πρέπει να εισαχθεί
-        :param list points: Tα σημεία για την κατασκευή του 2D δέντρου
+        :param int i_list:  To index του dataframe
         :return: New BBST tree
         :rtype: Node2D
         """
@@ -24,9 +23,9 @@ class RangeTree2D:
         if x == root.x:     # αν υπάρχει ήδη κόμβος με το ίδιο x-value, κάνε εισαγωγή κόμβου στο αντίστοιχο y_tree
             root.y_tree.root = root.y_tree.insert1D(root.y_tree.root, y, i_list)
         elif x < root.x:    # εισαγωγή του κόμβου στο αριστερό υπο-δέντρο
-            root.left = self.insert2D(root.left, x, y, i_list, [(x, y, i_list)])
+            root.left = self.insert2D(root.left, x, y, i_list)
         else:               # εισαγωγή του κόμβου στο δεξί υπο-δέντρο
-            root.right = self.insert2D(root.right, x, y, i_list, [(x, y, i_list)])
+            root.right = self.insert2D(root.right, x, y, i_list)
 
         # Ενημέρωση του ύψους του τρέχοντα κόμβου με βάση τα ύψη των υπο-δέντρων του
         root.height = 1 + max(self.get_height(root.left), self.get_height(root.right))
@@ -63,7 +62,7 @@ class RangeTree2D:
         root = None
         for point in points:
             x, y, _, i = point
-            root = self.insert2D(root, x, y, i, [point])
+            root = self.insert2D(root, x, y, i)
         return root
 
     def get_height(self, node):
