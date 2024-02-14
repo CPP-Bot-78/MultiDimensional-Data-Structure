@@ -61,7 +61,7 @@ def load_scientist_data():
         data = pd.read_csv(CSV_PATH)
     # data = pd.read_csv('computer_scientists_data2.csv')
     scientist_data = [
-        (row['Surname'], (row['#Awards'],), int(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
+        (row['Surname'], int(row['#Awards'],), int(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
          if pd.notna(row['Education']) and str(row['Education']).startswith('[')
          else [row['Education']])
         for _, row in data.iterrows()
