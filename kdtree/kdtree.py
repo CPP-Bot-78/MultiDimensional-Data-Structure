@@ -27,15 +27,15 @@ class KdTree:
     def range_query(self, node, results, surname_range, dblp_range):
         if node is not None:
           duplicate = any(
-            node.data[0].upper() == result[0][0].upper()
-            and node.data[1] == result[1][0]
-            and node.data[2] == result[2][0]
+            node.data[0].upper() == result[0].upper()
+            and node.data[1] == result[1]
+            and node.data[2] == result[2]
             for result in results
           )
 
           if not duplicate:
             if (
-                surname_range[0] <= node.data[0].upper() <= surname_range[1]
+                surname_range[0] <= node.data[0][0].upper() <= surname_range[1]
                 and self.min_awards <= node.data[1]
                 and dblp_range[0] <= node.data[2] <= dblp_range[1]
             ):
