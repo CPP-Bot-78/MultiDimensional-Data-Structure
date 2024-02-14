@@ -5,7 +5,7 @@ from rtree import index
 
 script_directory = os.path.dirname(os.path.abspath(__file__))
 home_dir = os.path.dirname(script_directory)
-CSV_PATH = os.path.join(home_dir, 'computer_scientists_data.csv')
+CSV_PATH = os.path.join(home_dir, 'computer_scientists_data2.csv')
 df = pd.read_csv(CSV_PATH)
 
 #Κλάση του RTree, περιέχει τις απαιτούμενες συναρτήσεις που θα χρησιμοποιηθούν 
@@ -13,6 +13,9 @@ class RTree:
     def __init__(self):
         self.index3d = index.Index(properties=index.Property(dimension=3))
         self.dataList = []
+
+    def __str__(self):
+        return "R Tree"
 
     def insert(self, itemId, item, x, y, z):
         self.index3d.insert(itemId, (x, y, z, x, y, z))
@@ -38,9 +41,10 @@ def create_rtree():
 def query_rtree(rtree, minLetter, maxLetter, minAwards, minDBLP, maxDBLP):
     minLetter = letter_normalization(minLetter)
     maxLetter = letter_normalization(maxLetter)
-    qbbox = (minLetter, minDBLP, minAwards, maxLetter, sys.maxsize, maxDBLP)
+    qbbox = (minLetter, minAwards, minDBLP, maxLetter, sys.maxsize, maxDBLP)
     matchingIds = rtree.search(qbbox)
     queryResults = []
     for id in matchingIds:
         queryResults.append(rtree.dataList[id])
+        queryResults.sort(key=lambda x: x[0])
     return queryResults

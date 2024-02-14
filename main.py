@@ -6,6 +6,7 @@ import time
 from kdtree.kdtree import KdTree, convert_to_list, load_scientist_data
 from range_tree import Range_tree as rt
 from octree.octree import build_octree, query_octree
+from r_tree import R_tree as r_t
 
 
 def create_new_demo(filename, count):
@@ -79,6 +80,14 @@ def main():
     results = query_octree(octree, surname_range, min_awards, dblp_range)
     octree_query_time = time.time() - octree_time_range_query
     save_results(octree, octree_build_time, octree_query_time, results, demo_name, data)
+
+    rtree_start_time = time.time()
+    r_tree = r_t.create_rtree()
+    rtree_build_time = time.time() - rtree_start_time
+    rtree_time_range_query = time.time()
+    results = r_t.query_rtree(r_tree, surname_range[0], surname_range[1], min_awards, dblp_range[0], dblp_range[1])
+    rtree_query_time = time.time() - rtree_time_range_query
+    save_results(r_tree, rtree_build_time, rtree_query_time, results, demo_name, data)
 
     print(f"Results written in {demo_name}")
 
