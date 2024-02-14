@@ -83,11 +83,18 @@ def main():
     print(f"Results written in {demo_name}")
 
 
-def save_results(tree, tree_build_time, query_time, results, demo_name, given_data):
+def save_results(tree, tree_build_time, query_time, results, demo_name, given_data, lsh_threshold=0):
 
     with open(demo_name, 'a', encoding='utf-8') as file:
         file.write(f"Results for {tree.__str__()}:\n")
-        file.write(f"Given values were: Surname: {given_data[0]}, min Awards: {given_data[1]}, DBLP: {given_data[2]}\n")
+        if lsh_threshold == 0:
+            file.write(f"Given values were: Surname: {given_data[0]}, min Awards: {given_data[1]}, DBLP: {given_data[2]}\n")
+        else:
+            file.write(
+                f"Given values were: Surname: {given_data[0]}, "
+                f"min Awards: {given_data[1]}, "
+                f"DBLP: {given_data[2]}, "
+                f"Similarity:{lsh_threshold:.2f}\n")
         file.write(f"Construction Time: {tree_build_time} seconds\n")
         file.write(f"Range Query Time: {query_time} seconds\n")
         file.write("Surname: , #Awards: , #DBLP: , Education:\n")

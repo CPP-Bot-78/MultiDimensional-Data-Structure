@@ -1,4 +1,4 @@
-from lsh.lsh_static import vocab, one_hot_enc, backet_creator, func_hash, jaccard, shingle
+from lsh.lsh_static import vocab, one_hot_enc, backet_creator, func_hash, jaccard, shingle, one_hot_encoding, preprocess_data
 import random
 import pandas as pd
 import os
@@ -33,15 +33,21 @@ def lsh(query, threshold):
     """ LSH algorithm
     :parameter list query: the query we are shingling
     :parameter threshold : the minimum threshold
-    :return: List of scientists with similarity iun education above the threshold
+    :return: List of pairs scientists with similarity in education above the threshold
     :rtype: list
     """
     # education_texts = [el['Surname'] for el in query]
+
     education_texts = [element[3] for element in query]
+    education_texts = preprocess_data(education_texts)
+    # one_hot_encoded_data, vocabulary = one_hot_encoding(education_texts)
 
     # Convert education data to shingles and calculate signatures
     shingles = [shingle(education) for education in education_texts]
-    signatures = [minhash(s) for s in shingles]
+    one_hot_encoded_data, vocabulary = one_hot_encoding(shingles)
+    # signatures = [minhash(s) for s in vocabulary]
+    vocabulary = vocab(shingles)
+    signatures = [minhash(one_hot_enc(s, vocabulary)) for s in vocabulary]
 
     bands = 10
     rows = 10
@@ -61,6 +67,7 @@ def lsh(query, threshold):
     for i, j in pairs:
         similarity = jaccard(shingles[i], shingles[j])
         if similarity >= threshold:
-            final_pairs.append((query[i], query[j]))
+            print(f'Found {[query[i], query[j]]}')
+            final_pairs.append([query[i], query[j]])
 
     return final_pairs

@@ -1,15 +1,54 @@
-def vocab(kshingle):
-    vocabulary = [kshingle]
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.feature_extraction.text import CountVectorizer
+from nltk.corpus import stopwords
+import nltk
+nltk.download('stopwords')
+
+
+def preprocess_data(data):
+    custom_stopwords = set(stopwords.words('english'))
+    custom_stopwords.add('University')
+    cleaned_data = [' '.join([word for word in document.split() if word not in custom_stopwords]) for document in data]
+
+    return cleaned_data
+
+
+def one_hot_encoding(data):
+    # Initialize a Count Vectorizer to convert text data to one-hot encoding
+    vectorizer = CountVectorizer(binary=True)
+
+    # Fit the vectorizer to the data and transform the data into one-hot encoded vectors
+    one_hot_encoded_data = vectorizer.fit_transform(data)
+
+    # Extract vocabulary from the vectorizer
+    vocabulary = vectorizer.vocabulary_
+
+    return one_hot_encoded_data, vocabulary
+
+
+def vocab(kshingles):
+    """
+    :param list kshingles:
+    :return: Vocabulary of all kshingles
+    :rtype: set
+    """
+    vocabulary = set().union(*kshingles)
     return vocabulary
 
 
 def one_hot_enc(kshingle, vocabulary):
+    """
+    :param set kshingle: Shingle sets
+    :param vocabulary: The shared vocabulary
+    :return: One-hot encoded shingle
+    :rtype: list
+    """
     one_hot = [1 if x in kshingle else 0 for x in vocabulary]
     return one_hot
 
 
 def shingle(word, k=2):
-    """ K Shingling Hash Table
+    """ K-Shingling Hash Table
     :parameter str word: the text we are shingling
     :parameter int k: the number of 'digits' we are shingling"""
     shingle_set = []
@@ -19,32 +58,32 @@ def shingle(word, k=2):
 
 
 def jaccard(s1, s2):
-    """ Jaccard Probability
-    :parameter set s1: the 1st set we are shingling
-    :parameter set s2: the 2nd set we are shingling
-    :return float: Jaccard Probability
+    """ Jaccard Coefficient
+    :parameter set s1: the 1st set of shingles
+    :parameter set s2: the 2nd set of shingles
+    :return float: Jaccard Coefficient of the 2 sets
     :rtype: float"""
     intersect_size = len(s1.intersection(s2))
     union_size = len(s1.union(s2))
-    # print(f"{intersect_size/union_size} this is the score")
     return intersect_size / union_size
 
 
 def func_hash(a, b, modulo):
     """
-    :param a:
-    :param b:
-    :param modulo:
-    :return:
+    :param int a: random Number 1
+    :param int b: random Number 2
+    :param modulo: Hash Value of Input
+    :return: Hash Value
+    :rtype: int
     """
     return lambda x: (a * x + b) % modulo
 
 
 def backet_creator(sign, bands, rows):
     """
-    :param sign:
-    :param bands:
-    :param rows:
+    :param sign: MinHash signature
+    :param int bands: Number of bands to divide into
+    :param int rows: Number of rows in each band
     :return:
     """
     buckets = []
