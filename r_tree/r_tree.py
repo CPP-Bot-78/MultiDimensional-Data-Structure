@@ -6,6 +6,9 @@ class RTree:
         tree.index = index.Index()  # Δημιουργία ενός R-tree index
         tree.dataList = []  # Λίστα για αποθήκευση των δεδομένων
 
+    def __str__(self):
+        return "R Tree"
+
     def insert(tree, itemId, item, x, y, z):
         tree.idx.insert(itemId, (x, y, z, x, y, z))
         tree.dataList.append(item)
@@ -14,7 +17,7 @@ class RTree:
         return list(tree.idx.intersection(qbbox))
 
 def letter_normalization(letter):
-    return ord(letter.upper())
+    return ord(letter.upper())-65
 
 def create_rtree(file_csv):
     df = pd.read_csv(file_csv)

@@ -21,6 +21,9 @@ class KdTree:
             self.root.right = KdTree(points[median + 1:], depth + 1, min_awards).root
             self.min_awards = min_awards
 
+    def __str__(self):
+        return "KDTree"
+
     def range_query(self, node, results, surname_range, dblp_range):
         if node is not None:
           duplicate = any(
@@ -42,6 +45,12 @@ class KdTree:
           if node.right is not None:
               self.range_query(node.right, results, surname_range, dblp_range)
 
+
+def build_kdtree(min_awards: int):
+    scientist_data = load_scientist_data()
+    kdtree = KdTree(scientist_data, min_awards=min_awards)
+    return kdtree
+
 def load_scientist_data():
     try:
         data = pd.read_csv('computer_scientists_data2.csv')
@@ -62,4 +71,3 @@ def load_scientist_data():
 def convert_to_list(value):
     return [int(val) for val in str(value)[1:-1].split(', ')] if pd.notna(value) and str(value).startswith('[') else [int(value)]
 
-    

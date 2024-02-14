@@ -1,5 +1,4 @@
-from lsh import lsh_static
-# from static import shingle, jaccard
+from lsh.lsh_static import vocab, one_hot_enc, backet_creator, func_hash, jaccard, shingle
 import random
 import pandas as pd
 import os
@@ -10,27 +9,12 @@ CSV_PATH = os.path.join(home_dir, 'computer_scientists_data2.csv')
 df = pd.read_csv(CSV_PATH)
 
 
-def shingle(word, k=2):
-    """:parameter str word: the text we are shingling
-    :parameter int k: the number of 'digits' we are shingling"""
-    shingle_set = []
-    for i in range(len(word) - k + 1):
-        shingle_set.append(word[i:i + k])
-    return set(shingle_set)
-
-
-def jaccard(s1, s2):
-    intersect_size = len(s1.intersection(s2))
-    union_size = len(s1.union(s2))
-    # print(f"{intersect_size/union_size} this is the score")
-    return intersect_size / union_size
-
-
-def func_hash(a, b, modulo):
-    return lambda x: (a * x + b) % modulo
-
-
 def minhash(shingles, hashes=50):
+    """
+    :param shingles:
+    :param hashes:
+    :return:
+    """
     max_hash = 2 ** 32 - 1  # hash of 32 bits
     modulo = 2 ** 32
 
@@ -45,21 +29,15 @@ def minhash(shingles, hashes=50):
     return sign_x
 
 
-def backet_creator(sign, bands, rows):
-    buckets = []
-    for band in range(bands):
-        start = band * rows
-        end = (band + 1) * rows
-        buckets.append(hash(tuple(sign[start:end])))
-    return buckets
-
-
 def lsh(query, threshold):
-    """
+    """ LSH algorithm
     :parameter list query: the query we are shingling
-    :parameter threshold : the threshold we want to find"""
-    # Extract education data from the query (assuming it's stored in Node objects)
-    education_texts = [dict_el['surname'] for dict_el in query]
+    :parameter threshold : the minimum threshold
+    :return: List of scientists with similarity iun education above the threshold
+    :rtype: list
+    """
+    # education_texts = [el['Surname'] for el in query]
+    education_texts = [element[3] for element in query]
 
     # Convert education data to shingles and calculate signatures
     shingles = [shingle(education) for education in education_texts]

@@ -11,7 +11,7 @@ import pandas as pd
 from range_tree import RangeTree3D as R3D
 from range_tree.static import letter_normalization
 import sys
-from memory_profiler import profile
+# from memory_profiler import profile
 
 script_directory = os.path.dirname(os.path.abspath(__file__))
 home_dir = os.path.dirname(script_directory)

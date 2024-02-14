@@ -6,6 +6,9 @@ class RangeTree3D:
     def __init__(self, points):
         self.root = self.build3D(points)
 
+    def __str__(self):
+        return "Range Tree"
+
     def insert3D(self, root, x, y, z, i_list):
         """Εισαγωγή ενός νέου σημείου στο 2D δέντρο και εφαρμογή της διαδικασίας
         εξισορρόπησής του

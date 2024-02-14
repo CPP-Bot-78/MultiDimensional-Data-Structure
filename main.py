@@ -43,7 +43,7 @@ def main():
     # Ask for the minimum awards instead of a range
     min_awards = int(input("Enter the minimum #Awards: "))
     dblp_range = list(map(int, input("Enter the range for #DBLP (e.g., 0-100): ").split('-')))
-
+    data = [surname_range, min_awards, dblp_range]
     
     # Load scientist data
     scientist_data = load_scientist_data()
@@ -52,9 +52,9 @@ def main():
     kdstart_time = time.time()
     kdtree = KdTree(scientist_data, min_awards=min_awards)  # Pass min_awards to KdTree constructor
     kdtree_time = time.time() - kdstart_time
+
     # Generate result list once
     result_list = []
-    kdtree.range_query(kdtree.root, result_list, surname_range, dblp_range)
     # Start timer for range query
     kdstart_time_range_query = time.time()
     kdtree.range_query(kdtree.root, result_list, surname_range, dblp_range)  # Adjust the call to range_query
@@ -62,7 +62,7 @@ def main():
     # Perform range query and save results for KD-Tree
     result_kdtree = result_list
     kdtree.range_query(kdtree.root, result_list, surname_range, dblp_range)
-    save_results('KDTree', kdtree_time, kdrange_query_time, result_kdtree, demo_name)
+    save_results(kdtree, kdtree_time, kdrange_query_time, result_kdtree, demo_name, data)
 
     range_start_time = time.time()
     range_tree = rt.build_range_tree()
@@ -70,7 +70,7 @@ def main():
     range_time_range_query = time.time()
     results = rt.query_range_tree_by_ranges(range_tree, surname_range, min_awards, dblp_range)
     range_query_time = time.time() - range_time_range_query
-    save_results('Range Tree', range_build_time, range_query_time, results, demo_name)
+    save_results(range_tree, range_build_time, range_query_time, results, demo_name, data)
 
     octree_start_time = time.time()
     octree = build_octree()
@@ -78,14 +78,16 @@ def main():
     octree_time_range_query = time.time()
     results = query_octree(octree, surname_range, min_awards, dblp_range)
     octree_query_time = time.time() - octree_time_range_query
-    save_results('Oct Tree', octree_build_time, octree_query_time, results, demo_name)
+    save_results(octree, octree_build_time, octree_query_time, results, demo_name, data)
 
     print(f"Results written in {demo_name}")
 
 
-def save_results(tree, tree_build_time, query_time, results, demo_name):
+def save_results(tree, tree_build_time, query_time, results, demo_name, given_data):
+
     with open(demo_name, 'a', encoding='utf-8') as file:
-        file.write(f"Results for {tree}:\n")
+        file.write(f"Results for {tree.__str__()}:\n")
+        file.write(f"Given values were: Surname: {given_data[0]}, min Awards: {given_data[1]}, DBLP: {given_data[2]}\n")
         file.write(f"Construction Time: {tree_build_time} seconds\n")
         file.write(f"Range Query Time: {query_time} seconds\n")
         file.write("Surname: , #Awards: , #DBLP: , Education:\n")

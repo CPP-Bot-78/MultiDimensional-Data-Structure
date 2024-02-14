@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from memory_profiler import profile
+# from memory_profiler import profile
 
 # An octree works just like a quadtree, just for 3 dimensions.
 # It splits a 3D space (cube) into 8 octants (smaller cubes) and inserts data based on the datapoints coordinates 
@@ -28,8 +28,10 @@ class Octant:
 # The class Octree contains all the needed functions and uses the octant class
 class Octree:
     def __init__(self, x_bounds, y_bounds, z_bounds, leaf_node):
-        self.root = Octant(x_bounds, y_bounds, z_bounds, leaf_node)     
+        self.root = Octant(x_bounds, y_bounds, z_bounds, leaf_node)
 
+    def __str__(self):
+        return "OctTree"
 
     def split_octant(self, octant):
         # Calculate and store median for each variable to determine in which octant the data goes in
@@ -200,7 +202,7 @@ def build_octree():
 
     return ot
 
-#@profile
+# @profile
 def query_octree(octree, x_range, y_min, z_range):
     try:
         csv_file = 'scripts/computer_scientists_data2.csv'
