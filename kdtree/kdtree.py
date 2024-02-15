@@ -46,6 +46,7 @@ class KdTree:
               self.range_query(node.right, results, surname_range, dblp_range)
 
     def range_query2(self, node, results, surname_range, dblp_range):
+        results = results
         if node is not None:
             if (
                 surname_range[0].upper() <= node.data[0][0].upper() <= surname_range[1].upper()
@@ -57,7 +58,16 @@ class KdTree:
                 self.range_query2(node.left, results, surname_range, dblp_range)
             if node.right is not None:
                 self.range_query2(node.right, results, surname_range, dblp_range)
-        return results
+        if len(results) == 0:
+            return results
+        unique_sc = []
+        seen = []
+        for item in results:
+            name = item[0]
+            if name not in seen:
+                seen.append(name)
+                unique_sc.append(item)
+        return sorted(unique_sc, key=lambda x: x[0], reverse=False)
 
 
 def build_kdtree(min_awards: int):
@@ -76,7 +86,7 @@ def query_kdtree(kdtree, surname_range, awards, dblp_range):  # , surname_1, sur
         surname_range,
         dblp_range
     )
-    return sorted(query_results, key=lambda x: x[0], reverse=False)
+    return query_results
 
 
 def load_scientist_data():
@@ -89,7 +99,8 @@ def load_scientist_data():
         data = pd.read_csv(CSV_PATH)
     # data = pd.read_csv('computer_scientists_data2.csv')
     scientist_data = [
-        (row['Surname'], int(row['#Awards'],), int(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
+        #(row['Surname'], int(row['#Awards'],), int(row['DBLP']), [val.strip(" '") for val in str(row['Education'])[1:-1].split(', ')]
+        (row['Surname'], int(row['#Awards'], ), int(row['DBLP']), str(row['Education'])
          if pd.notna(row['Education']) and str(row['Education']).startswith('[')
          else [row['Education']])
         for _, row in data.iterrows()

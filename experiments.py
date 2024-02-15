@@ -2,7 +2,7 @@ import time
 import os
 import string
 from random import randint, uniform, sample
-from main import create_new_demo
+from demo import create_new_demo
 from range_tree.Range_tree import build_range_tree, query_range_tree_by_ranges
 from octree.octree import build_octree, query_octree
 from kdtree.kdtree import build_kdtree, query_kdtree

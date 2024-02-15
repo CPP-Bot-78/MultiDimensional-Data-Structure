@@ -60,5 +60,5 @@ def lsh(query, threshold):
         if similarity >= threshold:
             # print(f'Found {[query[i], query[j]]}')  # DEBUG
             final_pairs.append([query[i], query[j]])
-    log_lsh(final_pairs, threshold, 'LSH_log.txt')
+    # log_lsh(final_pairs, threshold, 'LSH_log.txt')
     return final_pairs

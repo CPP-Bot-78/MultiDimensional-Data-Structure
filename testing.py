@@ -6,7 +6,7 @@ from range_tree.Range_tree import build_range_tree, query_range_tree_by_ranges
 from octree.octree import build_octree, query_octree
 from kdtree.kdtree import build_kdtree, query_kdtree
 from r_tree.r_tree import create_rtree, query_rtree_by_range
-from main import create_new_demo
+from demo import create_new_demo
 
 TREES = []
 BUILD_FUNCS = [create_rtree, build_octree, build_kdtree, build_range_tree]
@@ -16,16 +16,16 @@ RESULTS = []
 
 def save_experiment(trees: list, results: list, test: list):
     script_directory = os.path.dirname(os.path.abspath(__file__))
-    FOLDERNAME = 'results_lsh'
+    FOLDERNAME = 'testing'
     FOLDERNAME = os.path.join(script_directory, FOLDERNAME)
     if not os.path.exists(FOLDERNAME):
         folder_path = os.path.join(script_directory, FOLDERNAME)
         os.makedirs(folder_path)
     os.chdir(FOLDERNAME)
-    if os.path.exists('results.txt'):
-        demo_name = create_new_demo('results.txt', 1)
+    if os.path.exists('test.txt'):
+        demo_name = create_new_demo('test.txt', 1)
     else:
-        demo_name = 'results.txt'
+        demo_name = 'test.txt'
     with open(demo_name, 'w') as f:
         f.write("")
 

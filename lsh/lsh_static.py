@@ -31,8 +31,7 @@ def preprocess_data(data):
             cleaned_data.append(' '.join(cleaned_document))
         except Exception as e:
             for word in document:
-                log_lsh([e], 1, 'error.txt')
-                log_lsh(word, 0, 'error.txt')
+                # log_lsh(f"[{e}] for {word}\n", 1, 'error.txt')
                 cleaned_word = re.sub(r'[\'\"\[\],.]', '', word.lower())
                 if cleaned_word not in custom_stopwords:
                     cleaned_document.append(cleaned_word.lower())
