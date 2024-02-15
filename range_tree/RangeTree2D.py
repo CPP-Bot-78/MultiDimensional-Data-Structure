@@ -1,11 +1,14 @@
 from range_tree import Node2D as N2D
-# from RangeTree1D import RangeTree1D
 
 
 class RangeTree2D:
-
+    """
+       To 2D Range tree.
+       :param list points: Ta σημεία του 2D tree.
+       Αποθηκεύει τα x που αντιστοιχούν στο πλήθος των Awards
+       """
     def __init__(self, points):
-        """Κατασκευή του 2D δέντρου για τα δοθέντα points"""
+        """Κατασκευή του 2D δέντρου για τα δοθέντα points. Αποθηκεύει τα x που αντιστοιχούν στο πλήθος των Awards"""
         self.root = self.build2D(points)
 
     def insert2D(self, root, x, y, i_list):
@@ -14,7 +17,7 @@ class RangeTree2D:
         :param Node2D root: The points of the 2D tree
         :param int x: Tο x-value του κόμβου
         :param int y: Tο y-value του κόμβου
-        :param int i_list:  To index του dataframe
+        :param int i_list: To index του dataframe ώστε να κάνουμε retrieve τα δεδομένα
         :return: New BBST tree
         :rtype: Node2D
         """
@@ -61,7 +64,7 @@ class RangeTree2D:
         """
         root = None
         for point in points:
-            x, y, _, i = point
+            x, y, _, i = point  # αγνοούμε το σημείο z
             root = self.insert2D(root, x, y, i)
         return root
 
@@ -76,7 +79,7 @@ class RangeTree2D:
         return node.height
 
     def get_balance(self, node):
-        """Συνάρτηση για την επιστροφή του παράγοντα ισορροπίας ενός κόμβου
+        """Συνάρτηση για την επιστροφή της ισορροπίας ενός κόμβου
         (η διαφορά ύψους μεταξύ των δύο υπο-δέντρων του)
         :param Node2D node: O κόμβος για τον οποίο ψάχνουμε το ύψος του.
         :return: Ο παράγοντας ισορροπίας του κόμβου

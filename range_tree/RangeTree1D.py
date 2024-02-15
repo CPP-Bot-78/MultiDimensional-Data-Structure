@@ -3,18 +3,19 @@ from range_tree import Node1D as N1D
 
 class RangeTree1D:
     """
-    The 1D Range tree for y value
-    :param list points: The points of the 1D tree
+    To 1D Range tree.
+    :param list points: Ta σημεία του 1D tree.
+    Αποθηκεύει τα y που αντιστοιχούν στο αρχικό γράμμα του Surname
     """
     def __init__(self, points):
-        """Κατασκευή του 1D δέντρου για τα δοθέντα points"""
+        """Κατασκευή του 1D δέντρου για τα δοθέντα points. """
         self.root = self.build1D(points)
 
     def insert1D(self, root, y, i_list):
         """Εισαγωγή ενός νέου σημείου στο 1D δέντρο και εφαρμογή της διαδικασίας εξισορρόπησής του
         :param Node1D root: The points of the 1D tree
         :param int y: Tο y-value του κόμβου
-        :param list i_list:  H λίστα που πρέπει να εισαχθεί
+        :param int i_list: To index του dataframe ώστε να κάνουμε retrieve τα δεδομένα
         :return: New BBST tree
         :rtype: Node1D
         """
@@ -60,7 +61,7 @@ class RangeTree1D:
         :rtype: Node1D
         """
         root = None
-        for _, y, _, i in points:
+        for _, y, _, i in points:  # αγνοούμε όλα τα σημεία εκτός του y
             root = self.insert1D(root, y, i)
         return root
 
@@ -75,7 +76,7 @@ class RangeTree1D:
         return node.height
 
     def get_balance(self, node):
-        """Συνάρτηση για την επιστροφή του παράγοντα ισορροπίας ενός κόμβου
+        """Συνάρτηση για την επιστροφή της ισορροπίας ενός κόμβου
         (η διαφορά ύψους μεταξύ των δύο υπο-δέντρων του)
         :param Node1D node: O κόμβος για τον οποίο ψάχνουμε το ύψος του.
         :return: Ο παράγοντας ισορροπίας του κόμβου

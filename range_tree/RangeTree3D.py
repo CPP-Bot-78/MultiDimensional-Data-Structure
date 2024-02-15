@@ -2,7 +2,11 @@ from range_tree import Node3D as N3D
 
 
 class RangeTree3D:
-
+    """
+       To 3D Range tree.
+       :param list points: Τα σημεία του 3D tree.
+       Αποθηκεύει τα z που αντιστοιχούν στο πλήθος των DBLP Records
+       """
     def __init__(self, points):
         self.root = self.build3D(points)
 
@@ -10,13 +14,13 @@ class RangeTree3D:
         return "Range Tree"
 
     def insert3D(self, root, x, y, z, i_list):
-        """Εισαγωγή ενός νέου σημείου στο 2D δέντρο και εφαρμογή της διαδικασίας
+        """Εισαγωγή ενός νέου σημείου στο 3D δέντρο και εφαρμογή της διαδικασίας
         εξισορρόπησής του
-        :param Node3D root: The points of the 2D tree
+        :param Node3D root: 3D tree's root
         :param int x: Tο x-value του κόμβου
         :param int y: Tο y-value του κόμβου
         :param int z: Tο z-value του κόμβου
-        :param int i_list:  To index του dataframe
+        :param int i_list: To index του dataframe ώστε να κάνουμε retrieve τα δεδομένα
         :return: New BBST tree
         :rtype: Node3D
         """
@@ -59,11 +63,11 @@ class RangeTree3D:
         """ Builds the 3D tree
         :param points: Τα σημεία από τα οποία αποτελείται το δέντρο
         :return: Node assembled
-        :rtype: Node2D
+        :rtype: Node3D
         """
         root = None
         for point in points:
-            x, y, z, i = point
+            x, y, z, i = point  # unpacking all the data
             root = self.insert3D(root, x, y, z, i)
         return root
 
@@ -78,7 +82,7 @@ class RangeTree3D:
         return node.height
 
     def get_balance(self, node):
-        """Συνάρτηση για την επιστροφή του παράγοντα ισορροπίας ενός κόμβου
+        """Συνάρτηση για την επιστροφή της ισορροπίας ενός κόμβου
         (η διαφορά ύψους μεταξύ των δύο υπο-δέντρων του)
         :param Node3D node: O κόμβος για τον οποίο ψάχνουμε το ύψος του.
         :return: Ο παράγοντας ισορροπίας του κόμβου
@@ -116,7 +120,7 @@ class RangeTree3D:
         rotated.height = max(self.get_height(rotated.left), self.get_height(rotated.right)) + 1
         return rotated
 
-    def query(self, node, x1, x2, y1, y2, z1, z2, result):  # TODO
+    def query(self, node, x1, x2, y1, y2, z1, z2, result):
         """Αναζήτηση στο 3D δέντρο
          :param Node3D node:
          :param int x1: Tο 1o x-value της αναζήτησης.

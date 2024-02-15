@@ -13,11 +13,3 @@ class Node2D:
         self.left = None    # ο αριστερός κόμβος
         self.right = None   # ο δεξιός κόμβος
         self.height = 1     # το αρχικό ύψος του κόμβου
-
-    # def merge_point(self, y, i):
-    #     """Συγχώνευση ενός σημείου με την ίδια συντεταγμένη x στο y_tree του κόμβου
-    #     :param int y: Tο y-value του κόμβου από το y_tree
-    #     :param list i: Η λίστα με των σημείων του δέντρου
-    #     :returns: None
-    #     """
-    #     self.y_tree.insert1D(self.y_tree.root, y, i)
