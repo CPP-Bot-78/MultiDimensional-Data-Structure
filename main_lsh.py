@@ -8,7 +8,7 @@ from octree.octree import build_octree, query_octree
 from main import create_new_demo, save_results
 
 
-def save_experiment(tree, results: list, test: list):
+def save_experiment(trees:list, results: list, test: list):
     script_directory = os.path.dirname(os.path.abspath(__file__))
     FOLDERNAME = 'results'
     FOLDERNAME = os.path.join(script_directory, FOLDERNAME)
@@ -22,19 +22,20 @@ def save_experiment(tree, results: list, test: list):
         demo_name = 'results.txt'
     with open(demo_name, 'w') as f:
         f.write("")
-    with open(demo_name, 'a', encoding='utf-8') as file:
-        file.write(f"Results for {tree.__str__()}:\n")
-        file.write(
-            f"Given values were: Surname: {test[0]}, "
-            f"min Awards: {test[1]}, "
-            f"DBLP: {test[2]}, "
-            f"Similarity:{test[3]:.2f}\n")
-        file.write("Surname: , #Awards: , #DBLP: , Education:\n")
-        for item in results:
-            if len(results) != 0:
-                file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
-        end_str = '\n' + ('-' * 10) + ('\n' * 2)
-        file.write(end_str)
+    for tree in trees:
+        with open(demo_name, 'a', encoding='utf-8') as file:
+            file.write(f"Results for {tree.__str__()}:\n")
+            file.write(
+                f"Given values were: Surname: {test[0]}, "
+                f"min Awards: {test[1]}, "
+                f"DBLP: {test[2]}, "
+                f"Similarity:{test[3]:.2f}\n")
+            file.write("Surname: , #Awards: , #DBLP: , Education:\n")
+            for item in results:
+                if len(results) != 0:
+                    file.write(f"{item[0]}, {item[1]}, {item[2]}, {item[3]}\n")
+            end_str = '\n' + ('-' * 10) + ('\n' * 2)
+            file.write(end_str)
 
 
 def get_test_set():
@@ -59,11 +60,14 @@ def get_test_set():
     return test_set
 
 
+# Test Environment
 # test = get_test_set()
-test = [['g', 'k'], 3, [4, 6309], 0.5]
-# RangeTree
+test = [['g', 'k'], 3, [4, 6309], 0.5]  # fixed test set for now
 rangetree = rt.build_range_tree()
+octree = build_octree()
+trees = [rangetree, octree]
 
+# RangeTree
 results = rt.query_range_tree_by_ranges(rangetree, test[0], test[1], test[2])
 # print(f'Surname: {test[0]}, Awards: {test[1]}, DBLP: {test[2]}')
 print(rangetree.__str__())
@@ -82,13 +86,10 @@ if len(similar_science) == 0:
 else:
     print(similar_science)
     print(f'For similarity above:{test[3] * 100:.2f}% the results are: {len(similar_science)}')
-save_experiment(rangetree, results, test)
 print((lambda: "*" * 150)())
 print()
-save_experiment(rangetree, results, test)
 
 # Octree
-octree = build_octree()
 results = query_octree(octree, test[0], test[1], test[2])
 # print(f'Surname: {test[0]}, Awards: {test[1]}, DBLP: {test[2]}')
 print(octree.__str__())
@@ -107,6 +108,7 @@ if len(similar_science) == 0:
 else:
     print(similar_science)
     print(f'For similarity above:{test[3] * 100:.2f}% the results are: {len(similar_science)}')
-save_experiment(octree, results, test)
+
+save_experiment(trees, results, test)
 
 

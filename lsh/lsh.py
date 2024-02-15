@@ -58,7 +58,7 @@ def lsh(query, threshold):
     for i, j in pairs:
         similarity = jaccard(shingles[i], shingles[j])
         if similarity >= threshold:
-            print(f'Found {[query[i], query[j]]}')  # DEBUG
+            # print(f'Found {[query[i], query[j]]}')  # DEBUG
             final_pairs.append([query[i], query[j]])
 
     return final_pairs

@@ -4,7 +4,7 @@ import os
 import pandas as pd
 import time
 from kdtree.kdtree import KdTree, convert_to_list, load_scientist_data
-from range_tree import Range_tree as rt
+from range_tree import Range_tree as rangetree
 from octree.octree import build_octree, query_octree
 from r_tree.r_tree import RTree as r_t
 
@@ -66,10 +66,10 @@ def main():
     save_results(kdtree, kdtree_time, kdrange_query_time, result_kdtree, demo_name, data)
 
     range_start_time = time.time()
-    range_tree = rt.build_range_tree()
+    range_tree = rangetree.build_range_tree()
     range_build_time = time.time() - range_start_time
     range_time_range_query = time.time()
-    results = rt.query_range_tree_by_ranges(range_tree, surname_range, min_awards, dblp_range)
+    results = rangetree.query_range_tree_by_ranges(range_tree, surname_range, min_awards, dblp_range)
     range_query_time = time.time() - range_time_range_query
     save_results(range_tree, range_build_time, range_query_time, results, demo_name, data)
 
