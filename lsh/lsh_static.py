@@ -2,16 +2,25 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 import nltk
-nltk.download('stopwords')
+if not nltk.download('stopwords', quiet=True):
+    # Download the stopwords corpus
+    nltk.download('stopwords')
 
 
 def preprocess_data(data):
+    custom_stopwords = set(stopword.lower() for stopword in stopwords.words('english'))
+    custom_stopwords.add('university')
+    custom_stopwords.add('institute')
+    cleaned_data = [' '.join([word for word in document.split() if word.lower() not in custom_stopwords]) for document in data]
+    return cleaned_data
+'''
+def preprocess_data(data):
     custom_stopwords = set(stopwords.words('english'))
     custom_stopwords.add('University')
+    custom_stopwords.add('university')
     cleaned_data = [' '.join([word for word in document.split() if word not in custom_stopwords]) for document in data]
-
     return cleaned_data
-
+'''
 
 def one_hot_encoding(data):
     # Initialize a Count Vectorizer to convert text data to one-hot encoding

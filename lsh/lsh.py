@@ -37,17 +37,15 @@ def lsh(query, threshold):
     :rtype: list
     """
     # education_texts = [el['Surname'] for el in query]
-
     education_texts = [element[3] for element in query]
     education_texts = preprocess_data(education_texts)
-    # one_hot_encoded_data, vocabulary = one_hot_encoding(education_texts)
 
     # Convert education data to shingles and calculate signatures
     shingles = [shingle(education) for education in education_texts]
-    one_hot_encoded_data, vocabulary = one_hot_encoding(shingles)
+    # one_hot_encoded_data, vocabulary = one_hot_encoding(shingles)
     # signatures = [minhash(s) for s in vocabulary]
     vocabulary = vocab(shingles)
-    signatures = [minhash(one_hot_enc(s, vocabulary)) for s in vocabulary]
+    signatures = [minhash(one_hot_enc(s, vocabulary)) for s in shingles]
 
     bands = 10
     rows = 10

@@ -57,6 +57,7 @@ def get_test_set():
     ]
     return test_set
 
+
 # Tree
 tree = rt.build_range_tree()
 test = get_test_set()

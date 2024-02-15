@@ -6,7 +6,7 @@ import time
 from kdtree.kdtree import KdTree, convert_to_list, load_scientist_data
 from range_tree import Range_tree as rt
 from octree.octree import build_octree, query_octree
-from r_tree import R_tree as r_t
+from r_tree.r_tree import RTree as r_t
 
 
 def create_new_demo(filename, count):

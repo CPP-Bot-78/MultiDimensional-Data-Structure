@@ -1,0 +1,7 @@
+Results for Range Tree:
+Given values were: Surname: ['r', 's'], min Awards: 19, DBLP: [8, 2128], Similarity:0.53
+Surname: , #Awards: , #DBLP: , Education:
+Shekhar, 28, 375, ['University of California, Berkeley']
+
+----------
+
