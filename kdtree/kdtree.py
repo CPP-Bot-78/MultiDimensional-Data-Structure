@@ -76,7 +76,7 @@ def query_kdtree(kdtree, surname_range, awards, dblp_range):  # , surname_1, sur
         surname_range,
         dblp_range
     )
-    return query_results
+    return sorted(query_results, key=lambda x: x[0], reverse=False)
 
 
 def load_scientist_data():

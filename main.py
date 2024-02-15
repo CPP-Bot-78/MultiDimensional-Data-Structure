@@ -8,6 +8,7 @@ from range_tree import Range_tree as rangetree
 from octree.octree import build_octree, query_octree
 from r_tree.r_tree import RTree as r_t
 from r_tree.r_tree import create_rtree, query_rtree
+from lsh.lsh import lsh
 
 
 def create_new_demo(filename, count):
@@ -46,7 +47,7 @@ def main():
     min_awards = int(input("Enter the minimum #Awards: "))
     dblp_range = list(map(int, input("Enter the range for #DBLP (e.g., 0-100): ").split('-')))
     data = [surname_range, min_awards, dblp_range]
-    
+    lsh = float(input("Enter the "))
     # Load scientist data
     scientist_data = load_scientist_data()
 

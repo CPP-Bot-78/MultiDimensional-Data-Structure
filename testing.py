@@ -86,12 +86,11 @@ def auto_measure_lsh(trees, test):
             print(f'No similar for {threshold * 100:.2f} %')
             threshold = threshold / 2
             similar_science = lsh(results, threshold)
-        print(similar_science)
+        # print(similar_science)
         print(f'For similarity above: {threshold * 100:.2f} % the results are: {len(similar_science)}')
         if threshold <= 0:
             print(f'No similar for {test[3] * 100:.2f} %')
         print()
-        print(results)
         print((lambda: "-" * 50)())
     save_experiment(TREES, RESULTS, test)
 
