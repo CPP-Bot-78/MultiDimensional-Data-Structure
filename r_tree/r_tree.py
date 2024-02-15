@@ -25,7 +25,7 @@ class RTree:
         return list(self.index3d.intersection(qbbox))
     
 def letter_normalization(letter):
-    return ord(letter.upper())
+    return ord(letter.upper()) - 65
 
 def create_rtree():
     df = pd.read_csv(CSV_PATH)
@@ -38,10 +38,23 @@ def create_rtree():
         rtree.insert(i, data, x, y, z)
     return rtree
 
+
 def query_rtree(rtree, minLetter, maxLetter, minAwards, minDBLP, maxDBLP):
     minLetter = letter_normalization(minLetter)
     maxLetter = letter_normalization(maxLetter)
     qbbox = (minLetter, minAwards, minDBLP, maxLetter, sys.maxsize, maxDBLP)
+    matchingIds = rtree.search(qbbox)
+    queryResults = []
+    for id in matchingIds:
+        queryResults.append(rtree.dataList[id])
+        queryResults.sort(key=lambda x: x[0])
+    return queryResults
+
+
+def query_rtree_by_range(rtree, Letter_range, minAwards, DBLP_range):
+    minLetter = letter_normalization(Letter_range[0])
+    maxLetter = letter_normalization(Letter_range[1])
+    qbbox = (minLetter, minAwards, DBLP_range[0], maxLetter, sys.maxsize, DBLP_range[1])
     matchingIds = rtree.search(qbbox)
     queryResults = []
     for id in matchingIds:

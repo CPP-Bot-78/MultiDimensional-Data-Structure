@@ -23,11 +23,19 @@ def preprocess_data(data):
     cleaned_data = []
     for document in data:
         cleaned_document = []
-        for word in document.split():
-            cleaned_word = re.sub(r'[\'\"\[\],.]', '', word.lower())
-            if cleaned_word not in custom_stopwords:
-                cleaned_document.append(cleaned_word.lower())
-        cleaned_data.append(' '.join(cleaned_document))
+        try:
+            for word in document.split():
+                cleaned_word = re.sub(r'[\'\"\[\],.]', '', word.lower())
+                if cleaned_word not in custom_stopwords:
+                    cleaned_document.append(cleaned_word.lower())
+            cleaned_data.append(' '.join(cleaned_document))
+        except Exception as e:
+            for word in document:
+                log_lsh(word, 0, 'error.txt')
+                cleaned_word = re.sub(r'[\'\"\[\],.]', '', word.lower())
+                if cleaned_word not in custom_stopwords:
+                    cleaned_document.append(cleaned_word.lower())
+            cleaned_data.append(' '.join(cleaned_document))
     return cleaned_data
 
 
@@ -100,3 +108,12 @@ def backet_creator(sign, bands, rows):
         end = (band + 1) * rows
         buckets.append(hash(tuple(sign[start:end])))
     return buckets
+
+
+def log_lsh(results_list: list, threshold: int, filename: str):
+    with open(filename, 'a', encoding='utf-8') as file:
+        file.write(f"Results for {threshold * 100:.2f} %\n")
+        for res in results_list:
+            file.write(f'{res}')
+        file.write('\n')
+

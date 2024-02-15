@@ -1,4 +1,4 @@
-from lsh.lsh_static import one_hot_enc, backet_creator, jaccard, shingle, preprocess_data, vocab
+from lsh.lsh_static import one_hot_enc, backet_creator, jaccard, shingle, preprocess_data, vocab, log_lsh
 import random
 
 
@@ -60,5 +60,5 @@ def lsh(query, threshold):
         if similarity >= threshold:
             # print(f'Found {[query[i], query[j]]}')  # DEBUG
             final_pairs.append([query[i], query[j]])
-
+    log_lsh(final_pairs, threshold, 'LSH_log.txt')
     return final_pairs

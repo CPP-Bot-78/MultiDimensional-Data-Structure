@@ -45,6 +45,20 @@ class KdTree:
           if node.right is not None:
               self.range_query(node.right, results, surname_range, dblp_range)
 
+    def range_query2(self, node, results, surname_range, dblp_range):
+        if node is not None:
+            if (
+                surname_range[0].upper() <= node.data[0][0].upper() <= surname_range[1].upper()
+                and self.min_awards <= node.data[1]
+                and dblp_range[0] <= node.data[2] <= dblp_range[1]
+            ):
+                results.append(node.data)
+            if node.left is not None:
+                self.range_query2(node.left, results, surname_range, dblp_range)
+            if node.right is not None:
+                self.range_query2(node.right, results, surname_range, dblp_range)
+        return results
+
 
 def build_kdtree(min_awards: int):
     scientist_data = load_scientist_data()
@@ -52,17 +66,17 @@ def build_kdtree(min_awards: int):
     return kdtree
 
 
-def query_kdtree(kdtree, surname_1, surname_2, awards, min_dblp, max_dblp):
+def query_kdtree(kdtree, surname_range, awards, dblp_range):  # , surname_1, surname_2, awards, min_dblp, max_dblp):
     results = []
-    surname_range = [surname_1, surname_2]
-    dblp_range = [min_dblp, max_dblp]
-    kdtree.range_query(
+    # surname_range = [surname_1, surname_2]
+    # dblp_range = [min_dblp, max_dblp]
+    query_results = kdtree.range_query2(
         kdtree.root,
         results,
         surname_range,
         dblp_range
     )
-    return results
+    return query_results
 
 
 def load_scientist_data():
