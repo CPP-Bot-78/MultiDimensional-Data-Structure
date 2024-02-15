@@ -52,13 +52,18 @@ def build_kdtree(min_awards: int):
     return kdtree
 
 
-def query_kdtree(kdtree, results, surname_range, dblp_range):
-    results = kdtree.range_query(
+def query_kdtree(kdtree, surname_1, surname_2, awards, min_dblp, max_dblp):
+    results = []
+    surname_range = [surname_1, surname_2]
+    dblp_range = [min_dblp, max_dblp]
+    kdtree.range_query(
         kdtree.root,
+        results,
         surname_range,
         dblp_range
     )
     return results
+
 
 def load_scientist_data():
     try:
