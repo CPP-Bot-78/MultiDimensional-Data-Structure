@@ -1,48 +1,34 @@
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.feature_extraction.text import CountVectorizer
-from nltk.corpus import stopwords
+import re
 import nltk
+from nltk.corpus import stopwords
+
 if not nltk.download('stopwords', quiet=True):
-    # Download the stopwords corpus
+    print('Downloading the stopwords corpus')
     nltk.download('stopwords')
 
 
 def preprocess_data(data):
+    """
+    Cleans the education data from common stopwords and common words
+    :param list data: Education data list
+    :return: Education data without stopwords and common words
+    :rtype: list
+    """
     custom_stopwords = set(stopword.lower() for stopword in stopwords.words('english'))
     custom_stopwords.add('university')
+    custom_stopwords.add('higher')
+    custom_stopwords.add('education')
     custom_stopwords.add('institute')
-    cleaned_data = [' '.join([word for word in document.split() if word.lower() not in custom_stopwords]) for document in data]
+    custom_stopwords.add('state')
+    cleaned_data = []
+    for document in data:
+        cleaned_document = []
+        for word in document.split():
+            cleaned_word = re.sub(r'[\'\"\[\],.]', '', word.lower())
+            if cleaned_word not in custom_stopwords:
+                cleaned_document.append(cleaned_word.lower())
+        cleaned_data.append(' '.join(cleaned_document))
     return cleaned_data
-'''
-def preprocess_data(data):
-    custom_stopwords = set(stopwords.words('english'))
-    custom_stopwords.add('University')
-    custom_stopwords.add('university')
-    cleaned_data = [' '.join([word for word in document.split() if word not in custom_stopwords]) for document in data]
-    return cleaned_data
-'''
-
-def one_hot_encoding(data):
-    # Initialize a Count Vectorizer to convert text data to one-hot encoding
-    vectorizer = CountVectorizer(binary=True)
-
-    # Fit the vectorizer to the data and transform the data into one-hot encoded vectors
-    one_hot_encoded_data = vectorizer.fit_transform(data)
-
-    # Extract vocabulary from the vectorizer
-    vocabulary = vectorizer.vocabulary_
-
-    return one_hot_encoded_data, vocabulary
-
-
-def vocab(kshingles):
-    """
-    :param list kshingles:
-    :return: Vocabulary of all kshingles
-    :rtype: set
-    """
-    vocabulary = set().union(*kshingles)
-    return vocabulary
 
 
 def one_hot_enc(kshingle, vocabulary):
@@ -54,6 +40,16 @@ def one_hot_enc(kshingle, vocabulary):
     """
     one_hot = [1 if x in kshingle else 0 for x in vocabulary]
     return one_hot
+
+
+def vocab(kshingles):
+    """
+    :param list kshingles:
+    :return: Vocabulary of all kshingles
+    :rtype: set
+    """
+    vocabulary = set().union(*kshingles)
+    return vocabulary
 
 
 def shingle(word, k=2):
@@ -72,9 +68,12 @@ def jaccard(s1, s2):
     :parameter set s2: the 2nd set of shingles
     :return float: Jaccard Coefficient of the 2 sets
     :rtype: float"""
-    intersect_size = len(s1.intersection(s2))
-    union_size = len(s1.union(s2))
-    return intersect_size / union_size
+    try:
+        intersect_size = len(s1.intersection(s2))
+        union_size = len(s1.union(s2))
+        return intersect_size / union_size
+    except ZeroDivisionError:
+        return 0
 
 
 def func_hash(a, b, modulo):
@@ -101,4 +100,3 @@ def backet_creator(sign, bands, rows):
         end = (band + 1) * rows
         buckets.append(hash(tuple(sign[start:end])))
     return buckets
-

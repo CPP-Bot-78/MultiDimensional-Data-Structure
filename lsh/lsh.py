@@ -1,12 +1,5 @@
-from lsh.lsh_static import vocab, one_hot_enc, backet_creator, func_hash, jaccard, shingle, one_hot_encoding, preprocess_data
+from lsh.lsh_static import one_hot_enc, backet_creator, jaccard, shingle, preprocess_data, vocab
 import random
-import pandas as pd
-import os
-
-script_directory = os.path.dirname(os.path.abspath(__file__))
-home_dir = os.path.dirname(script_directory)
-CSV_PATH = os.path.join(home_dir, 'computer_scientists_data2.csv')
-df = pd.read_csv(CSV_PATH)
 
 
 def minhash(shingles, hashes=50):
@@ -65,7 +58,7 @@ def lsh(query, threshold):
     for i, j in pairs:
         similarity = jaccard(shingles[i], shingles[j])
         if similarity >= threshold:
-            print(f'Found {[query[i], query[j]]}')
+            print(f'Found {[query[i], query[j]]}')  # DEBUG
             final_pairs.append([query[i], query[j]])
 
     return final_pairs
