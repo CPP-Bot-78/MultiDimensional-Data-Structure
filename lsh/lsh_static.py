@@ -31,6 +31,7 @@ def preprocess_data(data):
             cleaned_data.append(' '.join(cleaned_document))
         except Exception as e:
             for word in document:
+                log_lsh([e], 1, 'error.txt')
                 log_lsh(word, 0, 'error.txt')
                 cleaned_word = re.sub(r'[\'\"\[\],.]', '', word.lower())
                 if cleaned_word not in custom_stopwords:
@@ -110,9 +111,20 @@ def backet_creator(sign, bands, rows):
     return buckets
 
 
-def log_lsh(results_list: list, threshold: int, filename: str):
+def log_lsh(results_list: list, threshold: float, filename: str, exception: Exception = None):
+    """
+    :param list results_list: The list of results we are logging
+    :param float threshold: lsh threshold
+    :param str filename: Filename to save the results to
+    :param Exception exception: Optionally specify the exception that caused logging
+    :return:
+    """
     with open(filename, 'a', encoding='utf-8') as file:
         file.write(f"Results for {threshold * 100:.2f} %\n")
+        if exception is not None:
+            file.write((lambda: "=" * 50)())
+            file.write(f'{exception}')
+            file.write((lambda: "=" * 50)())
         for res in results_list:
             file.write(f'{res}')
         file.write('\n')

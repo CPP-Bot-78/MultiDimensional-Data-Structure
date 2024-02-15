@@ -160,3 +160,6 @@ cython_debug/
 .idea/
 range_tree/test/
 range_tree/old/
+results_lsh/
+error.txt
+LSH_log.txt

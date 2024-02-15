@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 import sys
+import unicodedata
+from unicodedata import normalize
 from rtree import index
 
 script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -25,7 +27,9 @@ class RTree:
         return list(self.index3d.intersection(qbbox))
     
 def letter_normalization(letter):
-    return ord(letter.upper()) - 65
+    letter = normalize('NFD', letter)
+    filtered_letter = ''.join(c for c in letter if unicodedata.category(c) != 'Mn')
+    return ord(filtered_letter.upper())-65
 
 def create_rtree():
     df = pd.read_csv(CSV_PATH)
