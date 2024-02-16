@@ -8,11 +8,8 @@ from kdtree.kdtree import build_kdtree, query_kdtree
 from r_tree.r_tree import create_rtree, query_rtree_by_range
 from demo import create_new_demo
 from time import time
-
-# Οι συναρτήσεις δημιουργίας και αναζήτησης των δέντρων.
-# Είναι ευθυγραμμισμένες ώστε με το ίδιο index να παίρνουμε το ίδιο αποτέλεσμα
-BUILD_FUNCS = [create_rtree, build_octree, build_kdtree, build_range_tree]
-QUERY_FUNCS = [query_rtree_by_range, query_octree, query_kdtree, query_range_tree_by_ranges]
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def save_experiment(trees: list, results: list, test: list, lsh_results: list, build_times: list, query_times: list):
@@ -100,13 +97,13 @@ def get_test_set():
     return test_set
 
 
-def auto_testing(trees: list, test: list):
+def auto_testing(trees_num: int, test: list):
     """
     Δημιουργεί τα δέντρα και κάνει αναζήτηση σε αυτά. Στο τέλος δημιουργεί ένα txt με τα αποτελέσματα
-    :param list trees: Λίστα με τις συναρτήσεις δημιουργίας των δέντρων. Χρειαζόμαστε το index της.
+    :param int trees_num: Πλήθος των δέντρων για τα οποία θα γίνει το test
     :param list test: Το Test set
-    :return: Nothing
-    :rtype: None
+    :return: Λίστες με τους χρόνους δημιουργίας και αναζήτησης των δέντρων
+    :rtype: list, list
     """
     # Λίστες για τα αποτελέσματα και τα δέντρα. Οι λίστες θα είναι ευθυγραμμισμένες ώστε να έχουν κοινό index
     TREES = []
@@ -114,7 +111,12 @@ def auto_testing(trees: list, test: list):
     LSH_RESULTS = []
     BUILD_TIMES = []
     QUERY_TIMES = []  # [[], [], [], []]
-    for i in range(len(trees)):  # χρησιμοποιούμε το index που είναι κοινό στους 2 πίνακες
+    # Οι συναρτήσεις δημιουργίας και αναζήτησης των δέντρων.
+    # Είναι ευθυγραμμισμένες ώστε με το ίδιο index να παίρνουμε το ίδιο αποτέλεσμα
+    BUILD_FUNCS = [create_rtree, build_octree, build_kdtree, build_range_tree]
+    QUERY_FUNCS = [query_rtree_by_range, query_octree, query_kdtree, query_range_tree_by_ranges]
+
+    for i in range(trees_num):  # χρησιμοποιούμε το index που είναι κοινό στους 2 πίνακες
         build_start = time()
         try:
             tree = BUILD_FUNCS[i](test[1])  # Επειδή το KD Tree χρειάζεται τα awards στην κατασκευή
@@ -126,6 +128,8 @@ def auto_testing(trees: list, test: list):
         TREES.append(tree)
         query_start = time()
         results = QUERY_FUNCS[i](tree, test[0], test[1], test[2])
+        threshold = test[3]
+        similar_science = lsh(results, test[3])
         query_finish = time() - query_start
         QUERY_TIMES.append(query_finish)
         RESULTS.append(results)
@@ -135,8 +139,6 @@ def auto_testing(trees: list, test: list):
         print(f"Range Query Time: {query_finish} seconds\n")
         print(f'Found {len(results)} results with Surname starting from {test[0][0]} to {test[0][1]}, Awards: {test[1]}'
               f' and DBLP from {test[2][0]} to {test[2][1]}')
-        threshold = test[3]
-        similar_science = lsh(results, test[3])
         # Τυπώνονται τα αποτελέσματα του lsh των αποτελεσμάτων
         # Αν δε βρει τίποτα το μειώνει στο μισό και ξαναδοκιμάζει
         while len(similar_science) == 0 and (threshold - 0.1) > 0:  # threshold - 0.1 για να αποφευχθεί infinite loop
@@ -151,8 +153,53 @@ def auto_testing(trees: list, test: list):
         print((lambda: "-" * 50)())
         LSH_RESULTS.append(len(similar_science))
     save_experiment(TREES, RESULTS, test, LSH_RESULTS, BUILD_TIMES, QUERY_TIMES)  # Αποθήκευση των αποτελεσμάτων
+    return BUILD_TIMES, QUERY_TIMES
 
 
-if __name__ == '__main__':
-    for i in range(100):
-        auto_testing(BUILD_FUNCS, get_test_set())
+def plot_results(build_time: list, query_time: list):
+    """
+    :param build_time: Η λίστα με τους χρόνους κατασκευής των 4ων δέντρων. Περιέχει λίστες μεγέθους 4
+    :param query_time: Η λίστα με τους χρόνους αναζήτησης των 4ων δέντρων. Περιέχει λίστες μεγέθους 4
+    :return: Nothing
+    :rtype: None
+    """
+    trees = ["R Tree", "Octree", "KD Tree", "Range Tree"]
+    trees_total_avg_build = []  # [[], [], [], []]
+    trees_total_avg_query = []
+    for i in range(len(trees)):
+        tree_avg_build = []
+        trees_avg_query = []
+        for j in range(len(build_time)):  # ίδιο index
+            # σε κάθε υπο-λίστα των χρόνων, θέλω πχ το index 0 που είναι του rtree
+            tree_avg_build.append(build_time[j][i])
+            trees_avg_query.append(query_time[j][i])
+        trees_total_avg_build.append(np.average(tree_avg_build))
+        trees_total_avg_query.append(np.average(trees_avg_query))
+
+    plt.figure()
+    plt.bar(trees, trees_total_avg_build)
+    plt.xlabel('Data Structure')
+    plt.ylabel('Average Execution Time (seconds)')
+    plt.title('Average Execution Build Time for each Data Structure')
+    plt.xticks(trees)
+    plt.show()
+
+    plt.figure()
+    plt.bar(trees, trees_total_avg_query)
+    plt.xlabel('Data Structure')
+    plt.ylabel('Average Execution Time (seconds)')
+    plt.title('Average Execution Query + LSH Time for each Data Structure')
+    plt.xticks(trees)
+    plt.show()
+
+
+def test_trees(iterations: int = 20, test_set=None):
+    if test_set is None:
+        test_set = get_test_set()
+    average_build_time = []
+    average_query_time = []
+    for i in range(iterations):
+        b_time, q_time = auto_testing(4, test_set)
+        average_build_time.append(b_time)
+        average_query_time.append(q_time)
+    plot_results(average_build_time, average_query_time)
