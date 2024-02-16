@@ -2,6 +2,7 @@ from testing import tree_testing
 
 
 def user_input():
+    """Δεχόμαστε ως είσοδο τα στοιχεία του χρήστη"""
     try:
         surname_range = input("Enter the range for Surname (e.g., A-E): ").upper().split('-')
         min_awards = int(input("Enter the minimum #Awards: "))

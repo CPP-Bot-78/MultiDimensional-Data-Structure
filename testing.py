@@ -11,16 +11,26 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def create_new_demo(filename, count):
+def create_new_demo(filename: str, count: int) -> str:
+    """
+     Δημιουργεί ένα νέο αρχείο με αποτελέσματα. Αν ήδη υπάρχει αρχείο με το ίδιο όνομα,
+     μετονομάζει το νέο αρχείο προσθέτοντάς του έναν αριθμό στο επίθεμα
+    :param filename: To όνομα του αρχείου που θέλουμε να εισάγουμε
+    :param count: Ο αριθμός που θα προστεθεί στο τέλος αν ήδη υπάρχει αρχείο με όνομα ίσο με filename.
+    Αυξάνεται σε κάθε επανάληψη μέχρι και το 50 (για εξοικονόμηση χώρου και ασφάλεια από infinite recursions)
+    :return: To όνομα του νέου αρχείου
+    :rtype: str
+    """
     filename, extension = os.path.splitext(filename)
     count += 1
+    # αφαιρούμε ήδη υπάρχον νούμερα για να μην πάμε πχ από file1 σε file12 σε file123 κλπ
     while filename[-1].isdigit():
         filename = filename[:-1]
-    new_filename = f"{filename}{count}{extension}"
+    new_filename = f"{filename}{count}{extension}"  # προσθέτουμε το count στο τέλος του ονόματος
     if count == 50:
         return f"{filename}_50{extension}"
     if os.path.exists(new_filename):
-
+        # αν υπάρχει ήδη ξανατρέχουμε με αυξημένο count κατά 1
         return create_new_demo(new_filename, count)
     else:
         return new_filename
