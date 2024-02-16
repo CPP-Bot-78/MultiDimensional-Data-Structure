@@ -7,6 +7,7 @@ from octree.octree import build_octree, query_octree
 from kdtree.kdtree import build_kdtree, query_kdtree
 from r_tree.r_tree import create_rtree, query_rtree_by_range
 from demo import create_new_demo
+from time import time
 
 # Οι συναρτήσεις δημιουργίας και αναζήτησης των δέντρων.
 # Είναι ευθυγραμμισμένες ώστε με το ίδιο index να παίρνουμε το ίδιο αποτέλεσμα
@@ -14,13 +15,15 @@ BUILD_FUNCS = [create_rtree, build_octree, build_kdtree, build_range_tree]
 QUERY_FUNCS = [query_rtree_by_range, query_octree, query_kdtree, query_range_tree_by_ranges]
 
 
-def save_experiment(trees: list, results: list, test: list, lsh_results: list):
+def save_experiment(trees: list, results: list, test: list, lsh_results: list, build_times: list, query_times: list):
     """
     Σώζει τα αποτελέσματα του test στον φάκελο testing
     :param list trees: Η λίστα με τα δέντρα που ελέγχθηκαν. Περιέχει αντικείμενα
     :param list results: Λίστα που περιέχει τα αποτελέσματα(λίστες) από κάθε δέντρο
     :param list test: To Test Set ώστε να ξέρουμε πως προέκυψαν τα αποτελέσματα.
     :param list lsh_results: Λίστα που περιέχει το πλήθος των ζεύγων επιστημόνων με όμοια εκπαίδευση
+    :param list build_time: Λίστα που περιέχει τους χρόνους κατασκευής των δέντρων
+    :param list query_time: Λίστα που περιέχει τους χρόνους αναζήτησης των δέντρων
     :return: Nothing
     :rtype: None
     """
@@ -48,8 +51,12 @@ def save_experiment(trees: list, results: list, test: list, lsh_results: list):
         # Αντιστοίχηση του αποτελέσματος με index του αντικειμένου.
         tree_results = results[trees.index(tree)]
         lsh_res = lsh_results[trees.index(tree)]
+        build_time = build_times[trees.index(tree)]
+        query_time = query_times[trees.index(tree)]
         with open(demo_name, 'a', encoding='utf-8') as file:
             file.write(f"Results for {tree.__str__()}:\n")
+            file.write(f"Construction Time: {build_time} seconds\n")
+            file.write(f"Range Query Time: {query_time} seconds\n")
             file.write(
                 f"Totally found {len(tree_results)} with {lsh_res} pair/pairs of them with similar Education\n"
                 f"Given values were: Surname: {test[0]}, "
@@ -101,17 +108,31 @@ def auto_testing(trees: list, test: list):
     :return: Nothing
     :rtype: None
     """
+    # Λίστες για τα αποτελέσματα και τα δέντρα. Οι λίστες θα είναι ευθυγραμμισμένες ώστε να έχουν κοινό index
+    TREES = []
+    RESULTS = []
+    LSH_RESULTS = []
+    BUILD_TIMES = []
+    QUERY_TIMES = []  # [[], [], [], []]
     for i in range(len(trees)):  # χρησιμοποιούμε το index που είναι κοινό στους 2 πίνακες
+        build_start = time()
         try:
             tree = BUILD_FUNCS[i](test[1])  # Επειδή το KD Tree χρειάζεται τα awards στην κατασκευή
         except Exception:
             tree = BUILD_FUNCS[i]()  # για τα υπόλοιπα δέντρα
+        build_finish = time() - build_start
+        BUILD_TIMES.append(build_finish)
         # Αποθήκευση του δέντρου και των αποτελεσμάτων του
         TREES.append(tree)
+        query_start = time()
         results = QUERY_FUNCS[i](tree, test[0], test[1], test[2])
+        query_finish = time() - query_start
+        QUERY_TIMES.append(query_finish)
         RESULTS.append(results)
         # Επιπλέον, τυπώνονται στο terminal συνοπτικά αποτελέσματα
         print(tree.__str__())
+        print(f"Construction Time: {build_finish} seconds\n")
+        print(f"Range Query Time: {query_finish} seconds\n")
         print(f'Found {len(results)} results with Surname starting from {test[0][0]} to {test[0][1]}, Awards: {test[1]}'
               f' and DBLP from {test[2][0]} to {test[2][1]}')
         threshold = test[3]
@@ -129,13 +150,9 @@ def auto_testing(trees: list, test: list):
         print()
         print((lambda: "-" * 50)())
         LSH_RESULTS.append(len(similar_science))
-    save_experiment(TREES, RESULTS, test, LSH_RESULTS)  # Αποθήκευση των αποτελεσμάτων
+    save_experiment(TREES, RESULTS, test, LSH_RESULTS, BUILD_TIMES, QUERY_TIMES)  # Αποθήκευση των αποτελεσμάτων
 
 
 if __name__ == '__main__':
     for i in range(100):
-        # Λίστες για τα αποτελέσματα και τα δέντρα. Οι λίστες θα είναι ευθυγραμμισμένες ώστε να έχουν κοινό index
-        TREES = []
-        RESULTS = []
-        LSH_RESULTS = []
         auto_testing(BUILD_FUNCS, get_test_set())
