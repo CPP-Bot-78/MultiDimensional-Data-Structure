@@ -68,8 +68,10 @@ def save_experiment(trees: list, results: list, test: list, lsh_results: list, b
             file.write(f"Results for {tree.__str__()}:\n")
             file.write(f"Construction Time: {build_time} seconds\n")
             file.write(f"Range Query Time: {query_time} seconds\n")
+            file.write(f"Totally found {len(tree_results)} with {lsh_res} pair/pairs of them with similar Education\n")
+            if lsh_res != 0 and len(tree_results) != 0:
+                file.write(f"Similarity percentage is: { (lsh_res / len(tree_results)) * 100:.2f} %\n")
             file.write(
-                f"Totally found {len(tree_results)} with {lsh_res} pair/pairs of them with similar Education\n"
                 f"Given values were: Surname: {test[0]}, "
                 f"min Awards: {test[1]}, "
                 f"DBLP: {test[2]}, "
@@ -163,6 +165,8 @@ def auto_testing(trees_num: int, test: list):
         print(f'For similarity above: {threshold * 100:.2f} % the results are: {len(similar_science)}')
         if threshold <= 0:
             print(f'No similar for {test[3] * 100:.2f} %')
+        if len(similar_science) != 0 and len(results) != 0:
+            print(f'Similarity percentage is: {(len(similar_science) / len(results)) * 100:.2f} %')
         print()
         print((lambda: "-" * 50)())
         LSH_RESULTS.append(len(similar_science))
