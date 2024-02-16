@@ -14,12 +14,13 @@ BUILD_FUNCS = [create_rtree, build_octree, build_kdtree, build_range_tree]
 QUERY_FUNCS = [query_rtree_by_range, query_octree, query_kdtree, query_range_tree_by_ranges]
 
 
-def save_experiment(trees: list, results: list, test: list):
+def save_experiment(trees: list, results: list, test: list, lsh_results: list):
     """
     Σώζει τα αποτελέσματα του test στον φάκελο testing
     :param list trees: Η λίστα με τα δέντρα που ελέγχθηκαν. Περιέχει αντικείμενα
     :param list results: Λίστα που περιέχει τα αποτελέσματα(λίστες) από κάθε δέντρο
     :param list test: To Test Set ώστε να ξέρουμε πως προέκυψαν τα αποτελέσματα.
+    :param list lsh_results: Λίστα που περιέχει το πλήθος των ζεύγων επιστημόνων με όμοια εκπαίδευση
     :return: Nothing
     :rtype: None
     """
@@ -46,9 +47,11 @@ def save_experiment(trees: list, results: list, test: list):
     for tree in trees:
         # Αντιστοίχηση του αποτελέσματος με index του αντικειμένου.
         tree_results = results[trees.index(tree)]
+        lsh_res = lsh_results[trees.index(tree)]
         with open(demo_name, 'a', encoding='utf-8') as file:
             file.write(f"Results for {tree.__str__()}:\n")
             file.write(
+                f"Totally found {len(tree_results)} with {lsh_res} pair/pairs of them with similar Education\n"
                 f"Given values were: Surname: {test[0]}, "
                 f"min Awards: {test[1]}, "
                 f"DBLP: {test[2]}, "
@@ -125,7 +128,8 @@ def auto_testing(trees: list, test: list):
             print(f'No similar for {test[3] * 100:.2f} %')
         print()
         print((lambda: "-" * 50)())
-    save_experiment(TREES, RESULTS, test)  # Αποθήκευση των αποτελεσμάτων
+        LSH_RESULTS.append(len(similar_science))
+    save_experiment(TREES, RESULTS, test, LSH_RESULTS)  # Αποθήκευση των αποτελεσμάτων
 
 
 if __name__ == '__main__':
@@ -133,4 +137,5 @@ if __name__ == '__main__':
         # Λίστες για τα αποτελέσματα και τα δέντρα. Οι λίστες θα είναι ευθυγραμμισμένες ώστε να έχουν κοινό index
         TREES = []
         RESULTS = []
+        LSH_RESULTS = []
         auto_testing(BUILD_FUNCS, get_test_set())
