@@ -1,0 +1,64 @@
+Results for R Tree:
+Construction Time: 0.12108659744262695 seconds
+Range Query Time: 0.005000114440917969 seconds
+Totally found 7 with 4 pair/pairs of them with similar Education
+Given values were: Surname: ['b', 'v'], min Awards: 14, DBLP: [15, 4212], Similarity: 0.40
+Surname: , #Awards: , #DBLP: , Education:
+Boole, 17, 42, ['[3]']
+Borg, 18, 21, ['New York University']
+Dongarra, 15, 985, ['Chicago State University', 'BS', 'Illinois Institute of Technology', 'MS', 'University of New Mexico', 'PhD']
+Guha, 16, 44, ['Indian Institute of Technology Madras', 'University of California, Berkeley', 'Stanford University']
+Knuth, 14, 186, ['Case Institute of Technology', 'BS', 'MS', 'California Institute of Technology', 'PhD']
+Shekhar, 28, 375, ['University of California, Berkeley']
+Tanenbaum, 22, 214, ['Massachusetts Institute of Technology', 'University of California, Berkeley']
+
+----------
+
+Results for OctTree:
+Construction Time: 0.0035092830657958984 seconds
+Range Query Time: 0.008504867553710938 seconds
+Totally found 7 with 4 pair/pairs of them with similar Education
+Given values were: Surname: ['b', 'v'], min Awards: 14, DBLP: [15, 4212], Similarity: 0.40
+Surname: , #Awards: , #DBLP: , Education:
+Borg, 18, 21, ['New York University']
+Boole, 17, 42, ['[3]']
+Guha, 16, 44, ['Indian Institute of Technology Madras', 'University of California, Berkeley', 'Stanford University']
+Dongarra, 15, 985, ['Chicago State University', 'BS', 'Illinois Institute of Technology', 'MS', 'University of New Mexico', 'PhD']
+Knuth, 14, 186, ['Case Institute of Technology', 'BS', 'MS', 'California Institute of Technology', 'PhD']
+Tanenbaum, 22, 214, ['Massachusetts Institute of Technology', 'University of California, Berkeley']
+Shekhar, 28, 375, ['University of California, Berkeley']
+
+----------
+
+Results for KDTree:
+Construction Time: 0.020561695098876953 seconds
+Range Query Time: 0.004999637603759766 seconds
+Totally found 7 with 4 pair/pairs of them with similar Education
+Given values were: Surname: ['b', 'v'], min Awards: 14, DBLP: [15, 4212], Similarity: 0.40
+Surname: , #Awards: , #DBLP: , Education:
+Boole, 17, 42, ['[3]']
+Borg, 18, 21, ['New York University']
+Dongarra, 15, 985, ['Chicago State University', 'BS', 'Illinois Institute of Technology', 'MS', 'University of New Mexico', 'PhD']
+Guha, 16, 44, ['Indian Institute of Technology Madras', 'University of California, Berkeley', 'Stanford University']
+Knuth, 14, 186, ['Case Institute of Technology', 'BS', 'MS', 'California Institute of Technology', 'PhD']
+Shekhar, 28, 375, ['University of California, Berkeley']
+Tanenbaum, 22, 214, ['Massachusetts Institute of Technology', 'University of California, Berkeley']
+
+----------
+
+Results for Range Tree:
+Construction Time: 0.046605825424194336 seconds
+Range Query Time: 0.004999399185180664 seconds
+Totally found 7 with 4 pair/pairs of them with similar Education
+Given values were: Surname: ['b', 'v'], min Awards: 14, DBLP: [15, 4212], Similarity: 0.40
+Surname: , #Awards: , #DBLP: , Education:
+Boole, 17, 42, ['[3]']
+Borg, 18, 21, ['New York University']
+Dongarra, 15, 985, ['Chicago State University', 'BS', 'Illinois Institute of Technology', 'MS', 'University of New Mexico', 'PhD']
+Guha, 16, 44, ['Indian Institute of Technology Madras', 'University of California, Berkeley', 'Stanford University']
+Knuth, 14, 186, ['Case Institute of Technology', 'BS', 'MS', 'California Institute of Technology', 'PhD']
+Shekhar, 28, 375, ['University of California, Berkeley']
+Tanenbaum, 22, 214, ['Massachusetts Institute of Technology', 'University of California, Berkeley']
+
+----------
+

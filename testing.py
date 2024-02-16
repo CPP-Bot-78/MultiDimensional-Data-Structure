@@ -6,10 +6,24 @@ from range_tree.Range_tree import build_range_tree, query_range_tree_by_ranges
 from octree.octree import build_octree, query_octree
 from kdtree.kdtree import build_kdtree, query_kdtree
 from r_tree.r_tree import create_rtree, query_rtree_by_range
-from demo import create_new_demo
 from time import time
 import matplotlib.pyplot as plt
 import numpy as np
+
+
+def create_new_demo(filename, count):
+    filename, extension = os.path.splitext(filename)
+    count += 1
+    while filename[-1].isdigit():
+        filename = filename[:-1]
+    new_filename = f"{filename}{count}{extension}"
+    if count == 50:
+        return f"{filename}_50{extension}"
+    if os.path.exists(new_filename):
+
+        return create_new_demo(new_filename, count)
+    else:
+        return new_filename
 
 
 def save_experiment(trees: list, results: list, test: list, lsh_results: list, build_times: list, query_times: list):
@@ -19,26 +33,26 @@ def save_experiment(trees: list, results: list, test: list, lsh_results: list, b
     :param list results: Λίστα που περιέχει τα αποτελέσματα(λίστες) από κάθε δέντρο
     :param list test: To Test Set ώστε να ξέρουμε πως προέκυψαν τα αποτελέσματα.
     :param list lsh_results: Λίστα που περιέχει το πλήθος των ζεύγων επιστημόνων με όμοια εκπαίδευση
-    :param list build_time: Λίστα που περιέχει τους χρόνους κατασκευής των δέντρων
-    :param list query_time: Λίστα που περιέχει τους χρόνους αναζήτησης των δέντρων
+    :param list build_times: Λίστα που περιέχει τους χρόνους κατασκευής των δέντρων
+    :param list query_times: Λίστα που περιέχει τους χρόνους αναζήτησης των δέντρων
     :return: Nothing
     :rtype: None
     """
     # Το dir που δημιουργηθεί ο φάκελος αν δεν υπάρχει ήδη
     script_directory = os.path.dirname(os.path.abspath(__file__))
-    FOLDERNAME = 'testing'
+    FOLDERNAME = 'results'
     FOLDERNAME = os.path.join(script_directory, FOLDERNAME)
     if not os.path.exists(FOLDERNAME):
         folder_path = os.path.join(script_directory, FOLDERNAME)
         os.makedirs(folder_path)
     os.chdir(FOLDERNAME)
-    if os.path.exists('test.txt'):
+    if os.path.exists('results.txt'):
         # Δημιουργεί ένα αρχείο με το ίδιο όνομα αλλά με ένα αριθμό πχ test2.
         # Όσο υπάρχουν αρχεία με το ίδιο όνομα θα δοκιμάζει με αυξημένο κατά 1 count, μέχρι να φτάσει στο 50
-        demo_name = create_new_demo('test.txt', 1)
+        demo_name = create_new_demo('results.txt', 1)
     else:
         # Δεν υπάρχει ήδη άρα θα μείνει ως έχει
-        demo_name = 'test.txt'
+        demo_name = 'results.txt'
     # Δημιουργούμε το αρχείο. Δημιουργείται εδώ ώστε στο for loop μετά να γίνεται append,
     # ώστε να κάθε αρχείο να έχει και τα 4 δέντρα
     with open(demo_name, 'w') as f:
@@ -158,13 +172,15 @@ def auto_testing(trees_num: int, test: list):
 
 def plot_results(build_time: list, query_time: list):
     """
+     Υπολογίζει τους μέσους χρόνους της κατασκευής και αναζήτησης των δέντρων και δημιουργεί
+     για αυτές 2 γραφικές παραστάσεις
     :param build_time: Η λίστα με τους χρόνους κατασκευής των 4ων δέντρων. Περιέχει λίστες μεγέθους 4
     :param query_time: Η λίστα με τους χρόνους αναζήτησης των 4ων δέντρων. Περιέχει λίστες μεγέθους 4
     :return: Nothing
     :rtype: None
     """
     trees = ["R Tree", "Octree", "KD Tree", "Range Tree"]
-    trees_total_avg_build = []  # [[], [], [], []]
+    trees_total_avg_build = []
     trees_total_avg_query = []
     for i in range(len(trees)):
         tree_avg_build = []
@@ -173,7 +189,7 @@ def plot_results(build_time: list, query_time: list):
             # σε κάθε υπο-λίστα των χρόνων, θέλω πχ το index 0 που είναι του rtree
             tree_avg_build.append(build_time[j][i])
             trees_avg_query.append(query_time[j][i])
-        trees_total_avg_build.append(np.average(tree_avg_build))
+        trees_total_avg_build.append(np.average(tree_avg_build))  # προσθέτω το average ime του κάθε δέντρου
         trees_total_avg_query.append(np.average(trees_avg_query))
 
     plt.figure()
@@ -193,13 +209,27 @@ def plot_results(build_time: list, query_time: list):
     plt.show()
 
 
-def test_trees(iterations: int = 20, test_set=None):
+def tree_testing(iterations: int = 20, test_set=None):
+    """
+     Πραγματοποιεί δοκιμές στα δέντρα ανάλογα με τον αριθμό επαναλήψεων που επιλέγει ο χρήστης.
+     Η δοκιμή περιλαμβάνει κατασκευή και αναζήτηση σε συνδυασμό με εφαρμογή του LSH στα αποτελέσματα
+     ώστε να εξαχθεί το ποσό όμοιων αποτελεσμάτων
+    :param iterations: Ο αριθμός των ελέγχων που θα πραγματοποιηθούν
+    :param list test_set: Λίστα με τα δεδομένα που θα γίνει η αναζήτηση στο δέντρο
+    :return: Nothing
+    :rtype: None
+    """
     if test_set is None:
         test_set = get_test_set()
+    if iterations < 1:  # Αποφυγή errors
+        iterations = 1
+    # Λίστες για τους χρόνους αναζήτησης και κατασκευής των δέντρων
     average_build_time = []
     average_query_time = []
     for i in range(iterations):
+        # Πραγματοποιείται ένας έλεγχος
         b_time, q_time = auto_testing(4, test_set)
+        test_set = get_test_set()  # Ανανεώνει το test_set αν χρειαστούν πολλές επαναλήψεις
         average_build_time.append(b_time)
         average_query_time.append(q_time)
     plot_results(average_build_time, average_query_time)
