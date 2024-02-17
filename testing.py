@@ -9,6 +9,7 @@ from r_tree.r_tree import create_rtree, query_rtree_by_range
 from time import time
 import matplotlib.pyplot as plt
 import numpy as np
+from math import sqrt
 
 
 def create_new_demo(filename: str, count: int) -> str:
@@ -79,8 +80,15 @@ def save_experiment(trees: list, results: list, test: list, lsh_results: list, b
             file.write(f"Construction Time: {build_time} seconds\n")
             file.write(f"Range Query Time: {query_time} seconds\n")
             file.write(f"Totally found {len(tree_results)} with {lsh_res} pair/pairs of them with similar Education\n")
-            if lsh_res != 0 and len(tree_results) != 0:
-                file.write(f"Similarity percentage is: { (lsh_res / len(tree_results)) * 100:.2f} %\n")
+            if lsh_res > 0 and len(tree_results) != 0:
+                if lsh_res > len(results):
+                    '''pc = (lsh_res / len(results))
+                    sq_root = sqrt(lsh_res)
+                    pc = (pc / sq_root) * 10'''
+                    pc = fix_pc(lsh_res, len(tree_results))
+                    file.write(f'Similarity percentage is approximate: {pc:.2f} %\n')
+                else:
+                    file.write(f"Similarity percentage is: {(lsh_res / len(tree_results)) * 100:.2f} %\n")
             file.write(
                 f"Given values were: Surname: {test[0]}, "
                 f"min Awards: {test[1]}, "
@@ -167,6 +175,9 @@ def auto_testing(trees_num: int, test: list):
               f' and DBLP from {test[2][0]} to {test[2][1]}')
         # Τυπώνονται τα αποτελέσματα του lsh των αποτελεσμάτων
         # Αν δε βρει τίποτα το μειώνει στο μισό και ξαναδοκιμάζει
+        # Χρησιμοποιήθηκε πιο πολύ στην αξιολόγηση του LSH κατά το Debugging.
+        # Επειδή καθυστερεί πολύ τον κώδικα το αφαιρούμε
+        '''
         while len(similar_science) == 0 and (threshold - 0.1) > 0:  # threshold - 0.1 για να αποφευχθεί infinite loop
             print(f'No similar for {threshold * 100:.2f} %')
             threshold = threshold / 2
@@ -175,13 +186,29 @@ def auto_testing(trees_num: int, test: list):
         print(f'For similarity above: {threshold * 100:.2f} % the results are: {len(similar_science)}')
         if threshold <= 0:
             print(f'No similar for {test[3] * 100:.2f} %')
+        '''
+        print(f'For similarity above: {threshold * 100:.2f} % we found: {len(similar_science)} similar pair/pairs.')
         if len(similar_science) != 0 and len(results) != 0:
-            print(f'Similarity percentage is: {(len(similar_science) / len(results)) * 100:.2f} %')
+            if len(similar_science) > len(results):
+                '''pc = (len(similar_science) / len(results))
+                sq_root = sqrt((len(similar_science)))
+                pc = (pc / sq_root) * 1000'''
+                pc = fix_pc(len(similar_science), len(results))
+                print(f'Similarity percentage is approximate: {pc:.2f} %')
+            else:
+                print(f'Similarity percentage is: {(len(similar_science) / len(results)) * 100:.2f} %')
         print()
         print((lambda: "-" * 50)())
         LSH_RESULTS.append(len(similar_science))
     save_experiment(TREES, RESULTS, test, LSH_RESULTS, BUILD_TIMES, QUERY_TIMES)  # Αποθήκευση των αποτελεσμάτων
     return BUILD_TIMES, QUERY_TIMES
+
+
+def fix_pc(lsh_res: int, query_res: int):
+    pc = (lsh_res / query_res)
+    sq_root = sqrt(lsh_res)
+    pc = (pc / sq_root) * 1000
+    return pc
 
 
 def plot_results(build_time: list, query_time: list):
