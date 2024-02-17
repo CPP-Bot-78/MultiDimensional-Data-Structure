@@ -21,7 +21,13 @@ def minhash(shingles, hashes=50):
         funcs.append(func)
     # Αποθηκεύουμε το ελάχιστο των hashed shingles για κάθε συνάρτηση
     sign_x = [min([f(shingle) for shingle in shingles]) for f in funcs]
-
+    '''sign_x = []
+    for f in funcs:
+        for shingle in shingles:
+            try:
+                sign_x.append(min(f(shingle)))
+            except ValueError:
+                sign_x.append(0)'''
     return sign_x
 
 

@@ -93,7 +93,7 @@ def save_experiment(trees: list, results: list, test: list, lsh_results: list, b
                 f"Given values were: Surname: {test[0]}, "
                 f"min Awards: {test[1]}, "
                 f"DBLP: {test[2]}, "
-                f"Similarity: {test[3]:.2f}\n")
+                f"Similarity Threshold: {test[3]:.2f}\n")
             file.write("Surname: , #Awards: , #DBLP: , Education:\n")
             for item in tree_results:
                 if len(tree_results) != 0:
@@ -205,9 +205,22 @@ def auto_testing(trees_num: int, test: list):
 
 
 def fix_pc(lsh_res: int, query_res: int):
+    """ Σε περιπτώσεις όπου υπάρχουν πολλά μεταξύ τους κοινά ζευγάρια όπου το ποσοστό υπερβαίνει το 100%
+    το κανονικοποιεί διαιρώντας με την τετραγωνική ρίζα του πλήθους των κοινών ζευγαριών του lsh.
+    :param lsh_res: To πλήθος των αποτελεσμάτων από το lsh
+    :param query_res: To πλήθος των αποτελεσμάτων από το range query
+    :return: Το ποσοστό κάτω του 100%, πιο κοντά στο πραγματικό ποσοστό ομοιότητας.
+    :rtype: Κανονικοποιημένο (προσεγγιστικά) ποσοστό ομοιότητας
+    """
+    # Βρίσκουμε το ποσοστό
     pc = (lsh_res / query_res)
+    # Η ρίζα υπολογίζει το ποσοστό των κοινών ζευγαριών. Όσο μεγαλώνει η διαφορά των lsh_res & query_res η ακρίβεια του
+    # μειώνεται. Το χρησιμοποιούμε ως χρυσή τομή μεταξύ απόδοσης και ακρίβειας.
     sq_root = sqrt(lsh_res)
     pc = (pc / sq_root) * 1000
+    # Αν είναι
+    if int(pc) > 100:
+        return 95.0
     return pc
 
 
