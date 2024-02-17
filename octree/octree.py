@@ -1,22 +1,21 @@
 import pandas as pd
 import os
-# from memory_profiler import profile
 
-# An octree works just like a quadtree, just for 3 dimensions.
-# It splits a 3D space (cube) into 8 octants (smaller cubes) and inserts data based on the datapoints coordinates 
-# Using median to evenly distribute data to each octant
+# Ενα Octree λειτουργεί όπως ένα Quadtree, απλά για 3 διαστάσεις. (2D -> 3D)
+# Χωρίζει εναν τρισδιάστατο χώρο (κύβο) σε 8 μικρότερους κύβους (octants) και εισάγει τα δεδομένα με βάση τις x,y,z συντεταγμένες
+# Για τον διαχωρισμό χρησιμοποιούμε την τεχνική της μέσης τιμής (median) για την ομοιόμορφη κατανομή των δεδομένων
 
-# Initialise the leaf threshold for when to split a child octant
-LEAF_TRESHOLD = 50
+# Αρχικοποίηση του leaf threshold, το οποίο καθορίζει πότε θα χωριστούν τα octants 
+LEAF_THRESHOLD = 50
 
-# The class Octant describes each node of the octree
+# Η κλάση Octant περιγράφει κάθε node του octree
 class Octant:
     def __init__(self, x_bounds, y_bounds, z_bounds, leaf_node):
-        # x, y and z bounds are the ranges of each octant to show which values belong in them
-        # When leaf_node is True you can store data inside(Child), when it's false it has 8 octants inside(Parent)
-        # Medians of each octant for determining the bounds of each child
-        # Data stores the values of each octant
-        # Each parent node has 8 children
+        # Τα x, y και z bounds αντιστοιχούν στα εύρη κάθε octant και δείχνουν που ανήκουν τα δεδομένα
+        # Όταν το leaf_node είναι True μπορούμε να αποθηκεύσουμε δεδομένα μεσα (Child), όταν είναι False περιέχει 8 octants (Parent)
+        # Τα median καθορίζουν τα όρια του κάθε octant
+        # Τα data αποθηκεύουν τα δεδομένα κάθε child node
+        # Κάθε parent node έχει 8 children nodes
         self.x_bounds = x_bounds
         self.y_bounds = y_bounds
         self.z_bounds = z_bounds
@@ -24,8 +23,8 @@ class Octant:
         self.medians = []
         self.data = []
         self.children = [None] * 8
-
-# The class Octree contains all the needed functions and uses the octant class
+        
+# H κλάση Octree εμπεριέχει όλα τα αναγκαία functions και χρησιμοποιεί την κλάση octant
 class Octree:
     def __init__(self, x_bounds, y_bounds, z_bounds, leaf_node):
         self.root = Octant(x_bounds, y_bounds, z_bounds, leaf_node)
@@ -34,15 +33,15 @@ class Octree:
         return "OctTree"
 
     def split_octant(self, octant):
-        # Calculate and store median for each variable to determine in which octant the data goes in
+        # Υπολογισμός και αποθήκευση median για κάθε μεταβλητή, για να καθοριστεί σε ποιό octant πάνε τα δεδομένα
         x_list, y_list, z_list = split_list(octant.data)
         x_median = find_median(x_list)
         y_median = find_median(y_list)
         z_median = find_median(z_list)
         octant.medians = [x_median, y_median, z_median]
 
-        # Split the Parent octant into 8 children
-        # The split works with a 3-bit binary logic where 0=min,median and 1=median,max [000,001,010,011,100,101,110,111]
+        # Χωρίζουμε το Parent node σε 8 children nodes
+        # Ο διαχορισμός δουλεύει με μια 3-bit δυαδική λογική, όπου 0=min,median και 1=median,max [000,001,010,011,100,101,110,111]
         octant.children[0] = Octant((octant.x_bounds[0], x_median), (octant.y_bounds[0], y_median),(octant.z_bounds[0], z_median), True)
         octant.children[1] = Octant((octant.x_bounds[0], x_median), (octant.y_bounds[0], y_median),(z_median, octant.z_bounds[1]), True)
         octant.children[2] = Octant((octant.x_bounds[0], x_median), (y_median, octant.y_bounds[1]),(octant.z_bounds[0], z_median), True)
@@ -54,11 +53,11 @@ class Octree:
 
 
     def find_child_index(self, datapoint, octant):
-        # Finds which of the 8 children contains the datapoint
-        # Same logic as the split_octant function, it adds to the variable child the corresponding number to determine where it belongs
-        # For example: If x is smaller than the median it belongs in the first 4 children
-        # If y is smaller than the median it belongs to childrens 0,1,4,5
-        # If z is bigger that the median it belongs to the odd numbered children
+        # Βρίκουμε ποιό απο τα 8 children εμπεριέχει τα datapoints
+        # Ίδια λογική με την split_octant, προσθέτουμε στην μεταβλητή child τον αντίστοιχο αριθμό για να ορίσουμε που ταιριάζει
+        # Π.χ.: Αν x μικρότερο του median, ανήκει στα πρώτα 4 παιδιά
+        # Aν y μικρότερο του median, ανήκει στα παιδιά 0,1,4,5
+        # Αν z μεγαλύτερο του median, ανήκει στα παιδιά με μονό αριθμό
         index, x, y, z = datapoint
         x_median, y_median, z_median = octant.medians
         child = 0
@@ -74,22 +73,22 @@ class Octree:
 
 
     def insert(self, datapoint, octant=None):
-        # The insert function places the datapoint to the right octant
-        # If we are at a leaf_node it appends the data.
-        # If we reached the LEAF_TRESHOLD we split the octant and insert the data into the created children
-        # If we are at a Parent node we find the right child and call the insert function again to enter the value
+        # H insert τοποθετεί το datapoint στο σωστό octant
+        # Αν βρισκόμαστε σε leaf_node προσθέτει τα δεδομένα
+        # Αν φτάσαμε το LEAF_THRESHOLD χωρίζουμε τα octant και εισάγουμε τα δεδομένα στα children που δημιουργήθηκαν
+        # Aν είμαστε σε Parent node βρίσκουμε το σωστό child και καλούμε αναδρομικά την insert για να εισάγουμε την τιμή
         if octant is None:
             octant = self.root
 
         if octant.leaf_node:
             octant.data.append(datapoint)
 
-            # If we reached the leaf threshold
-            if len(octant.data) == LEAF_TRESHOLD:
+            # Αν φτάσαμε το leaf threshold
+            if len(octant.data) == LEAF_THRESHOLD:
                 octant.leaf_node = False
                 self.split_octant(octant)
 
-                # Recursively insert into the child
+                # Κανε αναδρομικά insert στο child
                 for data in octant.data:
                     child = self.find_child_index(data, octant)
                     self.insert(data, octant.children[child])
@@ -97,40 +96,39 @@ class Octree:
 
             return
 
-        # Find the correct child index
+        # Βρες το σωστό child index
         child = self.find_child_index(datapoint, octant)
-        # Try to insert in that child
+        # Κάλεσε αναδρομικά την insert για το σωστό παιδί
         self.insert(datapoint, octant.children[child])
     
     
     def search(self, search_bounds, octant=None):
-        # The search funtion first checks if our search_bounds intersect with the octant's bounds
-        # This lowers repetition by not checking outside the search_bounds box
-        # If it is inside the box and the octant is a leaf_node find the datapoints
-        # If not a leaf_node recursively search in its children
+        # Η συνάρτηση αναζήτησης ελέγχει πρώτα αν τα όρια αναζήτησης τέμνονται με τα όρια του octant
+        # Έτσι μειώνετε το repetition χωρίς να χρειάζεται έλεγχος έξω από το seach_bound box
+        # Αν είναι μεσα το box και το octant ειναι child node βρες τα datapoints
+        # Αν είναι parent node ψάξε αναδρομικά τα παιδιά του
         x_min, x_max, y_min, y_max, z_min, z_max = search_bounds
         found = []
 
         if octant is None:
             octant = self.root
 
-        # Check if the search box intersects with the octant's bounds
+        # Ελέγχουμε αν το search box τέμνει τα octant.bounds
         if (
             x_max < octant.x_bounds[0] or x_min > octant.x_bounds[1] or
             y_max < octant.y_bounds[0] or y_min > octant.y_bounds[1] or
             z_max < octant.z_bounds[0] or z_min > octant.z_bounds[1]
         ):
-            # No intersection, return
+            # Δεν τέμνουν, επέστρεψε
             return found
-
-        # Check if the octant is a leaf node and search for data points
+        # Ελέγχουμε αν το octant είναι child node και ψάχνουμε για τα datapoints
         if octant.leaf_node:
             for data_point in octant.data:
                 x, y, z = data_point[1:]
                 if x_min <= x <= x_max and y_min <= y <= y_max and z_min <= z <= z_max:
                     found.append(data_point[0])
         else:
-            # Recursively search in child octants
+            # Αν είναι parent node, ψάξε αναδρομικά τα παιδιά του
             for child in octant.children:
                 found.extend(self.search(search_bounds, child))
 
@@ -139,16 +137,16 @@ class Octree:
     
 
 def find_median(my_list):
-    #Finds the median of a list
+    # Βρίσκει την μέση τιμή μιας λίστας
     sort = sorted(my_list)
     length = len(my_list)
     
-    #If the length is even, find the average of the middle values
+    # Αν το μήκος είναι ζυγό, βρές το μέσο των δύο μεσαίων τιμών
     if length % 2 ==0:
         median1 = sort[(length // 2) - 1]
         median2 = sort[length // 2]
         median = (median1 + median2) // 2
-    #If the length is odd, the median is the middle value
+    # Αν το μήκος είναι περιττό, η μέση τιμή είναι η μεσαία τιμή
     else:
         median= sort[length // 2]
     
@@ -156,7 +154,7 @@ def find_median(my_list):
 
 
 def split_list(my_list):
-    #Splits a list into 3 lists, one for each coordinate(x,y,z) 
+    # Χωρίζει μία λίστα σε τρεις, μία για κάθε συντεταγμένη(x,y,z)
     x = [point[1] for point in my_list]
     y = [point[2] for point in my_list]
     z = [point[3] for point in my_list]
@@ -165,10 +163,10 @@ def split_list(my_list):
 
 
 def extract_data(file_csv):
-    # Extract the data from our csv and return 4 lists
+    # Extract τα δεδομένα απο το csv και επέστρεψε 4 λίστες
     df = pd.read_csv(file_csv)
     
-    # Convert alphabetical letters into integers[A=0,B=1,C=2...]
+    # Μετροπή του πρώτου γράμματος του επιθέτου σε αριθμό[Α=0,Β=1,C=2...]
     df['Surname'] = df['Surname'].apply(lambda x: ord(x[0].lower()) - 97)
 
     index_list = df['Index'].tolist()
@@ -178,9 +176,9 @@ def extract_data(file_csv):
     
     return index_list, surname_list, awards_list, dblp_list
 
-#@profile
+
 def build_octree():
-    #Construct the Octree and insert the data
+    # Κατασκευή του Octree και εισαγωγή των δεδομένων
     try:
         csv_file = 'scripts/computer_scientists_data2.csv'
         index, surname, awards, dblp = extract_data(csv_file)
@@ -189,20 +187,20 @@ def build_octree():
         home_dir = os.path.dirname(script_directory)
         csv_file = os.path.join(home_dir, 'computer_scientists_data2.csv')
         index, surname, awards, dblp = extract_data(csv_file)
-    # index, surname, awards, dblp = extract_data(csv_file)
+
     cs_data = list(zip(index, surname, awards, dblp))
 
     ot = Octree([min(surname),max(surname)], [min(awards),max(awards)], [min(dblp),max(dblp)], False)
-    #Initialize root
+    # Αρχικοποίηση root
     ot.root.data = cs_data
     ot.split_octant(ot.root)
-    #Insert datapoints
+    # Εισαγωγή των δεδομένων
     for datapoint in cs_data:
         ot.insert(datapoint)
 
     return ot
 
-# @profile
+
 def query_octree(octree, x_range, y_min, z_range):
     try:
         csv_file = 'scripts/computer_scientists_data2.csv'
@@ -214,19 +212,20 @@ def query_octree(octree, x_range, y_min, z_range):
         csv_file = os.path.join(home_dir, 'computer_scientists_data2.csv')
         index, surname, awards, dblp = extract_data(csv_file)
         df = pd.read_csv(csv_file)
-    # index, surname, awards, dblp = extract_data(csv_file)
-    # df = pd.read_csv(csv_file)
+
+    # Αναγκαίες μετατροπές των δεδομένων (Εύρεση y_max, Μεταροπή χαρακτήρων σε αριθμούς)
     y_max = df['#Awards'].max()
     y_range = [y_min, y_max]
     x_range = [ord(letter.lower()) - 97 for letter in x_range]
-    # Search the octree for the given ranges using a bounding box
+    
+    # Κάνε αναζήτηση του octree για το δοσμένα ranges χρησιμοποιόντας bounding box
     search_bounds = (x_range[0], x_range[1], y_range[0], y_range[1], z_range[0], z_range[1])
     found = octree.search(search_bounds)
 
-    # Create one list with the indexes found
+    # Δημιουργία λίστας με τα indexes που βρήκαμε
     index_list = pd.Series(found).explode().tolist()
 
-    # Find values based on the index
+    # Εύρεση τιμών με βάση το index
     filter_by_index = df.loc[index_list]
     result = filter_by_index[['Surname', '#Awards', 'DBLP',  'Education']].values.tolist()
 
