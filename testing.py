@@ -111,7 +111,7 @@ def get_test_set():
     selected_characters = [random_characters[i] for i in chars]
     char_range = sorted(selected_characters)
     if len(char_range) < 2:
-        char_range = ['a', 'w']
+        char_range = ['a', 'w']  # για αποφυγή λαθών
     test_set = [
         char_range,  # characters list
         randint(1, 20),  # Min Awards
