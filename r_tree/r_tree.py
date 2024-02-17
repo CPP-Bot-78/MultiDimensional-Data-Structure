@@ -27,7 +27,7 @@ class RTree:
         self.index3d.insert(itemId, (x, y, z, x, y, z))
         #προσθέτει το στοιχείο και τις πληροφορίες του στην λίστα που κρατείται με το σύνολο των εισαχθέντων στοιχείων
         self.dataList.append(item)
-    #πραγματοποιεί αναζήτηση στο r-tree για τα δεδομένα που έχουν οριστεί στην qbbox που ορίζει ένα query bounding box     
+    #πραγματοποιεί αναζήτηση στο r-tree για τα δεδομένα που έχουν οριστεί στην qbbox που ορίζει ένα bounding box     
     def search(self, qbbox):
         return list(self.index3d.intersection(qbbox))
 #μετατροπή των αρχικών γραμμάτων του surname των στοιχείων σε αριθμούς για χρήση τους ως την συντεταγμένη x στο δέντρο
@@ -47,7 +47,7 @@ def create_rtree():
         rtree.insert(i, data, x, y, z)
     return rtree
 
-#καθορισμός του query bounding box προσδιορίζοντας το range των συντεταγμένων που θέλουμε να γίνει αναζήτηση
+#καθορισμός του bounding box προσδιορίζοντας το range των συντεταγμένων που θέλουμε να γίνει αναζήτηση
 #στο δέντρο με χρήση της μεθόδου search
 def query_rtree(rtree, minLetter, maxLetter, minAwards, minDBLP, maxDBLP):
     minLetter = letter_normalization(minLetter)
