@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+from memory_profiler import profile
+
 
 class KDNode: # Αρχικοποιούμε το KD-tree node με τα δεδομένα που μας έχουν δωθεί και προαιρετικά αριστερά και δεξιά children
     def __init__(self, data, left=None, right=None):
@@ -70,7 +72,7 @@ class KdTree: # Αρχικοποιούμε το KD-tree με points, χτίζο�
                 unique_sc.append(item)
         return sorted(unique_sc, key=lambda x: x[0], reverse=False)
 
-
+# @profile # Remove comment for memory profiling
 def build_kdtree(min_awards: int): # Χτίζουμε ένα KD-tree βασισμένο στο scientist data και minimum awards
     scientist_data = load_scientist_data()
     kdtree = KdTree(scientist_data, min_awards=min_awards)

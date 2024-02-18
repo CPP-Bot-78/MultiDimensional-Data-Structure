@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+from memory_profiler import profile
+
 
 # Ενα Octree λειτουργεί όπως ένα Quadtree, απλά για 3 διαστάσεις. (2D -> 3D)
 # Χωρίζει εναν τρισδιάστατο χώρο (κύβο) σε 8 μικρότερους κύβους (octants) και εισάγει τα δεδομένα με βάση τις x,y,z συντεταγμένες
@@ -176,7 +178,7 @@ def extract_data(file_csv):
     
     return index_list, surname_list, awards_list, dblp_list
 
-
+# @profile Remove comment for memory profiling
 def build_octree():
     # Κατασκευή του Octree και εισαγωγή των δεδομένων
     try:

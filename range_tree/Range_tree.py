@@ -11,7 +11,8 @@ import pandas as pd
 from range_tree import RangeTree3D as R3D
 from range_tree.static import letter_normalization
 import sys
-# from memory_profiler import profile
+from memory_profiler import profile
+
 
 # Ετοιμάζουμε το dataframe για να φορτωθεί στο δέντρο
 script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -20,7 +21,7 @@ CSV_PATH = os.path.join(home_dir, 'computer_scientists_data2.csv')
 df = pd.read_csv(CSV_PATH)
 
 
-# @profile
+# @profile Remove comment for memory profiling
 def build_range_tree():
     """
     Δημιουργεί κai επιστρέφει το range tree.

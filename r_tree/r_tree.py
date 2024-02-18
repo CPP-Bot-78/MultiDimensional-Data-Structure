@@ -4,6 +4,7 @@ import sys
 import unicodedata
 from unicodedata import normalize
 from rtree import index
+from memory_profiler import profile
 
 #διάβασμα .csv αρχείου
 script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -36,6 +37,8 @@ def letter_normalization(letter):
     filtered_letter = ''.join(c for c in letter if unicodedata.category(c) != 'Mn')
     return ord(filtered_letter.upper())-65
 #εισαγωγή όλων των γραμμών του .csv αρχείου ως στοιχεία στο RTree, χρήση της μεθόδου insert(), μετά από προσδιορισμό των συντεταγμένων
+
+# @profile Remove comment for memory profiling
 def create_rtree():
     df = pd.read_csv(CSV_PATH)
     rtree = RTree()
