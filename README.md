@@ -1,4 +1,4 @@
-# MultiDimensional-Data-Structure
+# MultiDimensional Data Structures @ CEID
 ## Project for MultiDimensional Data Structures Course is part of Computer Engineering & Informatics Department, at University of Patras. 
 
 The aim of the project is to implement multidimensional data structures in three dimensions (k-d trees, quad trees, Range Trees, and R-trees) 
